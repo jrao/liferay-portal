@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	immediate = true,
 	service =
-		{SingleModelMessageMapper.class, HALSingleModelMessageMapper.class}
+		{HALSingleModelMessageMapper.class, SingleModelMessageMapper.class}
 )
 public class HALSingleModelMessageMapper<T>
 	implements SingleModelMessageMapper<T> {
@@ -147,7 +147,7 @@ public class HALSingleModelMessageMapper<T>
 
 			List<String> middleList = middleStream.collect(Collectors.toList());
 
-			String preLast = middleList.remove(middleList.size() - 1);
+			String prelast = middleList.remove(middleList.size() - 1);
 
 			String[] middle = middleList.toArray(new String[middleList.size()]);
 
@@ -156,7 +156,7 @@ public class HALSingleModelMessageMapper<T>
 			).nestedSuffixedField(
 				"_embedded", embeddedPathElements.head(), middle
 			).nestedField(
-				preLast, "_links", embeddedPathElements.last(), "href"
+				prelast, "_links", embeddedPathElements.last(), "href"
 			).value(
 				url
 			);

@@ -320,17 +320,9 @@ public class LayoutStagedModelDataHandler
 
 		exportTheme(portletDataContext, layout);
 
-		// Page versioning
-
-		LayoutStagingHandler layoutStagingHandler =
-			LayoutStagingUtil.getLayoutStagingHandler(layout);
-
-		if (layoutStagingHandler != null) {
-			layout = layoutStagingHandler.getLayout();
-		}
-
 		portletDataContext.addClassedModel(
-			layoutElement, ExportImportPathUtil.getModelPath(layout), layout);
+			layoutElement, ExportImportPathUtil.getModelPath(layout),
+			LayoutStagingUtil.mergeLayoutRevisionIntoLayout(layout));
 	}
 
 	@Override
@@ -660,6 +652,8 @@ public class LayoutStagedModelDataHandler
 		}
 		else if (importedLayout.getIconImageId() > 0) {
 			_imageLocalService.deleteImage(importedLayout.getIconImageId());
+
+			importedLayout.setIconImageId(0);
 		}
 
 		if (existingLayout == null) {
