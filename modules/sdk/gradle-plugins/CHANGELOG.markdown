@@ -1942,6 +1942,59 @@ to version 2.0.36.
 - [LPS-72705]: Update the [Liferay Source Formatter] dependency to version
 1.0.425.
 
+## 3.4.8 - 2017-07-19
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins Source Formatter] dependency
+to version 2.0.37.
+- [LPS-72705]: Update the [Liferay Source Formatter] dependency to version
+1.0.426.
+
+## 3.4.9 - 2017-07-19
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins Source Formatter] dependency
+to version 2.0.38.
+- [LPS-72705]: Update the [Liferay Source Formatter] dependency to version
+1.0.427.
+
+## 3.4.10 - 2017-07-20
+
+### Changed
+- [LPS-73600]: Update the [Liferay Gradle Plugins Source Formatter] dependency
+to version 2.0.39.
+- [LPS-73600]: Update the [Liferay Source Formatter] dependency to version
+1.0.428.
+
+## 3.4.11 - 2017-07-21
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins Source Formatter] dependency
+to version 2.0.40.
+- [LPS-72705]: Update the [Liferay Source Formatter] dependency to version
+1.0.429.
+
+## 3.4.12 - 2017-07-24
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins Source Formatter] dependency
+to version 2.0.41.
+- [LPS-72705]: Update the [Liferay Source Formatter] dependency to version
+1.0.430.
+
+## 3.4.13 - 2017-07-24
+
+### Added
+- [LPS-73353]: Add the ability to configure the `setUpTestableTomcat` task's
+`jaCoCoAgentConfiguration` property by setting the project property
+`jacoco.agent.configuration`.
+- [LPS-73525]: Add the ability to configure the `setUpTestableTomcat` task's
+`jaCoCoAgentFile` property by setting the project property `jacoco.agent.jar`.
+
+### Changed
+- [LPS-73353]: Update the [Liferay Gradle Plugins Test Integration] dependency
+to version 2.1.0.
+
 [Gradle Bundle Plugin]: https://github.com/TomDmitriev/gradle-bundle-plugin
 [Liferay Alloy Taglib]: https://github.com/liferay/alloy-taglibs
 [Liferay Ant BND]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/ant-bnd
@@ -2108,6 +2161,7 @@ to version 2.0.36.
 [LPS-73148]: https://issues.liferay.com/browse/LPS-73148
 [LPS-73156]: https://issues.liferay.com/browse/LPS-73156
 [LPS-73261]: https://issues.liferay.com/browse/LPS-73261
+[LPS-73353]: https://issues.liferay.com/browse/LPS-73353
 [LPS-73383]: https://issues.liferay.com/browse/LPS-73383
 [LPS-73470]: https://issues.liferay.com/browse/LPS-73470
 [LPS-73472]: https://issues.liferay.com/browse/LPS-73472
@@ -2115,5 +2169,6 @@ to version 2.0.36.
 [LPS-73495]: https://issues.liferay.com/browse/LPS-73495
 [LPS-73525]: https://issues.liferay.com/browse/LPS-73525
 [LPS-73584]: https://issues.liferay.com/browse/LPS-73584
+[LPS-73600]: https://issues.liferay.com/browse/LPS-73600
 [LPS-73642]: https://issues.liferay.com/browse/LPS-73642
 [LRDOCS-3023]: https://issues.liferay.com/browse/LRDOCS-3023

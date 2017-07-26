@@ -755,6 +755,10 @@ public class PropsValues {
 
 	public static final int INDEX_SEARCH_COLLATED_SPELL_CHECK_RESULT_SCORES_THRESHOLD = GetterUtil.getInteger(PropsUtil.get(PropsKeys.INDEX_SEARCH_COLLATED_SPELL_CHECK_RESULT_SCORES_THRESHOLD));
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public static final boolean INDEX_SEARCH_HIGHLIGHT_ENABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.INDEX_SEARCH_HIGHLIGHT_ENABLED));
 
 	public static final int INDEX_SEARCH_LIMIT = GetterUtil.getInteger(PropsUtil.get(PropsKeys.INDEX_SEARCH_LIMIT));
@@ -1664,6 +1668,8 @@ public class PropsValues {
 	public static final String TUNNELING_SERVLET_SHARED_SECRET = PropsUtil.get(PropsKeys.TUNNELING_SERVLET_SHARED_SECRET);
 
 	public static final boolean TUNNELING_SERVLET_SHARED_SECRET_HEX = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.TUNNELING_SERVLET_SHARED_SECRET_HEX));
+
+	public static final String TUNNELING_SERVLET_TIMEOUT = PropsUtil.get(PropsKeys.TUNNELING_SERVLET_TIMEOUT);
 
 	public static final boolean UPGRADE_DATABASE_TRANSACTIONS_DISABLED = GetterUtil.getBoolean(PropsUtil.get(PropsKeys.UPGRADE_DATABASE_TRANSACTIONS_DISABLED));
 

@@ -1743,6 +1743,48 @@ and `writeArtifactPublishCommands` tasks.
 ### Changed
 - [LPS-72705]: Update the [Liferay Gradle Plugins] dependency to version 3.4.7.
 
+## 4.0.7 - 2017-07-19
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins] dependency to version 3.4.8.
+
+## 4.0.8 - 2017-07-19
+
+### Changed
+- [LPS-73600]: Update the [Liferay Gradle Plugins] dependency to version 3.4.9.
+
+## 4.0.9 - 2017-07-20
+
+### Changed
+- [LPS-73600]: Update the [Liferay Gradle Plugins] dependency to version 3.4.10.
+
+## 4.0.10 - 2017-07-21
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins] dependency to version 3.4.11.
+
+## 4.0.11 - 2017-07-24
+
+### Changed
+- [LPS-72705]: Update the [Liferay Gradle Plugins] dependency to version 3.4.12.
+
+## 4.0.12 - 2017-07-24
+
+### Changed
+- [LPS-73353]: Add the JaCoCo Java Agent only to the `test` task if the system
+or project property `junit.code.coverage` is set to `true`.
+- [LPS-73353]: Update the [Liferay Gradle Plugins] dependency to version 3.4.13.
+
+### Removed
+- [LPS-73353]: The `jacoco.code.coverage` system property is no longer
+available.
+
+## 4.1.0 - 2017-07-24
+
+### Added
+- [LPS-72854]: Allow to apply [Liferay Gradle Plugins Lang Merger] to a theme
+project.
+
 [Find Security Bugs]: https://github.com/liferay/liferay-portal/tree/master/modules/third-party/com-h3xstream-findsecbugs
 [Liferay CDN]: https://cdn.lfrs.sl/repository.liferay.com/nexus/content/groups/public
 [Liferay Gradle Plugins]: https://github.com/liferay/liferay-portal/tree/master/modules/sdk/gradle-plugins
@@ -1907,6 +1949,7 @@ and `writeArtifactPublishCommands` tasks.
 [LPS-72750]: https://issues.liferay.com/browse/LPS-72750
 [LPS-72830]: https://issues.liferay.com/browse/LPS-72830
 [LPS-72851]: https://issues.liferay.com/browse/LPS-72851
+[LPS-72854]: https://issues.liferay.com/browse/LPS-72854
 [LPS-72868]: https://issues.liferay.com/browse/LPS-72868
 [LPS-72914]: https://issues.liferay.com/browse/LPS-72914
 [LPS-72989]: https://issues.liferay.com/browse/LPS-72989
@@ -1920,12 +1963,14 @@ and `writeArtifactPublishCommands` tasks.
 [LPS-73289]: https://issues.liferay.com/browse/LPS-73289
 [LPS-73327]: https://issues.liferay.com/browse/LPS-73327
 [LPS-73352]: https://issues.liferay.com/browse/LPS-73352
+[LPS-73353]: https://issues.liferay.com/browse/LPS-73353
 [LPS-73383]: https://issues.liferay.com/browse/LPS-73383
 [LPS-73470]: https://issues.liferay.com/browse/LPS-73470
 [LPS-73489]: https://issues.liferay.com/browse/LPS-73489
 [LPS-73495]: https://issues.liferay.com/browse/LPS-73495
 [LPS-73525]: https://issues.liferay.com/browse/LPS-73525
 [LPS-73584]: https://issues.liferay.com/browse/LPS-73584
+[LPS-73600]: https://issues.liferay.com/browse/LPS-73600
 [LPS-73607]: https://issues.liferay.com/browse/LPS-73607
 [LPS-73642]: https://issues.liferay.com/browse/LPS-73642
 [LPS-73652]: https://issues.liferay.com/browse/LPS-73652

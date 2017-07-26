@@ -979,6 +979,10 @@ public interface PropsKeys {
 
 	public static final String INDEX_SEARCH_ENGINE_ID = "index.search.engine.id";
 
+	/**
+	 * @deprecated As of 7.0.0, with no direct replacement
+	 */
+	@Deprecated
 	public static final String INDEX_SEARCH_HIGHLIGHT_ENABLED = "index.search.highlight.enabled";
 
 	public static final String INDEX_SEARCH_HIGHLIGHT_FRAGMENT_SIZE = "index.search.highlight.fragment.size";
@@ -2367,6 +2371,8 @@ public interface PropsKeys {
 	public static final String TUNNELING_SERVLET_SHARED_SECRET = "tunneling.servlet.shared.secret";
 
 	public static final String TUNNELING_SERVLET_SHARED_SECRET_HEX = "tunneling.servlet.shared.secret.hex";
+
+	public static final String TUNNELING_SERVLET_TIMEOUT = "tunneling.servlet.timeout";
 
 	public static final String UPGRADE_DATABASE_TRANSACTIONS_DISABLED = "upgrade.database.transactions.disabled";
 

@@ -65,6 +65,18 @@ definition {
 			Alert.viewSuccessMessage();
 		}
 
+		var siteName = return(
+			TestCase.getSiteName(
+				siteName = "${siteName}"
+			),
+			siteName
+		);
+		var wikiPageContent = "<p id='demo'>PASS</p>
+
+<script type='text/javascript'>
+document.getElementById('demo').innerHTML = 'FAIL';
+</script>";
+
 		Smoke.viewWelcomePage();
 
 		Smoke.runSmoke();

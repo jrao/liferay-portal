@@ -30,7 +30,11 @@
 		</check>
 	</source-processor>
 	<source-processor name="CSSSourceProcessor">
-		<check name="WhitespaceCheck" />
+		<check name="CSSCommentsCheck" />
+		<check name="CSSEmptyLinesCheck" />
+		<check name="CSSHexColorsCheck" />
+		<check name="CSSPropertiesOrderCheck" />
+		<check name="CSSWhitespaceCheck" />
 	</source-processor>
 	<source-processor name="DockerfileSourceProcessor">
 		<check name="WhitespaceCheck" />
@@ -66,6 +70,7 @@
 		<check name="JavaAssertEqualsCheck" />
 		<check name="JavaBooleanStatementCheck" />
 		<check name="JavaBooleanUsageCheck" />
+		<check name="JavaCollatorUtilCheck" />
 		<check name="JavaCombineLinesCheck" />
 		<check name="JavaConfigurationAdminCheck" />
 		<check name="JavaConstructorParameterOrder" />
