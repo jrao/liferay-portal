@@ -156,61 +156,16 @@ that the destination name is specified as "parallelDestination".
 
 #### Step 3: Creating, Populating, and Sending Messages
 
-To create and populate a message, simply create a new `Message` instance. The
-information contained by a message is called its payload. The payload is a
+The information contained by a message is called its payload. The payload is a
 generic object so you can make the payload anything you want. Messages can also
-contain an arbitrary number of additional name / value pairs. Here's an example:
+contain an arbitrary number of additional name / value pairs. To create and
+populate a message, use a `MessageBuilder`. Using a `MessageBuilder` means that
+you don't have to concern yourself with the implementation details of concrete
+`MessageImpl` objects. 
 
-```.java
-Message message = new Message();
-
-message.setPayload("payload");
-```
-
-If you want to specify some additional name / value pairs, you can do it like
-this:
-
-```.java
-message.put("property1", "value1");
-message.put("property2", "value2");
-```
-
-Instead of assigning individual name / value pairs, you can replace the entire
-map with your own map like this:
-
-```.java
-Map<String, Object> messageMap = new HashMap<>();
-
-message.setValues(messageMap);
-```
-
-Once your message is populated, you can send it via the message bus. The
-`messaging-impl` module publishes a message bus instance as a service. Let's
-create a messaging component again using Declarative Services which depends on
-the MessageBus service:
-
-```.java
-@Component(immediate = true)
-class MessagingComponent {
-
-	@Reference
-	private MessageBus _messageBus;
-
-}
-```
-
-Once you've obtained a reference to the message bus, you can send the message
-like this:
-
-```.java
-_messageBus.sendMessage("parallelDestination", message);
-```
-
-Although creating and sending messages this way is easy enough, it's even
-easier to create and send messages using a message builder. Message builders
-are created from message builder factories. A message builder factory service
-is provided by the `messaging-impl` module. Here's an example of how to obtain
-a message builder:
+Message builders are created from message builder factories. A message builder
+factory service is provided by the `messaging-impl` module. Here's an example
+of how to obtain a message builder factory:
 
 ```.java
 @Component(immediate = true)
@@ -218,6 +173,20 @@ class MessagingBuilderComponent {
 
 	@Reference
 	private MessageBuilderFactory _messageBuilderFactory;
+
+}
+```
+
+Note that a message bus service is also provided by the `messaging-impl`
+module. If desired, you can obtain a reference to the message bus exactly the
+same way as you obtained a reference to the message builder factory:
+
+```.java
+@Component(immediate = true)
+class MessageBusComponent {
+
+	@Reference
+	private MessageBus _messageBus;
 
 }
 ```
@@ -236,15 +205,31 @@ chaining like this:
 
 ```.java
 messageBuilder.setPayload(
-	"payload2"
+	"payload"
 ).put(
-	"property3", "value3"
+	"property1", "value1"
 ).put(
-	"property4", "value4"
+	"property2", "value2"
 );
 ```
 
-If needed, you could use the message builder to obtain an instance of the
+Instead of assigning individual name / value pairs, you can replace the entire
+map with your own map like this:
+
+```.java
+Map<String, Object> messageMap = new HashMap<>();
+
+messageBuilder.setValues(messageMap);
+```
+
+Since message builders are configured with a destination name when they're
+created, using them to send messages is easy:
+
+```.java
+messageBuilder.send();
+```
+
+If needed, you can use the message builder to obtain an instance of the
 configured message like this:
 
 ```.java
@@ -252,18 +237,12 @@ Message message = messageBuilder.build();
 ```
 
 A message obtained like this is already configured with the destination of its
-message builder. However, you can send a message from the message builder
-directly without first obtaining a message instance:
+message builder. The method invocation above has the same effect as invoking
+`_messageBus.sendMessage(...)` with the destination and message configured in
+the message builder. However, it's usually simpler to send a message from the
+message builder directly without first obtaining a message instance.
 
-```.java
-messageBuilder.send();
-```
-
-This method invocation has the same effect as invoking
-`messageBus.sendMessage(...)` with the destination and message configured in
-the message builder.
-
-A complete example looks like this:
+A complete message builder example looks like this:
 
 ```.java
 @Component(immediate = true)
@@ -275,9 +254,9 @@ class MessagingBuilderComponent {
 		).setPayload(
 			payload
 		).put(
-			"property3", foo
+			"property1", foo
 		).put(
-			"property4", bar
+			"property2", bar
 		).send();
 	}
 
