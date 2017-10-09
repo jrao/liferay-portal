@@ -20,6 +20,7 @@ import com.liferay.knowledge.base.constants.KBFolderConstants;
 import com.liferay.knowledge.base.exception.KBArticleImportException;
 import com.liferay.knowledge.base.internal.importer.util.KBArticleMarkdownConverter;
 import com.liferay.knowledge.base.model.KBArticle;
+import com.liferay.knowledge.base.service.KBArticleLocalService;
 import com.liferay.knowledge.base.service.KBArticleLocalServiceUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.log.Log;
@@ -435,8 +436,7 @@ public class KBArticleImporter {
 				// Prioritize intro file
 				double introFilePriority = getIntroFilePriority(folder);
 
-				// TODO: use OSGi service instead of Util
-				KBArticleLocalServiceUtil.moveKBArticle(userId,
+				_kbArticleLocalService.moveKBArticle(userId,
 						introKBArticle.getResourcePrimKey(),
 						sectionResourceClassNameId, sectionResourcePrimaryKey,
 						introFilePriority);
@@ -473,8 +473,7 @@ public class KBArticleImporter {
 				// Prioritize non-intro file
 				double nonIntroFilePriority = getNonIntroFilePriority(file);
 
-				// TODO: use OSGi service instead of Util
-				KBArticleLocalServiceUtil.moveKBArticle(userId,
+				_kbArticleLocalService.moveKBArticle(userId,
 						kbArticle.getResourcePrimKey(),
 						sectionResourceClassNameId, sectionResourcePrimaryKey,
 						nonIntroFilePriority);
@@ -542,11 +541,16 @@ public class KBArticleImporter {
 		_kbArchiveFactory = kbArchiveFactory;
 	}
 
+	@Reference(unbind = "-")
+	protected void setKbArticleLocalService(KBArticleLocalService kbArticleLocalService) {
+		_kbArticleLocalService = kbArticleLocalService;
+	}
 	private static final Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
 
 	private KBArchiveFactory _kbArchiveFactory;
 
+	private KBArticleLocalService _kbArticleLocalService;
 	@Reference
 	private Portal _portal;
 
