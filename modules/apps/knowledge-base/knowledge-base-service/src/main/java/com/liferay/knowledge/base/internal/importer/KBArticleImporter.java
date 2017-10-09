@@ -78,10 +78,9 @@ public class KBArticleImporter {
 						zipReader, metadata, serviceContext);
 			}
 			else {
-			    // TODO: eliminate use of prioritizeByNumericalPrefix in processKBArticleFiles
 				return processKBArticleFiles(
-						userId, groupId, parentKBFolderId, prioritizeByNumericalPrefix,
-						zipReader, metadata, serviceContext);
+					userId, groupId, parentKBFolderId, zipReader, metadata,
+					serviceContext);
 			}
 
 		}
@@ -307,15 +306,15 @@ public class KBArticleImporter {
 
 	protected int processKBArticleFiles(
 			long userId, long groupId, long parentKBFolderId,
-			boolean prioritizeByNumericalPrefix, ZipReader zipReader,
-			Map<String, String> metadata, ServiceContext serviceContext)
+			ZipReader zipReader, Map<String, String> metadata,
+			ServiceContext serviceContext)
 		throws PortalException {
 
 		int importedKBArticlesCount = 0;
 
 		PrioritizationStrategy prioritizationStrategy =
 			PrioritizationStrategy.create(
-				groupId, parentKBFolderId, prioritizeByNumericalPrefix);
+				groupId, parentKBFolderId, false);
 
 		KBArchive kbArchive = _kbArchiveFactory.createKBArchive(
 			groupId, zipReader);
