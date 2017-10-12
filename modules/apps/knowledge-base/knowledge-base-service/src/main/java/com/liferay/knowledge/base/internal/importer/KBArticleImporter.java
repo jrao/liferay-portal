@@ -435,7 +435,7 @@ public class KBArticleImporter {
 				// Prioritize intro file
 				double introFilePriority = getIntroFilePriority(folder);
 
-				_kbArticleLocalService.moveKBArticle(userId,
+				KBArticleLocalServiceUtil.moveKBArticle(userId,
 						introKBArticle.getResourcePrimKey(),
 						sectionResourceClassNameId, sectionResourcePrimaryKey,
 						introFilePriority);
@@ -472,7 +472,7 @@ public class KBArticleImporter {
 				// Prioritize non-intro file
 				double nonIntroFilePriority = getNonIntroFilePriority(file);
 
-				_kbArticleLocalService.moveKBArticle(userId,
+				KBArticleLocalServiceUtil.moveKBArticle(userId,
 						kbArticle.getResourcePrimKey(),
 						sectionResourceClassNameId, sectionResourcePrimaryKey,
 						nonIntroFilePriority);
@@ -540,16 +540,20 @@ public class KBArticleImporter {
 		_kbArchiveFactory = kbArchiveFactory;
 	}
 
+	/*
 	@Reference(unbind = "-")
 	protected void setKbArticleLocalService(KBArticleLocalService kbArticleLocalService) {
 		_kbArticleLocalService = kbArticleLocalService;
 	}
+	*/
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
 
 	private KBArchiveFactory _kbArchiveFactory;
 
-	private KBArticleLocalService _kbArticleLocalService;
+	// private KBArticleLocalService _kbArticleLocalService;
+
 	@Reference
 	private Portal _portal;
 
