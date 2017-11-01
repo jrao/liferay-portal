@@ -59,7 +59,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Daniel Kocsis
  */
 @Component(
-	immediate = true,
 	service = DraftExportImportConfigurationMessageListener.class
 )
 public class DraftExportImportConfigurationMessageListener

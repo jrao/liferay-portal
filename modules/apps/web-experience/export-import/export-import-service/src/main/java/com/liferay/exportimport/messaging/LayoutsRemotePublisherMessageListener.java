@@ -49,7 +49,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Daniel Kocsis
  */
 @Component(
-	immediate = true,
 	property = {
 		"destination.name=" + DestinationNames.LAYOUTS_REMOTE_PUBLISHER,
 		"message.status.destination.name=" + DestinationNames.MESSAGE_BUS_MESSAGE_STATUS
