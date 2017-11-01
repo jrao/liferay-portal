@@ -39,7 +39,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(
-	immediate = true,
 	property = {
 		"destination.name=" + AMDestinationNames.ADAPTIVE_MEDIA_PROCESSOR
 	},

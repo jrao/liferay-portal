@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Deactivate;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = RepositoryDefiner.class)
+@Component(service = RepositoryDefiner.class)
 public class AMLiferayRepositoryDefiner
 	extends BaseOverridingRepositoryDefiner {
 

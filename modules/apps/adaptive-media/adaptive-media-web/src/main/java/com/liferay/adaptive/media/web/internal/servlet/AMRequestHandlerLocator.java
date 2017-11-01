@@ -26,7 +26,7 @@ import org.osgi.service.component.annotations.Deactivate;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = AMRequestHandlerLocator.class)
+@Component(service = AMRequestHandlerLocator.class)
 public class AMRequestHandlerLocator {
 
 	@Activate
