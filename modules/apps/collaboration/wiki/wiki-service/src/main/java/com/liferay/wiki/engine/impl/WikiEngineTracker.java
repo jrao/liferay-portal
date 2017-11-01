@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Deactivate;
 /**
  * @author Iván Zaera
  */
-@Component(immediate = true, service = WikiEngineTracker.class)
+@Component(service = WikiEngineTracker.class)
 public class WikiEngineTracker {
 
 	public Collection<String> getFormats() {

@@ -38,8 +38,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.wiki.configuration.WikiGroupServiceConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
-	property = {"model.class.name=com.liferay.wiki.model.WikiPage"},
+	configurationPolicy = ConfigurationPolicy.OPTIONAL, property = {"model.class.name=com.liferay.wiki.model.WikiPage"},
 	service = AssetEntryValidatorExclusionRule.class
 )
 public class FrontPageAssetEntryValidatorExclusionRule

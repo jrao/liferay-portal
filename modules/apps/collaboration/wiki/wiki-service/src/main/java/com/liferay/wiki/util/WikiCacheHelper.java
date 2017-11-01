@@ -46,7 +46,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Jorge Ferrer
  */
-@Component(immediate = true, service = WikiCacheHelper.class)
+@Component(service = WikiCacheHelper.class)
 public class WikiCacheHelper {
 
 	public void clearCache(long nodeId) {
