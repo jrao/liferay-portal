@@ -47,8 +47,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.subscription.web.configuration.SubscriptionConfiguration",
-	immediate = true
-)
+	)
 public class DeleteExpiredTicketsMessageListener extends BaseMessageListener {
 
 	@Activate
