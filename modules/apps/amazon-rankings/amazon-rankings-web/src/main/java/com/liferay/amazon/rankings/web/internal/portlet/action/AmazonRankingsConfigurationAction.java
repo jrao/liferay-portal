@@ -44,8 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.amazon.rankings.web.configuration.AmazonRankingsConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
-	property = {
+	configurationPolicy = ConfigurationPolicy.OPTIONAL, property = {
 		"javax.portlet.name=" + AmazonRankingsPortletKeys.AMAZON_RANKINGS
 	},
 	service = ConfigurationAction.class
