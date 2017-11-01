@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Leonardo Barros
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=fieldset",
+	property = "ddm.form.field.type.name=fieldset",
 	service = DDMFormFieldRenderer.class
 )
 public class FieldSetDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

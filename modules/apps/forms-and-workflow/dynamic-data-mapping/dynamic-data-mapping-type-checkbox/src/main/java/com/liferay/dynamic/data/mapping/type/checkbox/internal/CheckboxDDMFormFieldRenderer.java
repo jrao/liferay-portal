@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Renato Rego
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=checkbox",
+	property = "ddm.form.field.type.name=checkbox",
 	service = DDMFormFieldRenderer.class
 )
 public class CheckboxDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

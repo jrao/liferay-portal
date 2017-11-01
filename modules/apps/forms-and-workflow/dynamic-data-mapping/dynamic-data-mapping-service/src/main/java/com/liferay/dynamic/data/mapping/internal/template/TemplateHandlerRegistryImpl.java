@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = TemplateHandlerRegistry.class)
+@Component(service = TemplateHandlerRegistry.class)
 public class TemplateHandlerRegistryImpl implements TemplateHandlerRegistry {
 
 	@Override

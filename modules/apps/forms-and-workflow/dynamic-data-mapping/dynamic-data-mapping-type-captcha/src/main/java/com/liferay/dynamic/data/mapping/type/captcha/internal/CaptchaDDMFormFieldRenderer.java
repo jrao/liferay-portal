@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marcellus Tavares
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=captcha",
+	property = "ddm.form.field.type.name=captcha",
 	service = DDMFormFieldRenderer.class
 )
 public class CaptchaDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

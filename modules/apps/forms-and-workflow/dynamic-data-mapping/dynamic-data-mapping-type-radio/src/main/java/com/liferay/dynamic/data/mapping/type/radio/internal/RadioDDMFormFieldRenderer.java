@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Renato Rego
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=radio",
+	property = "ddm.form.field.type.name=radio",
 	service = DDMFormFieldRenderer.class
 )
 public class RadioDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

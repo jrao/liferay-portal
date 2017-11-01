@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Renato Rego
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=select",
+	property = "ddm.form.field.type.name=select",
 	service = DDMFormFieldRenderer.class
 )
 public class SelectDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

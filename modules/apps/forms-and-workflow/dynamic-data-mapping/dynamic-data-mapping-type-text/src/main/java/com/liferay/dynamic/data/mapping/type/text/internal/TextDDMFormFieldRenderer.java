@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Marcellus Tavares
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=text",
+	property = "ddm.form.field.type.name=text",
 	service = DDMFormFieldRenderer.class
 )
 public class TextDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

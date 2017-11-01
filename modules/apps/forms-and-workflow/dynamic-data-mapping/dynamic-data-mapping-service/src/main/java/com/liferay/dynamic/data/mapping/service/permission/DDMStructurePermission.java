@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Bruno Basto
  */
-@Component(immediate = true, service = DDMStructurePermission.class)
+@Component(service = DDMStructurePermission.class)
 public class DDMStructurePermission extends BaseResourcePermissionChecker {
 
 	public static void check(

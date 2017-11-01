@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Renato Rego
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=options",
+	property = "ddm.form.field.type.name=options",
 	service = DDMFormFieldRenderer.class
 )
 public class OptionsDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

@@ -42,7 +42,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Eduardo Lundgren
  * @author Levente Hudák
  */
-@Component(immediate = true, service = DDMTemplatePermission.class)
+@Component(service = DDMTemplatePermission.class)
 public class DDMTemplatePermission extends BaseResourcePermissionChecker {
 
 	public static void check(

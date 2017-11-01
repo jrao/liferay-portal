@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Bruno Basto
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=validation",
+	property = "ddm.form.field.type.name=validation",
 	service = DDMFormFieldRenderer.class
 )
 public class ValidationDDMFormFieldRenderer extends BaseDDMFormFieldRenderer {
