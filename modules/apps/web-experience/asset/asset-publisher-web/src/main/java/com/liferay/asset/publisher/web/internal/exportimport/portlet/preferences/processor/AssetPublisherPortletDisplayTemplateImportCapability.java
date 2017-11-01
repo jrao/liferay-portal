@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Mate Thurzo
  */
 @Component(
-	immediate = true,
 	service = {
 		AssetPublisherPortletDisplayTemplateImportCapability.class,
 		Capability.class

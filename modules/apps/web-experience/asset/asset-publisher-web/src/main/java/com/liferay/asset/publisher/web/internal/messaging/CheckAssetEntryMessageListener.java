@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.asset.publisher.web.configuration.AssetPublisherWebConfiguration",
-	immediate = true, service = CheckAssetEntryMessageListener.class
+	service = CheckAssetEntryMessageListener.class
 )
 public class CheckAssetEntryMessageListener extends BaseMessageListener {
 

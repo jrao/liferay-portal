@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	configurationPid = "com.liferay.asset.publisher.web.configuration.AssetPublisherWebConfiguration",
-	immediate = true, service = AssetPublisherCustomizer.class
+	service = AssetPublisherCustomizer.class
 )
 public class RecentContentAssetPublisherCustomizer
 	extends DefaultAssetPublisherCustomizer {

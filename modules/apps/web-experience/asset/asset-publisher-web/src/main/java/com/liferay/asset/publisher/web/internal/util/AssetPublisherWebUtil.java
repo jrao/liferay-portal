@@ -94,7 +94,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Eudaldo Alonso
  */
-@Component(immediate = true, service = AssetPublisherWebUtil.class)
+@Component(service = AssetPublisherWebUtil.class)
 public class AssetPublisherWebUtil {
 
 	public void addAndStoreSelection(

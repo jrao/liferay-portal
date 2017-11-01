@@ -35,7 +35,7 @@ import org.osgi.util.tracker.ServiceTracker;
 /**
  * @author Adolfo Pérez
  */
-@Component(immediate = true, service = Object.class)
+@Component(service = Object.class)
 public class PortletPanelAppAdapterRegistry {
 
 	@Activate
