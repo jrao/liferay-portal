@@ -43,7 +43,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = RepositorySearchQueryTermBuilder.class)
+@Component(service = RepositorySearchQueryTermBuilder.class)
 public class LuceneRepositorySearchQueryTermBuilder
 	implements RepositorySearchQueryTermBuilder {
 

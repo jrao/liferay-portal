@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Mate Thurzo
  */
-@Component(immediate = true, service = XStreamConfigurator.class)
+@Component(service = XStreamConfigurator.class)
 public class DocumentLibraryXStreamConfigurator implements XStreamConfigurator {
 
 	@Override
