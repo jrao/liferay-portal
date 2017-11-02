@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Stian Sigvartsen
  */
 @Component(
-	immediate = true,
 	property = {"portal.settings.authentication.tabs.name=facebook"},
 	service = DynamicInclude.class
 )

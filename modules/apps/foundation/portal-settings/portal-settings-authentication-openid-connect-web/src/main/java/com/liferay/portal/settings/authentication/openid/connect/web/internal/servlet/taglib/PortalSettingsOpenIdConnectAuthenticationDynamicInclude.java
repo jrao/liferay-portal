@@ -28,7 +28,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Edward C. Han
  */
 @Component(
-	immediate = true,
 	property = {"portal.settings.authentication.tabs.name=openid-connect"},
 	service = DynamicInclude.class
 )

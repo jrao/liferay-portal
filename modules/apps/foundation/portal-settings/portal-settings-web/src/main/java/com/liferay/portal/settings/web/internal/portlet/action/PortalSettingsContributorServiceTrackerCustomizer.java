@@ -40,7 +40,6 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true,
 	service = PortalSettingsContributorServiceTrackerCustomizer.class
 )
 public class PortalSettingsContributorServiceTrackerCustomizer

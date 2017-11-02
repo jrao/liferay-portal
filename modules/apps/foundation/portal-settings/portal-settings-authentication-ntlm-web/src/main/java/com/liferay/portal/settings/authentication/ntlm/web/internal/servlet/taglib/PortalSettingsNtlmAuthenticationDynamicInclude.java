@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Phililp Jones
  */
 @Component(
-	immediate = true,
 	property = {"portal.settings.authentication.tabs.name=ntlm"},
 	service = DynamicInclude.class
 )
