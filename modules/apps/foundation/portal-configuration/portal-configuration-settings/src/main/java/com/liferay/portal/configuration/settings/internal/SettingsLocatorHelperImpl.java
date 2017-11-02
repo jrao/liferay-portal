@@ -60,7 +60,7 @@ import org.osgi.util.tracker.ServiceTracker;
  * @author Jorge Ferrer
  * @author Shuyang Zhou
  */
-@Component(immediate = true, service = SettingsLocatorHelper.class)
+@Component(service = SettingsLocatorHelper.class)
 @DoPrivileged
 public class SettingsLocatorHelperImpl implements SettingsLocatorHelper {
 
