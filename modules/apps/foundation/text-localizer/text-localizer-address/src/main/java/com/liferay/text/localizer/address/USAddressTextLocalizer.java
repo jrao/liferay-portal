@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Pei-Jung Lan
  */
 @Component(
-	immediate = true, property = {"country=US"},
+	property = {"country=US"},
 	service = AddressTextLocalizer.class
 )
 public class USAddressTextLocalizer implements AddressTextLocalizer {
