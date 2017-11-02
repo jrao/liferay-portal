@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Carlos Sierra Andrés
  */
 @Component(
-	immediate = true, service = OutputStreamContainerFactoryTracker.class
+	service = OutputStreamContainerFactoryTracker.class
 )
 public class OutputStreamContainerFactoryTracker {
 
