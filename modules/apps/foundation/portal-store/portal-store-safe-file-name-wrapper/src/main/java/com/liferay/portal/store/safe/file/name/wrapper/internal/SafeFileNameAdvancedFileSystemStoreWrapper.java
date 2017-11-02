@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Roberto Díaz
  */
 @Component(
-	enabled = false, immediate = true,
+	enabled = false,
 	property = {
 		"store.type=com.liferay.portal.store.file.system.AdvancedFileSystemStore"
 	},

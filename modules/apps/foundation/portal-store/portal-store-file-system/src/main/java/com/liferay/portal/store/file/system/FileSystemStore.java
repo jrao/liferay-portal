@@ -60,7 +60,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.store.file.system.configuration.FileSystemStoreConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	property = "store.type=com.liferay.portal.store.file.system.FileSystemStore",
 	service = Store.class
 )
