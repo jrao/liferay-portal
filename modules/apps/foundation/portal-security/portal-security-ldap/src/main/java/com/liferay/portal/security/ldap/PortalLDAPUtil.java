@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Edward C. Han
  */
-@Component(immediate = true)
+@Component
 public class PortalLDAPUtil {
 
 	public static LdapContext getContext(long ldapServerId, long companyId)

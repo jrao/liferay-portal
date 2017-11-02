@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.security.audit.configuration.AuditConfiguration",
-	enabled = false, immediate = true,
+	enabled = false,
 	service = AuditMessagingConfigurator.class
 )
 public class AuditMessagingConfigurator {

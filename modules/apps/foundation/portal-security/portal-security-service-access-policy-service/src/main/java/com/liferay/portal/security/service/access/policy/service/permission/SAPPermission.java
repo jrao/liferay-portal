@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Tomas Polesovsky
  */
 @Component(
-	immediate = true,
 	property = {"resource.name=" + SAPPermission.RESOURCE_NAME},
 	service = ResourcePermissionChecker.class
 )

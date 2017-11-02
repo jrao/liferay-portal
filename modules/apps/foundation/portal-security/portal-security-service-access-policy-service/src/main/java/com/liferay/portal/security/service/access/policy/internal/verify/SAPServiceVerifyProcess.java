@@ -32,7 +32,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Mika Koivisto
  */
 @Component(
-	immediate = true,
 	property = {"verify.process.name=com.liferay.portal.security.service.access.policy.service"},
 	service = VerifyProcess.class
 )

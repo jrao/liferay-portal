@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
  *
  * @author Jorge Ferrer
  */
-@Component(immediate = true, service = AutoLogin.class)
+@Component(service = AutoLogin.class)
 public class OpenIdAutoLogin extends BaseAutoLogin {
 
 	@Override

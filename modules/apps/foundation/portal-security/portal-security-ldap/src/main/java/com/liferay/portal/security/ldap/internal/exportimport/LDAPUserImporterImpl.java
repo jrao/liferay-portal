@@ -116,7 +116,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Edward C. Han
  */
 @Component(
-	immediate = true, service = {LDAPUserImporter.class, UserImporter.class}
+	service = {LDAPUserImporter.class, UserImporter.class}
 )
 public class LDAPUserImporterImpl implements LDAPUserImporter, UserImporter {
 

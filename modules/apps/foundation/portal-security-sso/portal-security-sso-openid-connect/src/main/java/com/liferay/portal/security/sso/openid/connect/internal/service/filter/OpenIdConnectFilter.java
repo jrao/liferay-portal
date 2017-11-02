@@ -41,7 +41,6 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.security.sso.openid.connect.configuration.OpenIdConnectConfiguration",
-	immediate = true,
 	property = {
 		"before-filter=Auto Login Filter", "servlet-context-name=",
 		"servlet-filter-name=SSO OpenId Connect Filter",

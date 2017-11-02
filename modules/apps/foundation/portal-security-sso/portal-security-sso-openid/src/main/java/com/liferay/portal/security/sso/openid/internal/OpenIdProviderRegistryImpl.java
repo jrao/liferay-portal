@@ -38,7 +38,6 @@ import org.osgi.service.component.annotations.ReferencePolicy;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true,
 	property = {
 		"open.id.ax.schema[default]=email,firstname,lastname",
 		"open.id.ax.schema[yahoo]=email,fullname",

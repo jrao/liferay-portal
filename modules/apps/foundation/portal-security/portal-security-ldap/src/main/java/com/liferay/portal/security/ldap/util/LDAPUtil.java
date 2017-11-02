@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author James Lefeu
  * @author Vilmos Papp
  */
-@Component(immediate = true)
+@Component
 public class LDAPUtil {
 
 	public static Object getAttributeObject(

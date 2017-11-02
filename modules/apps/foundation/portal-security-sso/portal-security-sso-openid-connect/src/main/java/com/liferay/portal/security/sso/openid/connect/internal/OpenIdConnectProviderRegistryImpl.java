@@ -40,7 +40,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Edward C. Han
  */
 @Component(
-	immediate = true,
 	property = Constants.SERVICE_PID + "=com.liferay.portal.security.sso.openid.connect.configuration.OpenIdConnectProviderConfiguration",
 	service = {ManagedServiceFactory.class, OpenIdConnectProviderRegistry.class}
 )

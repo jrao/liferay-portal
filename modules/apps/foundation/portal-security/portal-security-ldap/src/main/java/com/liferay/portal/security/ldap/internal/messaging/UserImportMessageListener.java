@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Shuyang Zhou
  */
-@Component(immediate = true, service = UserImportMessageListener.class)
+@Component(service = UserImportMessageListener.class)
 public class UserImportMessageListener extends BaseMessageListener {
 
 	@Activate

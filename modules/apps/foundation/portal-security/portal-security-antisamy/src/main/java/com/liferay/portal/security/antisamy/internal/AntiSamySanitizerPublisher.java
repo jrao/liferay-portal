@@ -34,8 +34,7 @@ import org.osgi.service.component.annotations.Modified;
  * @author Tomas Polesovsky
  */
 @Component(
-	configurationPid = "com.liferay.portal.security.antisamy.configuration.AntiSamyConfiguration",
-	immediate = true
+	configurationPid = "com.liferay.portal.security.antisamy.configuration.AntiSamyConfiguration"
 )
 public class AntiSamySanitizerPublisher {
 

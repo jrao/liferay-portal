@@ -22,7 +22,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = ConfigurationBeanDeclaration.class)
+@Component(service = ConfigurationBeanDeclaration.class)
 public class OpenIdConnectCompanyServiceConfigurationBeanDeclaration
 	implements ConfigurationBeanDeclaration {
 
