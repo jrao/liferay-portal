@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = BackgroundTaskExecutorRegistry.class)
+@Component(service = BackgroundTaskExecutorRegistry.class)
 public class BackgroundTaskExecutorRegistryImpl
 	implements BackgroundTaskExecutorRegistry {
 
