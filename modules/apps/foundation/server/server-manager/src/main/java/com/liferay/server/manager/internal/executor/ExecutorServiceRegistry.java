@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Marcellus Tavares
  */
-@Component(immediate = true, service = ExecutorServiceRegistry.class)
+@Component(service = ExecutorServiceRegistry.class)
 public class ExecutorServiceRegistry {
 
 	public Set<String> getAvailableExecutorPaths() {

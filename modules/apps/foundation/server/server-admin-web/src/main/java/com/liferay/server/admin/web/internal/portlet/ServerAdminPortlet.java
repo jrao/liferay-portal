@@ -25,7 +25,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.css-class-wrapper=portlet-admin",
 		"com.liferay.portlet.display-category=category.hidden",

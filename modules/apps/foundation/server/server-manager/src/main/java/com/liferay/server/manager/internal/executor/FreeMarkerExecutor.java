@@ -33,7 +33,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Cindy Li
  */
 @Component(
-	immediate = true,
 	property = {"server.manager.executor.path=/server/freemarker"},
 	service = Executor.class
 )

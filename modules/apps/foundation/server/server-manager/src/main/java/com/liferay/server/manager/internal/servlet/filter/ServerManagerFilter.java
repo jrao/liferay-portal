@@ -24,7 +24,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Marcellus Tavares
  */
 @Component(
-	immediate = true,
 	property = {
 		"filter.init.basic_auth=true",
 		"filter.init.filter-class=com.liferay.portal.servlet.filters.secure.SecureFilter",

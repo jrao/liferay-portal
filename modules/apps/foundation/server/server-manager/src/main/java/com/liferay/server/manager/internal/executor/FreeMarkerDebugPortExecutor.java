@@ -20,7 +20,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Cindy Li
  */
 @Component(
-	immediate = true,
 	property = {"server.manager.executor.path=/server/freemarker/debug-port"},
 	service = Executor.class
 )

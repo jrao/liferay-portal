@@ -45,7 +45,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true,
 	property = {"server.manager.executor.path=/server/log/output"},
 	service = Executor.class
 )
