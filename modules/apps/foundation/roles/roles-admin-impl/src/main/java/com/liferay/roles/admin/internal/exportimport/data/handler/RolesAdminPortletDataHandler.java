@@ -53,7 +53,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author David Mendez Gonzalez
  */
 @Component(
-	immediate = true,
 	property = "javax.portlet.name=" + RolesAdminPortletKeys.ROLES_ADMIN,
 	service = PortletDataHandler.class
 )
