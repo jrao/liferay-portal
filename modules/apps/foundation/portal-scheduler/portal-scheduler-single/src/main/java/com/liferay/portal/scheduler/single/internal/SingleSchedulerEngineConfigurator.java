@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Deactivate;
  * @author Tina Tian
  */
 @Component(
-	enabled = false, immediate = true,
+	enabled = false,
 	service = SingleSchedulerEngineConfigurator.class
 )
 public class SingleSchedulerEngineConfigurator
