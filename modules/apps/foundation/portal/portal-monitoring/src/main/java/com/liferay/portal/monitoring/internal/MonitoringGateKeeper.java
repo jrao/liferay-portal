@@ -44,7 +44,6 @@ import org.w3c.dom.Element;
  */
 @Component(
 	configurationPid = "com.liferay.portal.monitoring.configuration.MonitoringConfiguration",
-	immediate = true
 )
 public class MonitoringGateKeeper {
 
