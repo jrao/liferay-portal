@@ -48,7 +48,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = ClusterMasterExecutor.class)
+@Component(service = ClusterMasterExecutor.class)
 public class ClusterMasterExecutorImpl implements ClusterMasterExecutor {
 
 	@Override
