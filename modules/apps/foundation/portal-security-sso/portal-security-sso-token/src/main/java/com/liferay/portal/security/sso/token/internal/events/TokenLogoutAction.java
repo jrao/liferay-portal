@@ -66,7 +66,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  */
 @Component(
 	configurationPid = "com.liferay.portal.security.sso.token.configuration.TokenConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	property = {"key=logout.events.post"}, service = LifecycleAction.class
 )
 public class TokenLogoutAction extends Action {

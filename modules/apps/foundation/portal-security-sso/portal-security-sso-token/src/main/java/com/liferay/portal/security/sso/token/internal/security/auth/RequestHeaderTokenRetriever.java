@@ -24,7 +24,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = TokenRetriever.class)
+@Component(service = TokenRetriever.class)
 public class RequestHeaderTokenRetriever implements TokenRetriever {
 
 	@Override

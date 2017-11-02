@@ -95,7 +95,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Thuong Dinh
  * @author Edward C. Han
  */
-@Component(immediate = true, service = OpenIdConnectServiceHandler.class)
+@Component(service = OpenIdConnectServiceHandler.class)
 public class OpenIdConnectServiceHandlerImpl
 	implements OpenIdConnectServiceHandler {
 

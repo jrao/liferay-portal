@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = LogoutProcessor.class)
+@Component(service = LogoutProcessor.class)
 public class RedirectLogoutProcessor implements LogoutProcessor {
 
 	@Override
