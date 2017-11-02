@@ -50,7 +50,6 @@ import org.osgi.service.metatype.annotations.Designate;
  */
 @Component(
 	configurationPid = "com.liferay.frontend.js.loader.modules.extender.internal.Details",
-	immediate = true,
 	property = {
 		"osgi.http.whiteboard.servlet.name=com.liferay.frontend.js.loader.modules.extender.internal.JSLoaderModulesServlet",
 		"osgi.http.whiteboard.servlet.pattern=/js_loader_modules",

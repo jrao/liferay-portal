@@ -41,7 +41,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  */
 @Component(
 	configurationPid = "com.liferay.frontend.js.loader.modules.extender.internal.Details",
-	immediate = true, service = JSLoaderModulesTracker.class
+	service = JSLoaderModulesTracker.class
 )
 public class JSLoaderModulesTracker
 	implements ServiceTrackerCustomizer

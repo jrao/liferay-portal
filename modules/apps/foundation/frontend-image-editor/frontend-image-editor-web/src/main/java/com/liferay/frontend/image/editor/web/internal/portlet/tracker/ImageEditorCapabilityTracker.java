@@ -45,7 +45,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
 /**
  * @author Bruno Basto
  */
-@Component(immediate = true, service = ImageEditorCapabilityTracker.class)
+@Component(service = ImageEditorCapabilityTracker.class)
 public class ImageEditorCapabilityTracker {
 
 	public Set<String> getImageEditorCapabilitiesRequirements() {
