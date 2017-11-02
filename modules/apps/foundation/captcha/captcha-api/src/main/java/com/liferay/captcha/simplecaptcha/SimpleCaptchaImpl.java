@@ -59,7 +59,6 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.captcha.configuration.CaptchaConfiguration",
-	immediate = true,
 	property = {
 		"captcha.engine.impl=com.liferay.captcha.simplecaptcha.SimpleCaptchaImpl"
 	},
