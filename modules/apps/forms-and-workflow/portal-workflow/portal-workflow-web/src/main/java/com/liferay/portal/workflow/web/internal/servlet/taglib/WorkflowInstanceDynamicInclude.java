@@ -49,7 +49,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adam Brandizzi
  */
 @Component(
-	immediate = true,
 	property = {"portal.workflow.tabs.name=" + WorkflowWebKeys.WORKFLOW_TAB_INSTANCE},
 	service = {DynamicInclude.class, WorkflowDynamicInclude.class}
 )

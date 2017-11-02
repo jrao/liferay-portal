@@ -34,7 +34,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true,
 	property = {"destination.name=" + KaleoRuntimeDestinationNames.KALEO_GRAPH_WALKER},
 	service = MessageListener.class
 )

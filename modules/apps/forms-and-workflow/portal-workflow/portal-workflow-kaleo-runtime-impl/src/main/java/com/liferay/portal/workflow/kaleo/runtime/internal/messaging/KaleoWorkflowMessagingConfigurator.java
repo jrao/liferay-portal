@@ -51,7 +51,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = KaleoWorkflowMessagingConfigurator.class)
+@Component(service = KaleoWorkflowMessagingConfigurator.class)
 public class KaleoWorkflowMessagingConfigurator {
 
 	@Activate
