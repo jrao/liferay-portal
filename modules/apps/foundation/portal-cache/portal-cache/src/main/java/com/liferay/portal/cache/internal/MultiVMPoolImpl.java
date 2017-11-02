@@ -42,7 +42,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Brian Wing Shun Chan
  * @author Michael Young
  */
-@Component(immediate = true, service = MultiVMPool.class)
+@Component(service = MultiVMPool.class)
 public class MultiVMPoolImpl implements MultiVMPool {
 
 	@Override

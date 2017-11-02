@@ -53,7 +53,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Shuyang Zhou
  */
 @Component(
-	immediate = true, service = {CacheRegistryItem.class, EntityCache.class}
+	service = {CacheRegistryItem.class, EntityCache.class}
 )
 public class EntityCacheImpl
 	implements PortalCacheManagerListener, CacheRegistryItem, EntityCache {

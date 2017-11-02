@@ -47,7 +47,6 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Tina Tian
  */
 @Component(
-	immediate = true,
 	property = {
 		PortalCacheManager.PORTAL_CACHE_MANAGER_NAME + "=" + PortalCacheManagerNames.MULTI_VM
 	},

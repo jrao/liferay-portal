@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Tina Tian
  */
-@Component(immediate = true, service = PortalProfile.class)
+@Component(service = PortalProfile.class)
 public class RMIModulePortalProfile extends BaseDSModulePortalProfile {
 
 	@Activate

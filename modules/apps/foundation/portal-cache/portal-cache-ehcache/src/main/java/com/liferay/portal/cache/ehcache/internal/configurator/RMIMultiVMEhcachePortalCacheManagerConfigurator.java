@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Tina Tian
  */
 @Component(
-	enabled = false, immediate = true,
+	enabled = false,
 	service = MultiVMEhcachePortalCacheManagerConfigurator.class
 )
 public class RMIMultiVMEhcachePortalCacheManagerConfigurator
