@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
  * @author André de Oliveira
  */
 @Component(
-	immediate = true,
 	service = {AssetEntriesFacetFactory.class, FacetFactory.class}
 )
 public class AssetEntriesFacetFactoryImpl implements AssetEntriesFacetFactory {

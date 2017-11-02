@@ -37,7 +37,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Rodrigo Paulino
  */
 @Component(
-	immediate = true,
 	property = {"description.fields=description", "title.fields=title"},
 	service = FieldQueryBuilderFactory.class
 )

@@ -56,7 +56,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration",
-	immediate = true, property = {"operation.mode=REMOTE"},
+	property = {"operation.mode=REMOTE"},
 	service = ElasticsearchConnection.class
 )
 public class RemoteElasticsearchConnection extends BaseElasticsearchConnection {

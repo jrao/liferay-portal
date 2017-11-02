@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true, property = {"buffered.execution.mode=DEFAULT"},
+	property = {"buffered.execution.mode=DEFAULT"},
 	service = IndexerRequestBufferExecutor.class
 )
 public class DefaultIndexerRequestBufferExecutor

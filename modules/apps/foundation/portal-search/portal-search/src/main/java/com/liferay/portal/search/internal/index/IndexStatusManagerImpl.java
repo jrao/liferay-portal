@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.configuration.IndexStatusManagerConfiguration",
-	immediate = true, service = IndexStatusManager.class
+	service = IndexStatusManager.class
 )
 public class IndexStatusManagerImpl implements IndexStatusManager {
 

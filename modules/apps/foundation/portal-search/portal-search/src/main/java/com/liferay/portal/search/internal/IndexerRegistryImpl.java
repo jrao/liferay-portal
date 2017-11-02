@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.configuration.IndexerRegistryConfiguration",
-	immediate = true, service = IndexerRegistry.class
+	service = IndexerRegistry.class
 )
 public class IndexerRegistryImpl implements IndexerRegistry {
 

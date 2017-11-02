@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.configuration.SearchEngineHelperConfiguration",
-	immediate = true, service = SearchEngineHelper.class
+	service = SearchEngineHelper.class
 )
 public class SearchEngineHelperImpl implements SearchEngineHelper {
 

@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true,
 	property = {
 		"class.name=com.liferay.portal.kernel.search.facet.DateRangeFacet"
 	},

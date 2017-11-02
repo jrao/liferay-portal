@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = AggregateSuggesterTranslator.class)
+@Component(service = AggregateSuggesterTranslator.class)
 public class AggregateSuggesterTranslatorImpl
 	implements AggregateSuggesterTranslator {
 

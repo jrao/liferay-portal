@@ -102,7 +102,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration",
-	immediate = true, property = {"search.engine.impl=Elasticsearch"},
+	property = {"search.engine.impl=Elasticsearch"},
 	service = IndexSearcher.class
 )
 public class ElasticsearchIndexSearcher extends BaseIndexSearcher {

@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author André de Oliveira
  */
-@Component(immediate = true, service = PortletSharedTaskExecutor.class)
+@Component(service = PortletSharedTaskExecutor.class)
 public class PortletSharedTaskExecutorImpl
 	implements PortletSharedTaskExecutor {
 

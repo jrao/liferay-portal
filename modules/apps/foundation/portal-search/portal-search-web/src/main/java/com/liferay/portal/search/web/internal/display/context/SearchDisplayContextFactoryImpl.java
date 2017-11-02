@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Tina Tian
  */
-@Component(immediate = true, service = SearchDisplayContextFactory.class)
+@Component(service = SearchDisplayContextFactory.class)
 public class SearchDisplayContextFactoryImpl
 	implements SearchDisplayContextFactory {
 

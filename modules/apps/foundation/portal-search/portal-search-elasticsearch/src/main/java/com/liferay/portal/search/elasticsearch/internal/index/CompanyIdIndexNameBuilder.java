@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.elasticsearch.configuration.ElasticsearchConfiguration",
-	immediate = true, service = IndexNameBuilder.class
+	service = IndexNameBuilder.class
 )
 public class CompanyIdIndexNameBuilder implements IndexNameBuilder {
 
