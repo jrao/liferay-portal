@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.portal.template.xsl.configuration.XSLEngineConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	property = {"language.type=" + TemplateConstants.LANG_TYPE_XSL},
 	service = TemplateManager.class
 )

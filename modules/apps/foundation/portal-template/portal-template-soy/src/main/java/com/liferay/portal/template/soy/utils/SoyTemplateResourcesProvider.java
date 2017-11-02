@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Miguel Pastor
  */
-@Component(immediate = true)
+@Component
 public class SoyTemplateResourcesProvider {
 
 	public static List<TemplateResource> getAllTemplateResources() {

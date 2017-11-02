@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.template.soy.configuration.SoyTemplateEngineConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	service = {SoyTemplateResourceLoader.class, TemplateResourceLoader.class}
 )
 public class SoyTemplateResourceLoader implements TemplateResourceLoader {

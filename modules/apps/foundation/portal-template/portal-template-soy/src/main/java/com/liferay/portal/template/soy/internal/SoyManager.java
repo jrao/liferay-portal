@@ -41,7 +41,6 @@ import org.osgi.util.tracker.BundleTracker;
  * @author Bruno Basto
  */
 @Component(
-	immediate = true,
 	property = {"language.type=" + TemplateConstants.LANG_TYPE_SOY},
 	service = {SoyManager.class, TemplateManager.class}
 )

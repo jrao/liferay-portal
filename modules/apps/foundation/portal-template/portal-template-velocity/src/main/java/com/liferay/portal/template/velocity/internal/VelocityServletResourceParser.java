@@ -45,7 +45,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Raymond Augé
  */
 @Component(
-	immediate = true,
 	property = {"lang.type=" + TemplateConstants.LANG_TYPE_VM},
 	service = TemplateResourceParser.class
 )

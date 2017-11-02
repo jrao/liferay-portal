@@ -30,7 +30,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Marcellus Tavares
  */
 @Component(
-	immediate = true,
 	property = {"lang.type=" + TemplateConstants.LANG_TYPE_SOY},
 	service =
 		{SoyTemplateBundleResourceParser.class, TemplateResourceParser.class}
