@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Scott Lee
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = Indexer.class)
+@Component(service = Indexer.class)
 public class MessageIndexer extends BaseIndexer<Message> {
 
 	public static final String CLASS_NAME = Message.class.getName();

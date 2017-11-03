@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Peter Fellwock
  */
 @Component(
-	immediate = true, property = {"key=application.startup.events"},
+	property = {"key=application.startup.events"},
 	service = LifecycleAction.class
 )
 public class StartupAction extends SimpleAction {

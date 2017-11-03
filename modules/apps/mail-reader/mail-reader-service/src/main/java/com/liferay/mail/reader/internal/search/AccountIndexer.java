@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Michael C. Han
  * @author Peter Fellwock
  */
-@Component(immediate = true, service = Indexer.class)
+@Component(service = Indexer.class)
 public class AccountIndexer extends BaseIndexer<Account> {
 
 	public static final String CLASS_NAME = Account.class.getName();

@@ -34,7 +34,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Scott Lee
  */
 @Component(
-	immediate = true, property = {"javax.portlet.name=" + MailPortletKeys.MAIL},
+	property = {"javax.portlet.name=" + MailPortletKeys.MAIL},
 	service = MailboxFactoryUtil.class
 )
 public class MailboxFactoryUtil {
