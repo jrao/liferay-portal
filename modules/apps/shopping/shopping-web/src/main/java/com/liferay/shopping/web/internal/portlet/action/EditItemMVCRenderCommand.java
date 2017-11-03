@@ -38,7 +38,6 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.shopping.configuration.ShoppingFileUploadsConfiguration",
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + ShoppingPortletKeys.SHOPPING,
 		"javax.portlet.name=" + ShoppingPortletKeys.SHOPPING_ADMIN,

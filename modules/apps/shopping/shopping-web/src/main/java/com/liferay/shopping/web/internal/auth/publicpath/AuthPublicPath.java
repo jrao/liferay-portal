@@ -20,7 +20,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Raymond Augé
  */
 @Component(
-	immediate = true, property = {"auth.public.path=/shopping/notify"},
+	property = {"auth.public.path=/shopping/notify"},
 	service = Object.class
 )
 public class AuthPublicPath {

@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true,
 	property = {"model.class.name=com.liferay.shopping.model.ShoppingOrder"},
 	service = ShoppingOrderPermission.class
 )
