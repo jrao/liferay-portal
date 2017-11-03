@@ -87,7 +87,7 @@ import org.osgi.service.component.annotations.Reference;
 		"com.liferay.document.library.configuration.DLConfiguration",
 		"com.liferay.social.privatemessaging.configuration.PrivateMessagingConfiguration"
 	},
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	property = {
 		"com.liferay.portlet.add-default-resource=true",
 		"com.liferay.portlet.css-class-wrapper=private-messaging-portlet",

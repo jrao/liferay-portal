@@ -40,7 +40,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Adolfo Pérez
  */
 @Component(
-	immediate = true,
 	property = {
 		"osgi.command.function=executeAll",
 		"osgi.command.function=hideTasksLayout",

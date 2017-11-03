@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Eric Yan
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + PrivateMessagingPortletKeys.PRIVATE_MESSAGING
 	},

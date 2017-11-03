@@ -41,7 +41,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.css-class-wrapper=social-networking-portlet-wall",
 		"com.liferay.portlet.display-category=category.social",
