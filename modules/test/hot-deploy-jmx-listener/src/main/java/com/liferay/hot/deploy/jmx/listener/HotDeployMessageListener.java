@@ -32,7 +32,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Cristina González
  */
-@Component(immediate = true, service = MessageListener.class)
+@Component(service = MessageListener.class)
 public class HotDeployMessageListener extends BaseMessageListener {
 
 	@Activate

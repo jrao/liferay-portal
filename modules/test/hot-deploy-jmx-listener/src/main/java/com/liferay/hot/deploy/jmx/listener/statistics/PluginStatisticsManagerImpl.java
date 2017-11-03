@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Cristina González
  */
-@Component(immediate = true, service = PluginStatisticsManager.class)
+@Component(service = PluginStatisticsManager.class)
 public class PluginStatisticsManagerImpl implements PluginStatisticsManager {
 
 	@Override

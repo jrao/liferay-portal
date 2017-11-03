@@ -33,7 +33,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Shuyang Zhou
  */
 @Component(
-	immediate = true,
 	property = {
 		"servlet-context-name=", "servlet-filter-name=TCK Auto Login Filter",
 		"url-pattern=/*"

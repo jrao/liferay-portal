@@ -29,7 +29,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Cristina González
  */
 @Component(
-	immediate = true,
 	property = {
 		"jmx.objectname=com.liferay.portal.monitoring:classification=plugin_statistics,name=PluginsManager",
 		"jmx.objectname.cache.key=PluginsManager"

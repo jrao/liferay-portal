@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Miguel Pastor
  */
-@Component(immediate = true, service = AutoDeployListener.class)
+@Component(service = AutoDeployListener.class)
 public class TCKPortletAutoDeployListener extends PortletAutoDeployListener {
 
 	@Override
