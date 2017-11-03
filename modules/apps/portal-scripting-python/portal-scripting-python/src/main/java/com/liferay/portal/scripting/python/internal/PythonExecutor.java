@@ -39,7 +39,6 @@ import org.python.util.InteractiveInterpreter;
  * @author Alberto Montero
  */
 @Component(
-	immediate = true,
 	property = {"scripting.language=" + PythonExecutor.LANGUAGE},
 	service = ScriptingExecutor.class
 )

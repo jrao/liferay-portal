@@ -30,7 +30,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Cristina González
  */
 @Component(
-	immediate = true,
 	property = {"org.osgi.http.websocket.endpoint.path=/o/websocket/test"},
 	service = Endpoint.class
 )

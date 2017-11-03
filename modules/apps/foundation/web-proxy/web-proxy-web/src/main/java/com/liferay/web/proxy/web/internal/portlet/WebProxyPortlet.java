@@ -58,7 +58,6 @@ import org.portletbridge.portlet.PortletBridgeServlet;
  * @author Brian Wing Shun Chan
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.css-class-wrapper=portlet-web-proxy",
 		"com.liferay.portlet.display-category=category.sample",

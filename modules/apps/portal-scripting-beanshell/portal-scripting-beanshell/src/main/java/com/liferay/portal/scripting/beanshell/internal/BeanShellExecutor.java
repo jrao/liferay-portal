@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Shuyang Zhou
  */
 @Component(
-	immediate = true,
 	property = {"scripting.language=" + BeanShellExecutor.LANGUAGE},
 	service = ScriptingExecutor.class
 )

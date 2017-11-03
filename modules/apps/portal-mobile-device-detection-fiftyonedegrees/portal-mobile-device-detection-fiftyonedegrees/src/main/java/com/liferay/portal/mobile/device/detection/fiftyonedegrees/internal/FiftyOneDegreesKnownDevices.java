@@ -43,7 +43,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Prathima Shreenath
  */
 @Component(
-	immediate = true,
 	service = {FiftyOneDegreesKnownDevices.class, KnownDevices.class}
 )
 public class FiftyOneDegreesKnownDevices implements KnownDevices {

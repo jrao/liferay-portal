@@ -1,0 +1,9 @@
+{
+  "LiferayTheme": {
+    "deployPath": "/home/jrao/app-servers/7.0.x/deploy",
+    "themeName": "frontend-theme-porygon",
+    "appServerPathTheme": "/home/jrao/app-servers/7.0.x/tomcat-8.0.32/webapps/frontend-theme-porygon",
+    "deployed": false,
+    "appServerPath": "/home/jrao/app-servers/7.0.x/tomcat-8.0.32"
+  }
+}

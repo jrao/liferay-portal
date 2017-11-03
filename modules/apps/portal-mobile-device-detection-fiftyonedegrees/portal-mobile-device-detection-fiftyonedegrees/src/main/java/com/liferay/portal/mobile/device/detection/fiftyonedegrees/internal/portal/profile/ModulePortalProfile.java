@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Matthew Tambara
  */
-@Component(immediate = true, service = PortalProfile.class)
+@Component(service = PortalProfile.class)
 public class ModulePortalProfile extends BaseDSModulePortalProfile {
 
 	@Activate

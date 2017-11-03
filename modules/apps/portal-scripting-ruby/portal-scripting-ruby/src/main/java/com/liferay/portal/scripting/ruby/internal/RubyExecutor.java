@@ -64,7 +64,6 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.scripting.ruby.configuration.RubyScriptingConfiguration",
-	immediate = true,
 	property = {"scripting.language=" + RubyExecutor.LANGUAGE},
 	service = ScriptingExecutor.class
 )

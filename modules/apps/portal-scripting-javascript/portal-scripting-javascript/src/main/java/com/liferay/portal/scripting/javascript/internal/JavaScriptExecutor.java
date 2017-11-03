@@ -40,7 +40,6 @@ import org.osgi.service.component.annotations.Modified;
  * @author Alberto Montero
  */
 @Component(
-	immediate = true,
 	property = {"scripting.language=" + JavaScriptExecutor.LANGUAGE},
 	service = ScriptingExecutor.class
 )
