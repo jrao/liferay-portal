@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Javier Gamarra
  * @review
  */
-@Component(immediate = true)
+@Component
 public class ServerURLProviderImpl implements ServerURLProvider {
 
 	/**

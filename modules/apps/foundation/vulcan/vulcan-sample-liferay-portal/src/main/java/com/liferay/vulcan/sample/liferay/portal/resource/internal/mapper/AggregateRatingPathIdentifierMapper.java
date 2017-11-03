@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true)
+@Component
 public class AggregateRatingPathIdentifierMapper
 	implements PathIdentifierMapper<AggregateRatingIdentifier> {
 

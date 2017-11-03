@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true, service = ErrorMessageMapperManager.class)
+@Component(service = ErrorMessageMapperManager.class)
 public class ErrorMessageMapperManager {
 
 	/**

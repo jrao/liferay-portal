@@ -35,7 +35,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true, service = CollectionResource.class)
+@Component(service = CollectionResource.class)
 public class AggregateRatingScopedCollectionResource
 	implements
 		ScopedCollectionResource<AggregateRating, AggregateRatingIdentifier> {

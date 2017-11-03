@@ -27,7 +27,7 @@ import org.slf4j.LoggerFactory;
 /**
  * @author Alejandro Hernández
  */
-@Component(immediate = true)
+@Component
 public class VulcanLoggerImpl implements VulcanLogger {
 
 	@Override

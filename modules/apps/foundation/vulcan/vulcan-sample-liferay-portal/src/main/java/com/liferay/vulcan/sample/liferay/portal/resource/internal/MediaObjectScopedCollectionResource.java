@@ -55,7 +55,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Javier Gamarra
  * @review
  */
-@Component(immediate = true, service = CollectionResource.class)
+@Component(service = CollectionResource.class)
 public class MediaObjectScopedCollectionResource
 	implements ScopedCollectionResource<DLFileEntry, LongIdentifier> {
 

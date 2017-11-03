@@ -80,7 +80,7 @@ import org.osgi.service.component.annotations.Reference;
  * @review
  */
 @Component(
-	immediate = true, property = "liferay.vulcan.message.body.writer=true"
+	property = "liferay.vulcan.message.body.writer=true"
 )
 @Provider
 public class PageMessageBodyWriter<T>

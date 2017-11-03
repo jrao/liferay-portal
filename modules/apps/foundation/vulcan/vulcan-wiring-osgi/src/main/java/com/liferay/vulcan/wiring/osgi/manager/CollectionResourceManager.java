@@ -58,7 +58,7 @@ import org.osgi.service.component.annotations.Reference;
  * @see    CollectionResource
  * @review
  */
-@Component(immediate = true, service = CollectionResourceManager.class)
+@Component(service = CollectionResourceManager.class)
 public class CollectionResourceManager extends BaseManager<CollectionResource> {
 
 	/**

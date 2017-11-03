@@ -47,7 +47,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
  * @review
  */
 @Component(
-	immediate = true, property = "liferay.vulcan.container.response.filter=true"
+	property = "liferay.vulcan.container.response.filter=true"
 )
 public class FailureFilter implements ContainerResponseFilter {
 

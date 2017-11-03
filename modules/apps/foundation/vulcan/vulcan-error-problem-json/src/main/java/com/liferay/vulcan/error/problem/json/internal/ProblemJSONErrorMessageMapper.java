@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
  *         + JSON</a>
  * @review
  */
-@Component(immediate = true)
+@Component
 public class ProblemJSONErrorMessageMapper implements ErrorMessageMapper {
 
 	@Override

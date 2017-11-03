@@ -54,7 +54,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Javier Gamarra
  * @review
  */
-@Component(immediate = true, service = CollectionResource.class)
+@Component(service = CollectionResource.class)
 public class FolderScopedCollectionResource
 	implements ScopedCollectionResource<DLFolder, LongIdentifier> {
 

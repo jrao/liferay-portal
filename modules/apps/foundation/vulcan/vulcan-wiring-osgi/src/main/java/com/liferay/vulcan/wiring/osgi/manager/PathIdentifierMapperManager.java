@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true, service = PathIdentifierMapperManager.class)
+@Component(service = PathIdentifierMapperManager.class)
 public class PathIdentifierMapperManager
 	extends BaseManager<PathIdentifierMapper> {
 

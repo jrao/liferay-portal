@@ -45,7 +45,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true)
+@Component
 public class PersonCollectionResource
 	implements CollectionResource<Person, LongIdentifier> {
 

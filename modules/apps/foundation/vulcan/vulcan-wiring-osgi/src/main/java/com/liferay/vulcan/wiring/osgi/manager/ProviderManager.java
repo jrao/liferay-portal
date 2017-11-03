@@ -37,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jorge Ferrer
  * @review
  */
-@Component(immediate = true, service = ProviderManager.class)
+@Component(service = ProviderManager.class)
 public class ProviderManager extends BaseManager<Provider> {
 
 	/**

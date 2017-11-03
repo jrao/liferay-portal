@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Victor Oliveira
  * @author Alejandro Hernández
  */
-@Component(immediate = true)
+@Component
 public class WebSiteServiceImpl implements WebSiteService {
 
 	@Override

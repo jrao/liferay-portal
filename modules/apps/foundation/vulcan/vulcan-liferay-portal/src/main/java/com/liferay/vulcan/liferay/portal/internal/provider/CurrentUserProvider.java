@@ -36,7 +36,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jorge Ferrer
  * @review
  */
-@Component(immediate = true)
+@Component
 public class CurrentUserProvider implements Provider<CurrentUser> {
 
 	@Override

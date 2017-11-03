@@ -73,7 +73,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jorge Ferrer
  * @review
  */
-@Component(immediate = true, service = WriterHelper.class)
+@Component(service = WriterHelper.class)
 public class WriterHelper {
 
 	/**

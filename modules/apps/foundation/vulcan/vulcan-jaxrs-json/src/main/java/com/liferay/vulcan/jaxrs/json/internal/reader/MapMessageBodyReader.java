@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Component;
  * @review
  */
 @Component(
-	immediate = true, property = "liferay.vulcan.message.body.reader=true"
+	property = "liferay.vulcan.message.body.reader=true"
 )
 @Consumes(MediaType.APPLICATION_JSON)
 @Provider

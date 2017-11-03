@@ -72,7 +72,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Jorge Ferrer
  * @review
  */
-@Component(immediate = true, service = CollectionResource.class)
+@Component(service = CollectionResource.class)
 public class BlogPostingScopedCollectionResource
 	implements ScopedCollectionResource<BlogsEntry, LongIdentifier> {
 

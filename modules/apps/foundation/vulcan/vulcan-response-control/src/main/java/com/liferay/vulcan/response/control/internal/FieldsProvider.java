@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Jorge Ferrer
  * @review
  */
-@Component(immediate = true)
+@Component
 public class FieldsProvider implements Provider<Fields> {
 
 	public Fields createContext(HttpServletRequest httpServletRequest) {

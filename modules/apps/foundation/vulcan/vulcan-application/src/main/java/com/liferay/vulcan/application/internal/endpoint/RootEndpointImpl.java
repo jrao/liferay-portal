@@ -57,7 +57,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Carlos Sierra Andrés
  * @author Jorge Ferrer
  */
-@Component(immediate = true)
+@Component
 public class RootEndpointImpl implements RootEndpoint {
 
 	@Override

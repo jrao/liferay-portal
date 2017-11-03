@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true)
+@Component
 public class ForbiddenExceptionConverter
 	extends WebApplicationExceptionConverter
 	implements ExceptionConverter<ForbiddenException> {

@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Alejandro Hernández
  */
-@Component(immediate = true)
+@Component
 public class AggregateRatingServiceImpl implements AggregateRatingService {
 
 	@Override

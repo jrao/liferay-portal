@@ -39,7 +39,7 @@ import org.osgi.service.component.annotations.Component;
  * @review
  */
 @Component(
-	immediate = true, property = "liferay.vulcan.message.body.writer=true"
+	property = "liferay.vulcan.message.body.writer=true"
 )
 @Provider
 public class BinaryResourceBodyWriter

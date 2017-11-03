@@ -37,7 +37,6 @@ import org.osgi.service.component.annotations.Component;
  * @review
  */
 @Component(
-	immediate = true,
 	service =
 		{JSONLDSingleModelMessageMapper.class, SingleModelMessageMapper.class}
 )

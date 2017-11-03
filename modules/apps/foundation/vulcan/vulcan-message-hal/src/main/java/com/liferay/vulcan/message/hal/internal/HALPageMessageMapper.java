@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
  * @see    <a href="http://stateless.co/hal_specification.html">HAL</a>
  * @review
  */
-@Component(immediate = true)
+@Component
 public class HALPageMessageMapper<T> implements PageMessageMapper<T> {
 
 	@Override

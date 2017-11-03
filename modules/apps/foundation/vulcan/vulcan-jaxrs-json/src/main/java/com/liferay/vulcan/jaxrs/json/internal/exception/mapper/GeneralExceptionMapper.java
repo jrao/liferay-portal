@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.ReferenceCardinality;
  * @author Alejandro Hernández
  * @review
  */
-@Component(immediate = true, property = "liferay.vulcan.exception.mapper=true")
+@Component(property = "liferay.vulcan.exception.mapper=true")
 public class GeneralExceptionMapper implements ExceptionMapper<Exception> {
 
 	@Override

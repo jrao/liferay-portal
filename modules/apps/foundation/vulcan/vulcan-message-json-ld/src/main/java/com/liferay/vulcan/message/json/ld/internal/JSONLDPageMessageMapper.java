@@ -38,7 +38,7 @@ import org.osgi.service.component.annotations.Reference;
  * @see    <a href="https://www.hydra-cg.com/">Hydra</a>
  * @review
  */
-@Component(immediate = true)
+@Component
 public class JSONLDPageMessageMapper<T> implements PageMessageMapper<T> {
 
 	@Override

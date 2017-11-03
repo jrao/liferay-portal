@@ -27,7 +27,7 @@ import org.osgi.service.component.annotations.Component;
  * @see    <a href="https://www.hydra-cg.com/">Hydra</a>
  * @review
  */
-@Component(immediate = true)
+@Component
 public class JSONLDErrorMessageMapper implements ErrorMessageMapper {
 
 	@Override
