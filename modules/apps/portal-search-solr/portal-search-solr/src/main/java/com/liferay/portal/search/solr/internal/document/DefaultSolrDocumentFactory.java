@@ -33,7 +33,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SolrDocumentFactory.class)
+@Component(service = SolrDocumentFactory.class)
 public class DefaultSolrDocumentFactory implements SolrDocumentFactory {
 
 	@Override

@@ -28,7 +28,7 @@ import org.osgi.service.component.annotations.Component;
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
-@Component(immediate = true, service = WildcardQueryTranslator.class)
+@Component(service = WildcardQueryTranslator.class)
 public class WildcardQueryTranslatorImpl implements WildcardQueryTranslator {
 
 	@Override

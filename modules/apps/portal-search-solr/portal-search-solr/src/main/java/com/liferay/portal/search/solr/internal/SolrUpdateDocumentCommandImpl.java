@@ -40,7 +40,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Michael C. Han
  */
-@Component(immediate = true, service = SolrUpdateDocumentCommand.class)
+@Component(service = SolrUpdateDocumentCommand.class)
 public class SolrUpdateDocumentCommandImpl
 	implements SolrUpdateDocumentCommand {
 

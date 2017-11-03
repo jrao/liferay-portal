@@ -64,7 +64,6 @@ import org.osgi.service.component.annotations.ReferencePolicyOption;
  * @author Michael C. Han
  */
 @Component(
-	immediate = true,
 	property = {"distance.threshold=0.6f", "search.engine.impl=Solr"},
 	service = QuerySuggester.class
 )

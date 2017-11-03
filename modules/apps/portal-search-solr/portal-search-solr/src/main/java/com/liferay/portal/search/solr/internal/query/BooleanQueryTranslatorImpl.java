@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Component;
  * @author André de Oliveira
  * @author Miguel Angelo Caldas Gallindo
  */
-@Component(immediate = true, service = BooleanQueryTranslator.class)
+@Component(service = BooleanQueryTranslator.class)
 public class BooleanQueryTranslatorImpl implements BooleanQueryTranslator {
 
 	@Override

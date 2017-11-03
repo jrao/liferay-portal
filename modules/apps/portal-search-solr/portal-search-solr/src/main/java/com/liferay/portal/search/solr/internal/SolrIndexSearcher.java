@@ -97,7 +97,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.portal.search.solr.configuration.SolrConfiguration",
-	immediate = true, property = {"search.engine.impl=Solr"},
+	property = {"search.engine.impl=Solr"},
 	service = IndexSearcher.class
 )
 public class SolrIndexSearcher extends BaseIndexSearcher {
