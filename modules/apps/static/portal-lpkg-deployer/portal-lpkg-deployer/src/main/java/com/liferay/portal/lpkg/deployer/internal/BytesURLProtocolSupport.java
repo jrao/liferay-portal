@@ -40,7 +40,7 @@ import org.osgi.service.url.URLStreamHandlerService;
 /**
  * @author Shuyang Zhou
  */
-@Component(immediate = true, service = BytesURLProtocolSupport.class)
+@Component(service = BytesURLProtocolSupport.class)
 public class BytesURLProtocolSupport {
 
 	@Activate

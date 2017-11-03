@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Raymond Augé
  */
-@Component(immediate = true, service = IndexValidatorFactory.class)
+@Component(service = IndexValidatorFactory.class)
 public class IndexValidatorFactory {
 
 	public IndexValidator create(List<URI> targetPlatformIndexURIs) {

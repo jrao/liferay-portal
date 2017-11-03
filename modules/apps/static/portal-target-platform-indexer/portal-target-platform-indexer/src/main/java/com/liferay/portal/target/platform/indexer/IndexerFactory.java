@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Raymond Augé
  */
-@Component(immediate = true, service = IndexerFactory.class)
+@Component(service = IndexerFactory.class)
 public class IndexerFactory {
 
 	public Indexer createLPKGIndexer(

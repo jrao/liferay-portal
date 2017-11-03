@@ -76,7 +76,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Shuyang Zhou
  */
-@Component(immediate = true, service = LPKGIndexValidator.class)
+@Component(service = LPKGIndexValidator.class)
 public class LPKGIndexValidator {
 
 	public LPKGIndexValidator() {
