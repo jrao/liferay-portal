@@ -45,7 +45,6 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.push.notifications.sender.firebase.internal.configuration.FirebasePushNotificationsSenderConfiguration",
-	immediate = true,
 	property = {"platform=" + FirebasePushNotificationsSender.PLATFORM}
 )
 public class FirebasePushNotificationsSender
