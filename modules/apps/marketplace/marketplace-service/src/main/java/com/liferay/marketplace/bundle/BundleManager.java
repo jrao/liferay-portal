@@ -52,7 +52,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Joan Kim
  * @author Ryan Park
  */
-@Component(immediate = true, service = BundleManager.class)
+@Component(service = BundleManager.class)
 public class BundleManager {
 
 	public Bundle getBundle(String symbolicName, String versionString) {
