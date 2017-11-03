@@ -44,7 +44,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Supritha Sundaram
  */
 @Component(
-	immediate = true, property = {"path=/portal/wedeploy/access_token"},
+	property = {"path=/portal/wedeploy/access_token"},
 	service = StrutsAction.class
 )
 public class WeDeployAccessTokenAction extends BaseStrutsAction {
