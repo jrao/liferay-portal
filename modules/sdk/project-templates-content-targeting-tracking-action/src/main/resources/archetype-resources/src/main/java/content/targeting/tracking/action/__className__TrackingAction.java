@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author ${author}
  */
-@Component(immediate = true, service = TrackingAction.class)
+@Component(service = TrackingAction.class)
 public class ${className}TrackingAction extends BaseJSPTrackingAction {
 
 	@Activate

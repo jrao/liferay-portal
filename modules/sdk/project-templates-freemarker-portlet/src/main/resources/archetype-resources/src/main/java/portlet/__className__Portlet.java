@@ -12,7 +12,6 @@ import org.osgi.service.component.annotations.Component;
  * @author ${author}
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.css-class-wrapper=portlet-freemarker",
 		"com.liferay.portlet.display-category=category.sample",

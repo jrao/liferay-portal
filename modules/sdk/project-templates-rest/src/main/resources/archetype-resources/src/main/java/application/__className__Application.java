@@ -17,7 +17,7 @@ import org.osgi.service.component.annotations.Component;
  * @author ${author}
  */
 @ApplicationPath("/greetings")
-@Component(immediate = true, service = Application.class)
+@Component(service = Application.class)
 public class ${className}Application extends Application {
 
 	public Set<Object> getSingletons() {

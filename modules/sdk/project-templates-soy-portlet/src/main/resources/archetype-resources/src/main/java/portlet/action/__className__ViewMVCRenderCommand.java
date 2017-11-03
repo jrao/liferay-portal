@@ -16,7 +16,6 @@ import org.osgi.service.component.annotations.Component;
  * @author ${author}
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=${className}", "mvc.command.name=View",
 		"mvc.command.name=/"

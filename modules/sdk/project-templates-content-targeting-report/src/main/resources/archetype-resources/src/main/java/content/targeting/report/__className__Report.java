@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author ${author}
  */
-@Component(immediate = true, service = Report.class)
+@Component(service = Report.class)
 public class ${className}Report extends BaseJSPReport {
 
 	@Activate

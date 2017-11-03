@@ -14,7 +14,7 @@ import org.osgi.service.component.annotations.Component;
  * @author ${author}
  */
 @Component(
-	immediate = true, property = "ddm.form.field.type.name=${className}",
+	property = "ddm.form.field.type.name=${className}",
 	service = DDMFormFieldRenderer.class
 )
 public class ${className}DDMFormFieldRenderer extends BaseDDMFormFieldRenderer {

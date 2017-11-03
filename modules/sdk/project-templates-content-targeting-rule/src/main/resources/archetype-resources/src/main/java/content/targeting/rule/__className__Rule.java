@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author ${author}
  */
-@Component(immediate = true, service = Rule.class)
+@Component(service = Rule.class)
 public class ${className}Rule extends BaseJSPRule {
 
 	@Activate
