@@ -41,7 +41,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Julio Camarero
  */
 @Component(
-	immediate = true,
 	service = ProductNavigationControlMenuCategoryRegistry.class
 )
 public class ProductNavigationControlMenuCategoryRegistry {
