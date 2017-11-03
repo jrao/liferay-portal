@@ -106,7 +106,7 @@ public class KBArticleImporter {
 		String urlTitle = kbArticleMarkdownConverter.getUrlTitle();
 
 		KBArticle kbArticle =
-				KBArticleLocalServiceUtil.fetchKBArticleByUrlTitle(
+				_kbArticleLocalService.fetchKBArticleByUrlTitle(
 						groupId, parentKBFolderId, urlTitle);
 
 		boolean newKBArticle = false;
@@ -122,7 +122,7 @@ public class KBArticleImporter {
 				serviceContext.setWorkflowAction(
 						WorkflowConstants.ACTION_SAVE_DRAFT);
 
-				kbArticle = KBArticleLocalServiceUtil.addKBArticle(
+				kbArticle = _kbArticleLocalService.addKBArticle(
 						userId, parentResourceClassNameId, parentResourcePrimaryKey,
 						kbArticleMarkdownConverter.getTitle(), urlTitle, markdown,
 						null, kbArticleMarkdownConverter.getSourceURL(), null, null,
@@ -151,7 +151,7 @@ public class KBArticleImporter {
 							userId, kbArticle, zipReader,
 							new HashMap<String, FileEntry>());
 
-			kbArticle = KBArticleLocalServiceUtil.updateKBArticle(
+			kbArticle = _kbArticleLocalService.updateKBArticle(
 					userId, kbArticle.getResourcePrimKey(),
 					kbArticleMarkdownConverter.getTitle(), html,
 					kbArticle.getDescription(),
@@ -363,19 +363,17 @@ public class KBArticleImporter {
 		_kbArchiveFactory = kbArchiveFactory;
 	}
 
-	/*
 	@Reference(unbind = "-")
 	protected void setKbArticleLocalService(KBArticleLocalService kbArticleLocalService) {
 		_kbArticleLocalService = kbArticleLocalService;
 	}
-	*/
 
 	private static final Log _log = LogFactoryUtil.getLog(
 		KBArticleImporter.class);
 
 	private KBArchiveFactory _kbArchiveFactory;
 
-	// private KBArticleLocalService _kbArticleLocalService;
+	private KBArticleLocalService _kbArticleLocalService;
 
 	@Reference
 	private Portal _portal;
