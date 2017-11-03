@@ -103,7 +103,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Dennis Ju
  */
-@Component(immediate = true, service = SyncUtil.class)
+@Component(service = SyncUtil.class)
 public class SyncUtil {
 
 	public static void addChecksum(
