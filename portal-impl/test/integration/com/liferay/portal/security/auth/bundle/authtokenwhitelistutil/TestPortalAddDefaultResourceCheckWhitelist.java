@@ -22,7 +22,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Tomas Polesovsky
  */
 @Component(
-	immediate = true,
 	property = {
 		PropsKeys.PORTLET_ADD_DEFAULT_RESOURCE_CHECK_WHITELIST + "=" + TestPortalAddDefaultResourceCheckWhitelist.TEST_PORTLET_ADD_DEFAULT_RESOURCE_CHECK_WHITELIST_URL,
 		"service.ranking:Integer=" + Integer.MAX_VALUE

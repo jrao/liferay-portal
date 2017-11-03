@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"key=auth.failure", "key=auth.max.failures",
 		"service.ranking:Integer=" + Integer.MAX_VALUE

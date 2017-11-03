@@ -29,7 +29,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"service.ranking:Integer=" + Integer.MAX_VALUE,
 		"webdav.storage.token=" + TestWebDAVStorage.TOKEN

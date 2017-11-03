@@ -36,7 +36,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Peter Fellwock
  */
 @Component(
-	immediate = true,
 	property = {"service.ranking:Integer=" + Integer.MAX_VALUE}
 )
 public class TestSiteMembershipPolicy implements SiteMembershipPolicy {

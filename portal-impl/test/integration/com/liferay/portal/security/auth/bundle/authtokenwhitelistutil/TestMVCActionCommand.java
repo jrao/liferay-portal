@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Tomas Polesovsky
  */
 @Component(
-	immediate = true,
 	property = {
 		"auth.token.ignore.mvc.action=1",
 		"javax.portlet.name=" + TestMVCActionCommand.TEST_PORTLET_ID,

@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(
-	immediate = true,
 	property = {
 		"context.id=TestCustomJspBag", "context.name=Test Custom JSP Bag",
 		"service.ranking:Integer=" + Integer.MAX_VALUE

@@ -23,7 +23,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + TestPortlet.PORTLET_NAME,
 		"javax.portlet.resource-bundle=content.Language"

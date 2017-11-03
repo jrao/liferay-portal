@@ -27,7 +27,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(
-	immediate = true,
 	property = {"service.ranking:Integer=" + Integer.MAX_VALUE}
 )
 public class TestAuthToken implements AuthToken {

@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"model.class.name=PermissionServiceImplTest",
 		"service.ranking:Integer=" + Integer.MAX_VALUE

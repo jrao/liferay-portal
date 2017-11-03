@@ -24,7 +24,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Juergen Kappler
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.preferences-company-wide=false",
 		"com.liferay.portlet.preferences-owned-by-group=true",

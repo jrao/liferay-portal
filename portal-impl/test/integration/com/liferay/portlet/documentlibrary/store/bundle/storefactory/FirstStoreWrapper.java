@@ -23,7 +23,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Adolfo Pérez
  */
 @Component(
-	immediate = true,
 	property = {"service.ranking:Integer=1", "store.type=test"},
 	service = StoreWrapper.class
 )

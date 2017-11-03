@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=FriendlyURLMapperTrackerImplTest",
 		"service.ranking:Integer=" + Integer.MAX_VALUE

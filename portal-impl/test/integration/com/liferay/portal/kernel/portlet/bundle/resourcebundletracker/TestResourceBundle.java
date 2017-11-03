@@ -26,7 +26,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + TestPortlet.PORTLET_NAME, "language.id=es_ES",
 		"service.ranking:Integer=100"

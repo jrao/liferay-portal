@@ -22,7 +22,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Cristina González
  */
 @Component(
-	immediate = true,
 	property = {
 		PropsKeys.AUTH_TOKEN_IGNORE_PORTLETS + "=" + TestAuthTokenIgnorePortlets.TEST_AUTH_TOKEN_IGNORE_PORTLETS_URL,
 		"service.ranking:Integer=" + Integer.MAX_VALUE

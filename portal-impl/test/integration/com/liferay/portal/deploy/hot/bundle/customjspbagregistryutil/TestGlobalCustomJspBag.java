@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Peter Fellwock
  */
 @Component(
-	immediate = true,
 	property = {
 		"context.id=TestGlobalCustomJspBag",
 		"context.name=Test Global Custom JSP Bag",

@@ -25,7 +25,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(
-	immediate = true,
 	property = {
 		"javax.portlet.name=" + TestPortlet.PORTLET_NAME,
 		"mvc.command.name=" + TestMVCActionCommand2.TEST_MVC_ACTION_COMMAND_NAME

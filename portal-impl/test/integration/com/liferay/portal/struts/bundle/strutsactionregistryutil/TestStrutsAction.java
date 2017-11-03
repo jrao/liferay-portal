@@ -28,7 +28,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"path=TestStrutsAction", "service.ranking:Integer=" + Integer.MAX_VALUE
 	}

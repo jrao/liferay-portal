@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
 /**
  * @author Raymond Augé
  */
-@Component(immediate = true)
+@Component
 public class TestFriendlyURLResolver implements FriendlyURLResolver {
 
 	public static final String SEPARATOR = "/-foo-";

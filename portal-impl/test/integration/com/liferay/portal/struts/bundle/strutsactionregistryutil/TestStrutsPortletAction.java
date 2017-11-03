@@ -33,7 +33,6 @@ import org.osgi.service.component.annotations.Reference;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"path=TestStrutsPortletAction",
 		"service.ranking:Integer=" + Integer.MAX_VALUE

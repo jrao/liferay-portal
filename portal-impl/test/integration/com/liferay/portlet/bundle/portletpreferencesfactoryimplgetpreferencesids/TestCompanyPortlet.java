@@ -24,7 +24,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Juergen Kappler
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.preferences-company-wide=true",
 		"javax.portlet.name=" + TestCompanyPortlet.PORTLET_NAME

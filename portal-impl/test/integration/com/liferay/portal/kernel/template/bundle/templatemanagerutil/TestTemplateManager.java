@@ -31,7 +31,6 @@ import org.osgi.service.component.annotations.Component;
  * @author Philip Jones
  */
 @Component(
-	immediate = true,
 	property = {
 		"language.type=English", "service.ranking:Integer=" + Integer.MAX_VALUE
 	}

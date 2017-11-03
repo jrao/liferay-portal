@@ -25,7 +25,7 @@ import org.osgi.service.component.annotations.Component;
  * @author Manuel de la Peña
  */
 @Component(
-	immediate = true, property = "store.type=test", service = Store.class
+	property = "store.type=test", service = Store.class
 )
 public class TestStore extends BaseStore {
 
