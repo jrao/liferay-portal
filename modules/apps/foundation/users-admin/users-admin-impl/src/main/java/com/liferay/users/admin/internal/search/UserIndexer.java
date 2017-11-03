@@ -63,7 +63,7 @@ import org.osgi.service.component.annotations.Reference;
  * @author Zsigmond Rab
  * @author Hugo Huijser
  */
-@Component(immediate = true, service = Indexer.class)
+@Component(service = Indexer.class)
 public class UserIndexer extends BaseIndexer<User> {
 
 	public static final String CLASS_NAME = User.class.getName();
