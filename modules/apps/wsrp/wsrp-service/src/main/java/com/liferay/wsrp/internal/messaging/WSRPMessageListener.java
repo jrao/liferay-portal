@@ -42,7 +42,7 @@ import org.osgi.util.tracker.ServiceTrackerCustomizer;
  * @author Peter Fellwock
  */
 @Component(
-	immediate = true, property = {"destination.name=" + DestinationNames.WSRP},
+	property = {"destination.name=" + DestinationNames.WSRP},
 	service = MessageListener.class
 )
 public class WSRPMessageListener extends HotDeployMessageListener {

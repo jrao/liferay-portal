@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Modified;
  */
 @Component(
 	configurationPid = "com.liferay.wsrp.web.configuration.WSRPConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	service = WSRPConfigurationUtil.class
 )
 public class WSRPConfigurationUtil {
