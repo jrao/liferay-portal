@@ -41,7 +41,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	configurationPid = "com.liferay.twitter.configuration.TwitterConfiguration",
-	configurationPolicy = ConfigurationPolicy.OPTIONAL, immediate = true,
+	configurationPolicy = ConfigurationPolicy.OPTIONAL,
 	service = SynchronizeTwitterMessageListener.class
 )
 public class SynchronizeTwitterMessageListener extends BaseMessageListener {
