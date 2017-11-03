@@ -23,7 +23,7 @@ import org.osgi.service.component.annotations.Reference;
 /**
  * @author Preston Crary
  */
-@Component(immediate = true)
+@Component
 public class PortletDisplayTemplateUtil {
 
 	public static PortletDisplayTemplate getPortletDisplayTemplate() {
