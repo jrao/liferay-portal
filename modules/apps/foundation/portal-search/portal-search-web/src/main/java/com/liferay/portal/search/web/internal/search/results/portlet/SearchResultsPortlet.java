@@ -73,7 +73,6 @@ import org.osgi.service.component.annotations.ReferencePolicy;
  * @author André de Oliveira
  */
 @Component(
-	immediate = true,
 	property = {
 		"com.liferay.portlet.add-default-resource=true",
 		"com.liferay.portlet.css-class-wrapper=portlet-search-results",
