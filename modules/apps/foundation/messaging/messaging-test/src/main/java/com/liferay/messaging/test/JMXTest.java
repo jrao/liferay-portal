@@ -34,17 +34,17 @@ import org.junit.Test;
  */
 public class JMXTest extends JMXUtil {
 
-	@Test
-	public void testMessagingBusManagerFromPlatform() throws Exception {
-		MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
-
-		testMessageBusManager(mBeanServer);
-	}
-
-	@Test
-	public void testMessagingBusManagerFromRegistry() throws Exception {
-		testMessageBusManager(mBeanServer);
-	}
+//	@Test
+//	public void testMessagingBusManagerFromPlatform() throws Exception {
+//		MBeanServer mBeanServer = ManagementFactory.getPlatformMBeanServer();
+//
+//		testMessageBusManager(mBeanServer);
+//	}
+//
+//	@Test
+//	public void testMessagingBusManagerFromRegistry() throws Exception {
+//		testMessageBusManager(mBeanServer);
+//	}
 
 	protected void testMessageBusManager(MBeanServer mBeanServer)
 		throws Exception {
