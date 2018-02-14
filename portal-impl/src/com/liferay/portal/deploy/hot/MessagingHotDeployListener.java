@@ -14,12 +14,15 @@
 
 package com.liferay.portal.deploy.hot;
 
+import com.liferay.petra.messaging.api.DestinationNames;
+import com.liferay.petra.messaging.api.MessageBuilder;
+import com.liferay.petra.messaging.api.MessageBuilderFactory;
 import com.liferay.portal.kernel.deploy.hot.BaseHotDeployListener;
 import com.liferay.portal.kernel.deploy.hot.HotDeployEvent;
 import com.liferay.portal.kernel.deploy.hot.HotDeployException;
-import com.liferay.portal.kernel.messaging.DestinationNames;
-import com.liferay.portal.kernel.messaging.Message;
-import com.liferay.portal.kernel.messaging.MessageBusUtil;
+import com.liferay.registry.Registry;
+import com.liferay.registry.RegistryUtil;
+import com.liferay.registry.ServiceTracker;
 
 import javax.servlet.ServletContext;
 
@@ -27,6 +30,33 @@ import javax.servlet.ServletContext;
  * @author Brian Wing Shun Chan
  */
 public class MessagingHotDeployListener extends BaseHotDeployListener {
+	
+	public MessageBuilderFactory getMessageBuilderFactory() {
+		try {
+			ServiceTracker<MessageBuilderFactory, MessageBuilderFactory>
+				messageBuilderFactoryTracker = getMessageBuilderFactoryTracker();
+			
+			MessageBuilderFactory messageBuilderFactory =
+				messageBuilderFactoryTracker.waitForService(_timeout);
+
+			return messageBuilderFactory;
+		}
+		catch (InterruptedException ie) {
+			throw new RuntimeException(ie);
+		}
+	}
+	
+	public ServiceTracker<MessageBuilderFactory, MessageBuilderFactory> getMessageBuilderFactoryTracker() {
+		Registry registry = RegistryUtil.getRegistry();
+
+		com.liferay.registry.Filter filter = registry.getFilter(
+			"(objectClass=com.liferay.petra.messaging.api.MessageBuilderFactory)");
+
+		ServiceTracker<MessageBuilderFactory, MessageBuilderFactory> messageBuilderFactoryTracker =
+			registry.trackServices(filter);
+
+		return messageBuilderFactoryTracker;
+	}
 
 	@Override
 	public void invokeDeploy(HotDeployEvent hotDeployEvent)
@@ -60,13 +90,15 @@ public class MessagingHotDeployListener extends BaseHotDeployListener {
 		ServletContext servletContext = hotDeployEvent.getServletContext();
 
 		String servletContextName = servletContext.getServletContextName();
+		
+		MessageBuilderFactory messageBuilderFactory = getMessageBuilderFactory();
+		
+		MessageBuilder messageBuilder = messageBuilderFactory.create(DestinationNames.HOT_DEPLOY);
 
-		Message message = new Message();
+		messageBuilder.put("command", "deploy");
+		messageBuilder.put("servletContextName", servletContextName);
 
-		message.put("command", "deploy");
-		message.put("servletContextName", servletContextName);
-
-		MessageBusUtil.sendMessage(DestinationNames.HOT_DEPLOY, message);
+		messageBuilder.send();
 	}
 
 	protected void doInvokeUndeploy(HotDeployEvent hotDeployEvent)
@@ -76,12 +108,16 @@ public class MessagingHotDeployListener extends BaseHotDeployListener {
 
 		String servletContextName = servletContext.getServletContextName();
 
-		Message message = new Message();
+		MessageBuilderFactory messageBuilderFactory = getMessageBuilderFactory();
+		
+		MessageBuilder messageBuilder = messageBuilderFactory.create(DestinationNames.HOT_DEPLOY);
 
-		message.put("command", "undeploy");
-		message.put("servletContextName", servletContextName);
+		messageBuilder.put("command", "undeploy");
+		messageBuilder.put("servletContextName", servletContextName);
 
-		MessageBusUtil.sendMessage(DestinationNames.HOT_DEPLOY, message);
+		messageBuilder.send();
 	}
+	
+	private static final int _timeout = 1000;
 
 }
