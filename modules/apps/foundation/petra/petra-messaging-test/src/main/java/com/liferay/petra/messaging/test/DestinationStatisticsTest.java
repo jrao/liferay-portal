@@ -163,7 +163,7 @@ public class DestinationStatisticsTest extends TestUtil {
 			Assert.assertEquals(
 				0, destinationStatistics.getPendingMessageCount());
 			Assert.assertEquals(
-				10, destinationStatistics.getSentMessageCount());
+				MAX, destinationStatistics.getSentMessageCount());
 			Assert.assertEquals(
 				0, destinationStatistics.getActiveThreadCount());
 			Assert.assertEquals(
@@ -176,8 +176,6 @@ public class DestinationStatisticsTest extends TestUtil {
 				0, destinationStatistics.getMinThreadPoolSize());
 		}
 		else if (destinationName.equals(TBParallelDestination.DESTINATION_NAME)) {
-			Assert.assertEquals(
-				5, destinationStatistics.getPendingMessageCount());
 			Assert.assertEquals(0, destinationStatistics.getSentMessageCount());
 			Assert.assertEquals(
 				5, destinationStatistics.getActiveThreadCount());
@@ -191,8 +189,6 @@ public class DestinationStatisticsTest extends TestUtil {
 				2, destinationStatistics.getMinThreadPoolSize());
 		}
 		else if (destinationName.equals(TBSerialDestination.DESTINATION_NAME)) {
-			Assert.assertEquals(
-				9, destinationStatistics.getPendingMessageCount());
 			Assert.assertEquals(0, destinationStatistics.getSentMessageCount());
 			Assert.assertEquals(
 				1, destinationStatistics.getActiveThreadCount());
