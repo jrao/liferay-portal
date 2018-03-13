@@ -25,24 +25,31 @@ import com.liferay.portal.kernel.messaging.Message;
 import com.liferay.portal.kernel.messaging.MessageBus;
 import com.liferay.portal.kernel.messaging.MessageBusEventListener;
 import com.liferay.portal.kernel.messaging.MessageListener;
-import com.liferay.portal.kernel.util.ListUtil;
+import com.liferay.portal.kernel.util.HashMapDictionary;
 import com.liferay.portal.kernel.util.MapUtil;
-import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.messaging.internal.configuration.DestinationWorkerConfiguration;
 
-import java.util.ArrayList;
+import java.util.AbstractMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
+import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceRegistration;
 import org.osgi.service.cm.ConfigurationException;
 import org.osgi.service.cm.ManagedServiceFactory;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
@@ -62,14 +69,40 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public synchronized void addDestination(Destination destination) {
-		doAddDestination(destination);
+		Dictionary<String, Object> properties = new HashMapDictionary<>();
+		properties.put("destination.name", destination.getName());
+
+		BundleContext bundleContext = getBundleContext();
+
+		ServiceRegistration<com.liferay.petra.messaging.api.Destination> serviceRegistration =
+			bundleContext.registerService(
+				com.liferay.petra.messaging.api.Destination.class, destination,
+				properties);
+
+		_destinations.put(destination.getName(), new AbstractMap.SimpleImmutableEntry<>(destination, serviceRegistration));
+
+		destination.open();
 	}
 
-	@Override
+	@Reference(
+		cardinality = ReferenceCardinality.MULTIPLE,
+		policy = ReferencePolicy.DYNAMIC,
+		policyOption = ReferencePolicyOption.GREEDY,
+		unbind = "removeMessageBusEventListener"
+	)
 	public boolean addMessageBusEventListener(
 		MessageBusEventListener messageBusEventListener) {
 
-		return _messageBusEventListeners.add(messageBusEventListener);
+		BundleContext bundleContext = getBundleContext();
+
+		ServiceRegistration<com.liferay.petra.messaging.api.MessageBusEventListener>
+			serviceRegistration = bundleContext.registerService(
+			com.liferay.petra.messaging.api.MessageBusEventListener.class,
+			messageBusEventListener, null);
+
+		return _messageBusEventListeners.add(
+			new AbstractMap.SimpleImmutableEntry<>(messageBusEventListener,
+				serviceRegistration));
 	}
 
 	@Override
@@ -82,7 +115,13 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public Destination getDestination(String destinationName) {
-		return _destinations.get(destinationName);
+		return Optional.ofNullable(
+			_destinations.get(destinationName)
+		).map(
+			entry -> entry.getKey()
+		).orElse(
+			null
+		);
 	}
 
 	@Override
@@ -97,7 +136,9 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public Collection<Destination> getDestinations() {
-		return _destinations.values();
+		return _destinations.values().stream().map(
+			entry -> entry.getKey()
+		).collect(Collectors.toList());
 	}
 
 	@Override
@@ -112,45 +153,28 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public boolean hasMessageListener(String destinationName) {
-		Destination destination = _destinations.get(destinationName);
-
-		if ((destination != null) && destination.isRegistered()) {
-			return true;
-		}
-		else {
-			return false;
-		}
+		return _messageListeners.stream().filter(
+			entry -> destinationName.equals(entry.getValue().getReference().getProperty("destination.name"))
+		).findFirst().isPresent();
 	}
 
 	@Override
 	public synchronized boolean registerMessageListener(
 		String destinationName, MessageListener messageListener) {
 
-		Destination destination = _destinations.get(destinationName);
+		Dictionary<String, Object> properties = new HashMapDictionary<>();
 
-		if (destination != null) {
-			return destination.register(messageListener);
-		}
+		properties.put("destination.name", destinationName);
 
-		List<MessageListener> queuedMessageListeners =
-			_queuedMessageListeners.get(destinationName);
+		ServiceRegistration<com.liferay.petra.messaging.api.MessageListener> serviceRegistration = getBundleContext().registerService(
+			com.liferay.petra.messaging.api.MessageListener.class,
+			messageListener,
+			properties);
 
-		if (queuedMessageListeners == null) {
-			queuedMessageListeners = new ArrayList<>();
+		_messageListeners.add(
+			new AbstractMap.SimpleEntry<>(messageListener, serviceRegistration));
 
-			_queuedMessageListeners.put(
-				destinationName, queuedMessageListeners);
-		}
-
-		queuedMessageListeners.add(messageListener);
-
-		if (_log.isWarnEnabled()) {
-			_log.warn(
-				"Queuing message listener until destination " +
-					destinationName + " is added");
-		}
-
-		return false;
+		return true;
 	}
 
 	@Override
@@ -162,11 +186,15 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 	public synchronized Destination removeDestination(
 		String destinationName, boolean closeOnRemove) {
 
-		Destination destination = _destinations.remove(destinationName);
+		Map.Entry<Destination, ServiceRegistration<com.liferay.petra.messaging.api.Destination>> entry = _destinations.remove(destinationName);
 
-		if (destination == null) {
+		if (entry == null) {
 			return null;
 		}
+
+		entry.getValue().unregister();
+
+		Destination destination = entry.getKey();
 
 		if (closeOnRemove) {
 			destination.close(true);
@@ -176,12 +204,6 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 		destination.unregisterMessageListeners();
 
-		for (MessageBusEventListener messageBusEventListener :
-				_messageBusEventListeners) {
-
-			messageBusEventListener.destinationRemoved(destination);
-		}
-
 		return destination;
 	}
 
@@ -189,7 +211,15 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 	public boolean removeMessageBusEventListener(
 		MessageBusEventListener messageBusEventListener) {
 
-		return _messageBusEventListeners.remove(messageBusEventListener);
+		return _messageBusEventListeners.removeIf(
+			entry -> {
+				if (entry.getKey().equals(messageBusEventListener)) {
+					entry.getValue().unregister();
+					return true;
+				}
+				return false;
+			}
+		);
 	}
 
 	@Override
@@ -201,34 +231,19 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 	public synchronized void replace(
 		Destination destination, boolean closeOnRemove) {
 
-		Destination oldDestination = _destinations.get(destination.getName());
+		Destination oldDestination = getDestination(destination.getName());
 
 		oldDestination.copyDestinationEventListeners(destination);
 		oldDestination.copyMessageListeners(destination);
 
 		removeDestination(oldDestination.getName(), closeOnRemove);
 
-		doAddDestination(destination);
-
-		destination.open();
+		addDestination(destination);
 	}
 
 	@Override
 	public void sendMessage(String destinationName, Message message) {
-		Destination destination = _destinations.get(destinationName);
-
-		if (destination == null) {
-			if (_log.isWarnEnabled()) {
-				_log.warn(
-					"Destination " + destinationName + " is not configured");
-			}
-
-			return;
-		}
-
-		message.setDestinationName(destinationName);
-
-		destination.send(message);
+		_messageBus.sendMessage(destinationName, message);
 	}
 
 	@Override
@@ -238,29 +253,23 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public synchronized void shutdown(boolean force) {
-		for (Destination destination : _destinations.values()) {
-			destination.close(force);
-		}
+		_destinations.values().stream().forEach(entry -> entry.getKey().close(force));
 	}
 
 	@Override
 	public synchronized boolean unregisterMessageListener(
 		String destinationName, MessageListener messageListener) {
 
-		Destination destination = _destinations.get(destinationName);
+		return _messageListeners.removeIf(
+			entry -> {
+				if (entry.getKey().equals(messageListener)) {
+					entry.getValue().unregister();
+					return true;
+				}
 
-		if (destination != null) {
-			return destination.unregister(messageListener);
-		}
-
-		List<MessageListener> queuedMessageListeners =
-			_queuedMessageListeners.get(destinationName);
-
-		if (ListUtil.isEmpty(queuedMessageListeners)) {
-			return false;
-		}
-
-		return queuedMessageListeners.remove(messageListener);
+				return false;
+			}
+		);
 	}
 
 	@Override
@@ -278,7 +287,7 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 			destinationWorkerConfiguration.destinationName(),
 			destinationWorkerConfiguration);
 
-		Destination destination = _destinations.get(
+		Destination destination = getDestination(
 			destinationWorkerConfiguration.destinationName());
 
 		updateDestination(destination, destinationWorkerConfiguration);
@@ -288,42 +297,14 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 	protected void deactivate() {
 		shutdown(true);
 
-		for (Destination destination : _destinations.values()) {
-			destination.destroy();
+		for (Map.Entry<Destination, ServiceRegistration<com.liferay.petra.messaging.api.Destination>> entry : _destinations.values()) {
+			entry.getValue().unregister();
+			entry.getKey().destroy();
 		}
 
 		_messageBusEventListeners.clear();
 
 		_destinations.clear();
-	}
-
-	protected void doAddDestination(Destination destination) {
-		_destinations.put(destination.getName(), destination);
-
-		for (MessageBusEventListener messageBusEventListener :
-				_messageBusEventListeners) {
-
-			messageBusEventListener.destinationAdded(destination);
-		}
-
-		List<MessageListener> messageListeners = _queuedMessageListeners.remove(
-			destination.getName());
-
-		if (ListUtil.isEmpty(messageListeners)) {
-			return;
-		}
-
-		if (_log.isDebugEnabled()) {
-			_log.debug(
-				StringBundler.concat(
-					"Registering ", String.valueOf(messageListeners.size()),
-					" queued message listeners for destination ",
-					destination.getName()));
-		}
-
-		for (MessageListener messageListener : messageListeners) {
-			destination.register(messageListener);
-		}
 	}
 
 	@Reference(
@@ -349,7 +330,7 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 			replace(destination);
 		}
 		else {
-			doAddDestination(destination);
+			addDestination(destination);
 		}
 
 		DestinationWorkerConfiguration destinationWorkerConfiguration =
@@ -372,7 +353,9 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 		String destinationName = MapUtil.getString(
 			properties, "destination.name");
 
-		Destination destination = _destinations.get(destinationName);
+		// TODO convert to map of service registrations...
+
+		Destination destination = getDestination(destinationName);
 
 		if (destination == null) {
 			if (_log.isInfoEnabled()) {
@@ -391,43 +374,15 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 		cardinality = ReferenceCardinality.MULTIPLE,
 		policy = ReferencePolicy.DYNAMIC,
 		policyOption = ReferencePolicyOption.GREEDY,
-		unbind = "unregisterMessageBusEventListener"
-	)
-	protected void registerMessageBusEventListener(
-		MessageBusEventListener messageBusEventListener) {
-
-		addMessageBusEventListener(messageBusEventListener);
-	}
-
-	@Reference(
-		cardinality = ReferenceCardinality.MULTIPLE,
-		policy = ReferencePolicy.DYNAMIC,
-		policyOption = ReferencePolicyOption.GREEDY,
 		target = "(destination.name=*)", unbind = "unregisterMessageListener"
 	)
 	protected synchronized void registerMessageListener(
 		MessageListener messageListener, Map<String, Object> properties) {
 
-		Thread currentThread = Thread.currentThread();
+		String destinationName = MapUtil.getString(
+			properties, "destination.name");
 
-		ClassLoader contextClassLoader = currentThread.getContextClassLoader();
-
-		try {
-			ClassLoader operatingClassLoader = (ClassLoader)properties.get(
-				"message.listener.operating.class.loader");
-
-			if (operatingClassLoader != null) {
-				currentThread.setContextClassLoader(operatingClassLoader);
-			}
-
-			String destinationName = MapUtil.getString(
-				properties, "destination.name");
-
-			registerMessageListener(destinationName, messageListener);
-		}
-		finally {
-			currentThread.setContextClassLoader(contextClassLoader);
-		}
+		registerMessageListener(destinationName, messageListener);
 	}
 
 	protected synchronized void unregisterDestination(
@@ -445,7 +400,9 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 		String destinationName = MapUtil.getString(
 			properties, "destination.name");
 
-		Destination destination = _destinations.get(destinationName);
+		// TODO same as above...
+
+		Destination destination = getDestination(destinationName);
 
 		if (destination == null) {
 			if (_log.isInfoEnabled()) {
@@ -458,12 +415,6 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 		}
 
 		destination.removeDestinationEventListener(destinationEventListener);
-	}
-
-	protected void unregisterMessageBusEventListener(
-		MessageBusEventListener messageBusEventListener) {
-
-		removeMessageBusEventListener(messageBusEventListener);
 	}
 
 	protected synchronized void unregisterMessageListener(
@@ -496,17 +447,31 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 		}
 	}
 
+	private BundleContext getBundleContext() {
+		BundleContext bundleContext =
+			FrameworkUtil.getBundle(getClass()).getBundleContext();
+
+		return bundleContext;
+	}
+
 	private static final Log _log = LogFactoryUtil.getLog(
 		DefaultMessageBus.class);
 
-	private final Map<String, Destination> _destinations = new HashMap<>();
+	@Reference
+	private com.liferay.petra.messaging.api.MessageBus _messageBus;
+
+	private final Map<String, Map.Entry<Destination,
+		ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+		_destinations = new HashMap<>();
 	private final Map<String, DestinationWorkerConfiguration>
 		_destinationWorkerConfigurations = new ConcurrentHashMap<>();
 	private final Map<String, String> _factoryPidsToDestinationName =
 		new ConcurrentHashMap<>();
-	private final Set<MessageBusEventListener> _messageBusEventListeners =
-		Collections.newSetFromMap(new ConcurrentHashMap<>());
-	private final Map<String, List<MessageListener>> _queuedMessageListeners =
-		new HashMap<>();
+	private final Set<Map.Entry<MessageBusEventListener,
+		ServiceRegistration<com.liferay.petra.messaging.api.MessageBusEventListener>>>
+		_messageBusEventListeners = Collections.newSetFromMap(new ConcurrentHashMap<>());
+	private final List<Entry<MessageListener, ServiceRegistration<com.liferay.petra.messaging.api.MessageListener>>>
+		_messageListeners = new CopyOnWriteArrayList<>();
+
 
 }
