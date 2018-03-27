@@ -32,7 +32,9 @@ import java.util.Map;
  * @author Brian Wing Shun Chan
  * @author Michael C. Han
  */
-public class Message implements Cloneable, Serializable {
+public class Message
+	implements Cloneable, com.liferay.petra.messaging.api.Message,
+			   Serializable {
 
 	public static Message fromByteArray(byte[] bytes)
 		throws ClassNotFoundException {
@@ -68,6 +70,14 @@ public class Message implements Cloneable, Serializable {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.liferay.petra.messaging.api.Message#copyFrom(com.liferay.petra.messaging.api.Message)
+	 */
+	@Override
+	public void copyFrom(com.liferay.petra.messaging.api.Message message) {
+		throw new UnsupportedOperationException();
+	}
+
 	public void copyFrom(Message message) {
 		_destinationName = message._destinationName;
 		_payload = message._payload;
@@ -78,6 +88,14 @@ public class Message implements Cloneable, Serializable {
 		if (message._values != null) {
 			_values = new HashMap<>(message._values);
 		}
+	}
+
+	/* (non-Javadoc)
+	 * @see com.liferay.petra.messaging.api.Message#copyTo(com.liferay.petra.messaging.api.Message)
+	 */
+	@Override
+	public void copyTo(com.liferay.petra.messaging.api.Message message) {
+		throw new UnsupportedOperationException();
 	}
 
 	public void copyTo(Message message) {

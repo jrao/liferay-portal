@@ -22,6 +22,8 @@ dependencies {
 	provided project(":apps:web-experience:application-list:application-list-api")
 	provided project(":core:osgi-service-tracker-collections")
 	provided project(":core:petra:petra-lang")
+	provided project(":core:petra:petra-messaging-api")
+	provided project(":core:petra:petra-messaging-spi")
 	provided project(":core:petra:petra-string")
 
 	soyCompile project(":apps:foundation:frontend-js:frontend-js-web")
