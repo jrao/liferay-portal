@@ -150,11 +150,15 @@ public abstract class BaseDestination implements Destination {
 		return inboundMessageProcessorFactories.size();
 	}
 
-	public List<InboundMessageProcessor> getInboundMessageProcessors() {
+	public Collection<InboundMessageProcessor> getInboundMessageProcessors() {
 		List<InboundMessageProcessor> processors = new ArrayList<>();
 
 		for (InboundMessageProcessorFactory factory :
 				getInboundMessageProcessorFactories()) {
+
+			if (factory == null) {
+				break;
+			}
 
 			processors.add(factory.create());
 		}
@@ -194,10 +198,19 @@ public abstract class BaseDestination implements Destination {
 	public Collection<OutboundMessageProcessor> getOutboundMessageProcessors() {
 		List<OutboundMessageProcessor> processors = new ArrayList<>();
 
-		for (OutboundMessageProcessorFactory factory :
+		Collection<OutboundMessageProcessorFactory>
+			outboundMessageProcessorFactories =
+			getOutboundMessageProcessorFactories();
+
+		if (outboundMessageProcessorFactories != null) {
+			for (OutboundMessageProcessorFactory factory :
 				getOutboundMessageProcessorFactories()) {
 
-			processors.add(factory.create());
+				if (factory != null) {
+					processors.add(factory.create());
+				}
+
+			}
 		}
 
 		return Collections.unmodifiableList(processors);
