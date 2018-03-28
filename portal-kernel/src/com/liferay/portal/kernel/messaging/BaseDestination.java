@@ -91,7 +91,7 @@ public abstract class BaseDestination
 
 	@Override
 	public Collection<com.liferay.petra.messaging.api.DestinationEventListener>
-	getDestinationEventListeners() {
+		getDestinationEventListeners() {
 
 		return null;
 	}
@@ -103,7 +103,7 @@ public abstract class BaseDestination
 
 	@Override
 	public Collection<InboundMessageProcessorFactory>
-	getInboundMessageProcessorFactories() {
+		getInboundMessageProcessorFactories() {
 
 		return null;
 	}
@@ -130,7 +130,7 @@ public abstract class BaseDestination
 
 	@Override
 	public Collection<OutboundMessageProcessorFactory>
-	getOutboundMessageProcessorFactories() {
+		getOutboundMessageProcessorFactories() {
 
 		return null;
 	}
