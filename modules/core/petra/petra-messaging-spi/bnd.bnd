@@ -1,4 +1,4 @@
-Bundle-Name: Liferay Messaging SPI
+Bundle-Name: Liferay Petra Messaging SPI
 Bundle-SymbolicName: com.liferay.petra.messaging.spi
 Bundle-Version: 1.0.0
 
