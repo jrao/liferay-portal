@@ -92,8 +92,8 @@ public class DestinationTest extends TestUtil {
 			bundles.add(bundle);
 		}
 
-		ServiceTracker<ExecutorServiceRegistrar, Callable<Map<String, ExecutorService>>>
-			tracker = null;
+		ServiceTracker<ExecutorServiceRegistrar,
+			Callable<Map<String, ExecutorService>>> tracker = null;
 
 		try {
 			for (Bundle bundle : bundles) {
@@ -143,8 +143,8 @@ public class DestinationTest extends TestUtil {
 			bundles.add(bundle);
 		}
 
-		ServiceTracker<RejectedExecutionHandler, Callable<Map<MessageRunnable, ThreadPoolExecutor>>>
-			tracker = null;
+		ServiceTracker<RejectedExecutionHandler,
+			Callable<Map<MessageRunnable, ThreadPoolExecutor>>> tracker = null;
 		ServiceRegistration<MessageListener> listenerRegistration = null;
 
 		try {

@@ -348,8 +348,8 @@ public class DefaultMessageBus implements MessageBus {
 		return sendSynchronousMessage(destinationName, message, timeout);
 	}
 
-	public void unregisterDestination(Destination destination,
-		Map<String, Object> properties) {
+	public void unregisterDestination(
+		Destination destination, Map<String, Object> properties) {
 
 		_destinations.remove(properties);
 
