@@ -859,8 +859,7 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 		String destinationName) {
 
 		DestinationConfiguration destinationConfiguration =
-			new DestinationConfiguration(
-				destinationType, destinationName);
+			new DestinationConfiguration(destinationType, destinationName);
 
 		Dictionary<String, Object> dictionary = new HashMapDictionary<>();
 
@@ -868,7 +867,8 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 
 		ServiceRegistration<DestinationConfiguration> serviceRegistration =
 			bundleContext.registerService(
-				DestinationConfiguration.class, destinationConfiguration, dictionary);
+				DestinationConfiguration.class, destinationConfiguration,
+				dictionary);
 
 		_destinationServiceRegistrations.add(serviceRegistration);
 	}
@@ -923,12 +923,14 @@ public class SchedulerEngineHelperImpl implements SchedulerEngineHelper {
 	private final Set<ServiceRegistration<DestinationConfiguration>>
 		_destinationServiceRegistrations = new HashSet<>();
 	private JSONFactory _jsonFactory;
+
+	@Reference
+	private MessageBuilderFactory _messageBuilderFactory;
+
 	private final Map<String, ServiceRegistration
 		<com.liferay.petra.messaging.api.MessageListener>>
 			_messageListenerServiceRegistrations = new ConcurrentHashMap<>();
 
-	@Reference
-	private MessageBuilderFactory _messageBuilderFactory;
 	@Reference
 	private Portal _portal;
 

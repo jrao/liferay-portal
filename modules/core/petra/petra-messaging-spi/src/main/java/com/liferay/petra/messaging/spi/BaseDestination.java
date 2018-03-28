@@ -209,7 +209,6 @@ public abstract class BaseDestination implements Destination {
 				if (factory != null) {
 					processors.add(factory.create());
 				}
-
 			}
 		}
 

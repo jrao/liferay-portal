@@ -15,6 +15,7 @@
 package com.liferay.petra.messaging.spi;
 
 import aQute.lib.filter.Filter;
+
 import com.liferay.petra.reflect.ReflectionUtil;
 
 import java.util.Comparator;
@@ -49,6 +50,7 @@ public class ServiceMaps {
 					}
 					catch (Exception e) {
 						ReflectionUtil.throwException(e);
+
 						return false;
 					}
 				}
