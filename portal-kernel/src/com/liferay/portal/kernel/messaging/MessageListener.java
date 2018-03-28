@@ -26,7 +26,8 @@ public interface MessageListener
 
 		try {
 			receive((Message)message);
-		} catch (MessageListenerException mle) {
+		}
+		catch (MessageListenerException mle) {
 			throw new com.liferay.petra.messaging.api.MessageListenerException(
 				mle);
 		}

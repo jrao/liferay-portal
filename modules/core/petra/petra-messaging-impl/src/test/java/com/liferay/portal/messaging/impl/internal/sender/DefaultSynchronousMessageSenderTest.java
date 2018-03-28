@@ -59,17 +59,17 @@ public class DefaultSynchronousMessageSenderTest {
 
 					BaseDestination destination;
 
-					switch (destinationConfiguration.getDestinationType()) {
-						case PARALLEL:
-							destination = new ParallelDestination();
+					DestinationType destinationType =
+						destinationConfiguration.getDestinationType();
 
-							break;
-						case SERIAL:
-							destination = new SerialDestination();
-
-							break;
-						default:
-							destination = new SynchronousDestination();
+					if (destinationType.equals(DestinationType.PARALLEL)) {
+						destination = new ParallelDestination();
+					}
+					else if (destinationType.equals(DestinationType.SERIAL)) {
+						destination = new SerialDestination();
+					}
+					else {
+						destination = new SynchronousDestination();
 					}
 
 					destination.setName(
