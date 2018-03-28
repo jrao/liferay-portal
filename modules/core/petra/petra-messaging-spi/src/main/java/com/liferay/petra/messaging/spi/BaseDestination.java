@@ -107,7 +107,7 @@ public abstract class BaseDestination implements Destination {
 	}
 
 	public void afterPropertiesSet() {
-		if (name == null || name.isEmpty()) {
+		if ((name == null) || name.isEmpty()) {
 			throw new IllegalArgumentException("Name is null");
 		}
 	}

@@ -67,7 +67,8 @@ public class DefaultWorkflowDestinationEventListener
 	public void messageListenerRegistered(
 		String destinationName, MessageListener messageListener) {
 
-		messageListenerRegistered(destinationName,
+		messageListenerRegistered(
+			destinationName,
 			(com.liferay.petra.messaging.api.MessageListener)messageListener);
 	}
 
@@ -111,7 +112,8 @@ public class DefaultWorkflowDestinationEventListener
 	public void messageListenerUnregistered(
 		String destinationName, MessageListener messageListener) {
 
-		messageListenerUnregistered(destinationName,
+		messageListenerUnregistered(
+			destinationName,
 			(com.liferay.petra.messaging.api.MessageListener)messageListener);
 	}
 
@@ -170,7 +172,8 @@ public class DefaultWorkflowDestinationEventListener
 	protected boolean isProceed(
 		String destinationName, MessageListener messageListener) {
 
-		return isProceed(destinationName,
+		return isProceed(
+			destinationName,
 			(com.liferay.petra.messaging.api.MessageListener)messageListener);
 	}
 
