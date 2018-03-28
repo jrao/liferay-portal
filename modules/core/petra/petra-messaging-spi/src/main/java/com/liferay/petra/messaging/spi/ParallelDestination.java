@@ -87,8 +87,8 @@ public class ParallelDestination extends BaseAsyncDestination {
 						objects[1] = mle;
 
 						_logger.log(
-							Level.SEVERE,
-							"Unable to process message {}", objects);
+							Level.SEVERE, "Unable to process message {}",
+							objects);
 					}
 					finally {
 						for (InboundMessageProcessor processor :

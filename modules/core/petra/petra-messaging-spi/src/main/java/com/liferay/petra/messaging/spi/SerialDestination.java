@@ -23,6 +23,7 @@ import com.liferay.petra.messaging.api.MessageProcessorException;
 
 import java.util.Collection;
 import java.util.Set;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -67,9 +68,15 @@ public class SerialDestination extends BaseAsyncDestination {
 								processedMessage, dispatchThread);
 						}
 						catch (MessageProcessorException mpe) {
-							_log.error(
+							Object[] objects = new Object[2];
+
+							objects[0] = processedMessage;
+							objects[1] = mpe;
+
+							_logger.log(
+								Level.SEVERE,
 								"Unable to process message before thread {}",
-								processedMessage, mpe);
+								objects);
 						}
 					}
 
@@ -78,9 +85,15 @@ public class SerialDestination extends BaseAsyncDestination {
 							messageListener.receive(processedMessage);
 						}
 						catch (MessageListenerException mle) {
-							_log.error(
+							Object[] objects = new Object[2];
+
+							objects[0] = processedMessage;
+							objects[1] = mle;
+
+							_logger.log(
+								Level.SEVERE,
 								"Unable to process message {}",
-								processedMessage, mle);
+								objects);
 						}
 					}
 				}
@@ -93,9 +106,15 @@ public class SerialDestination extends BaseAsyncDestination {
 								processedMessage, dispatchThread);
 						}
 						catch (MessageProcessorException mpe) {
-							_log.error(
+							Object[] objects = new Object[2];
+
+							objects[0] = processedMessage;
+							objects[1] = mpe;
+
+							_logger.log(
+								Level.SEVERE,
 								"Unable to process message after thread {}",
-								processedMessage, mpe);
+								objects);
 						}
 					}
 				}
@@ -110,7 +129,6 @@ public class SerialDestination extends BaseAsyncDestination {
 
 	private static final int _WORKERS_MAX_SIZE = 1;
 
-	private static final Logger _log = Logger.getLogger(
-		"SerialDestination");
+	private static final Logger _logger = Logger.getLogger("SerialDestination");
 
 }

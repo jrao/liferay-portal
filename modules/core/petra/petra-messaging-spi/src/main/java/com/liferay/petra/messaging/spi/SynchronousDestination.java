@@ -23,11 +23,8 @@ import com.liferay.petra.messaging.api.MessageProcessorException;
 
 import java.util.Collection;
 import java.util.concurrent.atomic.AtomicLong;
-
-/*
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-*/
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Shuyang Zhou
@@ -48,11 +45,7 @@ public class SynchronousDestination extends BaseDestination {
 	@Override
 	public void send(Message message) {
 		if (messageListeners.isEmpty()) {
-			/*
-			if (_log.isDebugEnabled()) {
-				_log.debug("No message listeners for destination " + getName());
-			}
-			*/
+			_logger.log(Level.FINE, "No message listeners for destination " + getName());
 
 			return;
 		}
@@ -68,9 +61,9 @@ public class SynchronousDestination extends BaseDestination {
 						message, Thread.currentThread());
 				}
 				catch (MessageProcessorException mpe) {
-					/*
-					_log.error("Unable to process message " + message, mpe);
-					*/
+					_logger.log(
+						Level.SEVERE, "Unable to process message " + message,
+						mpe);
 				}
 			}
 
@@ -79,9 +72,9 @@ public class SynchronousDestination extends BaseDestination {
 					messageListener.receive(message);
 				}
 				catch (MessageListenerException mle) {
-					/*
-					_log.error("Unable to process message " + message, mle);
-					*/
+					_logger.log(
+						Level.SEVERE, "Unable to process message " + message,
+						mle);
 				}
 			}
 		}
@@ -92,9 +85,9 @@ public class SynchronousDestination extends BaseDestination {
 					processor.afterReceive(message);
 				}
 				catch (MessageProcessorException mpe) {
-					/*
-					_log.error("Unable to process message " + message, mpe);
-					*/
+					_logger.log(
+						Level.SEVERE, "Unable to process message " + message,
+						mpe);
 				}
 			}
 		}
@@ -102,10 +95,8 @@ public class SynchronousDestination extends BaseDestination {
 		_sentMessageCounter.incrementAndGet();
 	}
 
-	/*
-	private static final Logger _log = LoggerFactory.getLogger(
-		SynchronousDestination.class);
-	*/
+	private static final Logger _logger = Logger.getLogger(
+		"SynchronousDestination");
 
 	private final AtomicLong _sentMessageCounter = new AtomicLong();
 

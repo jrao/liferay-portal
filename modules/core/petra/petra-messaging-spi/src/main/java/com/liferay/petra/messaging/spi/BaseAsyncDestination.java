@@ -24,22 +24,18 @@ import com.liferay.petra.messaging.api.MessageListener;
 import com.liferay.petra.messaging.api.MessageProcessorException;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
 import org.osgi.service.component.annotations.ReferencePolicyOption;
-
-/*
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-*/
 
 /**
  * @author Michael C. Han
@@ -128,13 +124,10 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 		}
 
 		if (oldThreadPoolExecutor != null) {
-			/*
-			if (_log.isWarnEnabled()) {
-				_log.warn(
+				_logger.log(
+					Level.WARNING,
 					"Abort creating a new thread pool for destination " +
 						getName() + " and reuse previous one");
-			}
-			*/
 
 			threadPoolExecutor.shutdownNow();
 
@@ -147,11 +140,9 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 	@Override
 	public void send(Message message) {
 		if (messageListeners.isEmpty()) {
-			/*
-			if (_log.isDebugEnabled()) {
-				_log.debug("No message listeners for destination " + getName());
-			}
-			*/
+			_logger.log(
+				Level.FINE,
+				"No message listeners for destination " + getName());
 
 			return;
 		}
@@ -165,13 +156,10 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 					"receive more messages");
 		}
 
-		/*
-		if (_log.isDebugEnabled()) {
-			_log.debug(
-				"Sending message " + message + " from destination " +
-					getName() + " to message listeners " + messageListeners);
-		}
-		*/
+		_logger.log(
+			Level.FINE,
+			"Sending message " + message + " from destination " +
+				getName() + " to message listeners " + messageListeners);
 
 		Collection<InboundMessageProcessor> inboundMessageProcessors =
 			getInboundMessageProcessors();
@@ -182,7 +170,9 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 					message = processor.beforeReceive(message);
 				}
 				catch (MessageProcessorException mpe) {
-					//_log.error("Unable to process message " + message, mpe);
+					_logger.log(
+						Level.SEVERE, "Unable to process message " + message,
+						mpe);
 				}
 			}
 
@@ -194,7 +184,9 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 					processor.afterReceive(message);
 				}
 				catch (MessageProcessorException mpe) {
-					//_log.error("Unable to process message " + message, mpe);
+					_logger.log(
+						Level.SEVERE, "Unable to process message " + message,
+						mpe);
 				}
 			}
 		}
@@ -247,20 +239,17 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 			public void rejectedExecution(
 				Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
 
-				/*
-				if (!_log.isWarnEnabled()) {
+				if (_logger.getLevel().intValue() > Level.WARNING.intValue()) {
 					return;
 				}
-				*/
 
 				MessageRunnable messageRunnable = (MessageRunnable)runnable;
 
-				/*
-				_log.warn(
+				_logger.log(
+					Level.WARNING,
 					"Discarding message " + messageRunnable.getMessage() +
 						" because it exceeds the maximum queue size of " +
 							_maximumQueueSize);
-				*/
 			}
 
 		};
@@ -279,10 +268,8 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 	private static final int _WORKERS_MAX_SIZE = 5;
 
-	/*
-	private static final Logger _log = LoggerFactory.getLogger(
-		BaseAsyncDestination.class);
-	*/
+	private static final Logger _logger = Logger.getLogger(
+		"BaseAsyncDestination");
 
 	private volatile ExecutorServiceRegistrar _executorServiceRegistrar;
 	private int _maximumQueueSize = Integer.MAX_VALUE;
