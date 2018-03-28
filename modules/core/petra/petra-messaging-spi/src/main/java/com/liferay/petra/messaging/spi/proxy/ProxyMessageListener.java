@@ -102,8 +102,8 @@ public class ProxyMessageListener implements MessageListener {
 		_messageBus = messageBus;
 	}
 
-	private static final Logger _logger =
-		Logger.getLogger("ProxyMessageListener");
+	private static final Logger _logger = Logger.getLogger(
+		"ProxyMessageListener");
 
 	private Object _manager;
 	private MessageBus _messageBus;

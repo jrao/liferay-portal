@@ -38,6 +38,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.IntStream;
 
 import org.junit.Assert;
@@ -47,9 +49,6 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.Filter;
 import org.osgi.framework.ServiceRegistration;
 import org.osgi.util.tracker.ServiceTracker;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author Raymond Augé
@@ -160,7 +159,7 @@ public class DestinationTest extends TestUtil {
 						latch.await(200, TimeUnit.MILLISECONDS);
 					}
 					catch (InterruptedException ie) {
-						_logger.error("Interupted!", ie);
+						_logger.log(Level.SEVERE,"Interupted!", ie);
 					}
 				}
 
@@ -211,7 +210,7 @@ public class DestinationTest extends TestUtil {
 						messageBus.sendMessage(destinationName, message);
 					}
 					catch (Throwable e) {
-						_logger.error("{}", e.getMessage());
+						_logger.log(Level.SEVERE, "{}", e.getMessage());
 					}
 				}
 			};
@@ -282,7 +281,6 @@ public class DestinationTest extends TestUtil {
 		}
 	}
 
-	private static final Logger _logger = LoggerFactory.getLogger(
-		DestinationTest.class);
+	private static final Logger _logger = Logger.getLogger("DestinationTest");
 
 }
