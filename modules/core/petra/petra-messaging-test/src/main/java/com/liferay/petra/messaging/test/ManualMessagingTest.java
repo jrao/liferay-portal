@@ -55,10 +55,11 @@ public class ManualMessagingTest extends TestUtil {
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
-		ServiceRegistration<DestinationConfiguration> destinationConfigurationServiceRegistration =
+		ServiceRegistration<DestinationConfiguration>
+			destinationConfigurationServiceRegistration =
 				bundleContext.registerService(
-			DestinationConfiguration.class, synchronousDestinationConfiguration,
-			null);
+					DestinationConfiguration.class,
+					synchronousDestinationConfiguration, null);
 
 		// create and register message listener
 
