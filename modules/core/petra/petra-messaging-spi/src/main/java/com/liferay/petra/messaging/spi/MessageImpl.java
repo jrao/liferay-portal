@@ -152,32 +152,30 @@ public class MessageImpl implements Message {
 
 		MessageImpl messageImpl = (MessageImpl)message;
 
-		if (!Objects.equals(
-				messageImpl._destinationName, this._destinationName)) {
-
+		if (!Objects.equals(messageImpl._destinationName, _destinationName)) {
 			return false;
 		}
 
-		if (!Objects.equals(messageImpl._payload, this._payload)) {
+		if (!Objects.equals(messageImpl._payload, _payload)) {
 			return false;
 		}
 
-		if (!Objects.equals(messageImpl._response, this._response)) {
+		if (!Objects.equals(messageImpl._response, _response)) {
 			return false;
 		}
 
 		if (!Objects.equals(
 				messageImpl._responseDestinationName,
-				this._responseDestinationName)) {
+				_responseDestinationName)) {
 
 			return false;
 		}
 
-		if (!Objects.equals(messageImpl._responseId, this._responseId)) {
+		if (!Objects.equals(messageImpl._responseId, _responseId)) {
 			return false;
 		}
 
-		if (!Objects.equals(messageImpl._values, this._values)) {
+		if (!Objects.equals(messageImpl._values, _values)) {
 			return false;
 		}
 
@@ -493,13 +491,13 @@ public class MessageImpl implements Message {
 		sb.append(", payload=");
 		sb.append(_payload);
 		sb.append(", values=");
-		sb.append(mapToString(_values, null, ".*[pP]assword.*"));
+		sb.append(_mapToString(_values, null, ".*[pP]assword.*"));
 		sb.append("}");
 
 		return sb.toString();
 	}
 
-	private static String mapToString(
+	private static String _mapToString(
 		Map<?, ?> map, String hideIncludesRegex, String hideExcludesRegex) {
 
 		if ((map == null) || map.isEmpty()) {
@@ -532,10 +530,10 @@ public class MessageImpl implements Message {
 			sb.append(StringPool.EQUAL);
 
 			if (value instanceof Map<?, ?>) {
-				sb.append(mapToString((Map<?, ?>)value, null, null));
+				sb.append(_mapToString((Map<?, ?>)value, null, null));
 			}
 			else if (value instanceof String[]) {
-				String valueString = merge(
+				String valueString = _merge(
 					(String[])value, StringPool.COMMA_AND_SPACE);
 
 				sb.append(
@@ -554,7 +552,7 @@ public class MessageImpl implements Message {
 		return sb.toString();
 	}
 
-	private static String merge(Object[] array, String delimiter) {
+	private static String _merge(Object[] array, String delimiter) {
 		if (array == null) {
 			return null;
 		}

@@ -14,6 +14,7 @@
 
 package com.liferay.petra.messaging.spi;
 
+import com.liferay.petra.messaging.api.Destination;
 import com.liferay.petra.messaging.api.DestinationConfiguration;
 
 import java.util.Map;
@@ -24,11 +25,10 @@ import java.util.Map;
  */
 public interface DestinationFactory {
 
-	public com.liferay.petra.messaging.api.Destination createDestination(
+	public Destination createDestination(
 		DestinationConfiguration destinationConfiguration,
 		Map<String, Object> properties);
 
-	public void dispose(
-		com.liferay.petra.messaging.api.Destination destination);
+	public void dispose(Destination destination);
 
 }

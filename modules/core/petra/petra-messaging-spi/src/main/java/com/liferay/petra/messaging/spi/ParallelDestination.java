@@ -23,9 +23,8 @@ import com.liferay.petra.messaging.api.MessageProcessorException;
 
 import java.util.Collection;
 import java.util.Set;
-
-/*import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;*/
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * <p>
@@ -65,19 +64,31 @@ public class ParallelDestination extends BaseAsyncDestination {
 									processedMessage, dispatchThread);
 							}
 							catch (MessageProcessorException mpe) {
-								/*_log.error(
+								Object[] objects = new Object[3];
+
+								objects[0] = processedMessage;
+								objects[1] = dispatchThread;
+								objects[2] = mpe;
+
+								_logger.log(
+									Level.SEVERE,
 									"Unable to process message {} before " +
 										"thread {}",
-									processedMessage, dispatchThread, mpe);*/
+									objects);
 							}
 						}
 
 						messageListener.receive(processedMessage);
 					}
 					catch (MessageListenerException mle) {
-						/*_log.error(
-							"Unable to process message {}", processedMessage,
-							mle);*/
+						Object[] objects = new Object[2];
+
+						objects[0] = processedMessage;
+						objects[1] = mle;
+
+						_logger.log(
+							Level.SEVERE,
+							"Unable to process message {}", objects);
 					}
 					finally {
 						for (InboundMessageProcessor processor :
@@ -88,12 +99,17 @@ public class ParallelDestination extends BaseAsyncDestination {
 									processedMessage, dispatchThread);
 							}
 							catch (MessageProcessorException mpe) {
-								/*j
-								_log.error(
+								Object[] objects = new Object[3];
+
+								objects[0] = processedMessage;
+								objects[1] = dispatchThread;
+								objects[2] = mpe;
+
+								_logger.log(
+									Level.SEVERE,
 									"Unable to process message {} after" +
 										"thread {}",
-									processedMessage, dispatchThread, mpe);
-								*/
+									objects);
 							}
 						}
 					}
@@ -105,7 +121,7 @@ public class ParallelDestination extends BaseAsyncDestination {
 		}
 	}
 
-	/*private static final Logger _log = LoggerFactory.getLogger(
-		ParallelDestination.class);*/
+	private static final Logger _logger = Logger.getLogger(
+		"ParallelDestination");
 
 }

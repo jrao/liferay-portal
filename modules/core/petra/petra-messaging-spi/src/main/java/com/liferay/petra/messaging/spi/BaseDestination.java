@@ -200,11 +200,11 @@ public abstract class BaseDestination implements Destination {
 
 		Collection<OutboundMessageProcessorFactory>
 			outboundMessageProcessorFactories =
-			getOutboundMessageProcessorFactories();
+				getOutboundMessageProcessorFactories();
 
 		if (outboundMessageProcessorFactories != null) {
 			for (OutboundMessageProcessorFactory factory :
-				getOutboundMessageProcessorFactories()) {
+					getOutboundMessageProcessorFactories()) {
 
 				if (factory != null) {
 					processors.add(factory.create());

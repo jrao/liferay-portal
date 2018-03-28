@@ -44,6 +44,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Constants;
 import org.osgi.framework.FrameworkUtil;
@@ -503,8 +504,9 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 	}
 
 	private BundleContext _getBundleContext() {
-		BundleContext bundleContext = FrameworkUtil.getBundle(
-			getClass()).getBundleContext();
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
+
+		BundleContext bundleContext = bundle.getBundleContext();
 
 		return bundleContext;
 	}

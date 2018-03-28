@@ -354,7 +354,7 @@ public class DefaultMessageBus implements MessageBus {
 		_destinations.remove(properties);
 
 		for (MessageBusEventListener messageBusEventListener :
-			_messageBusEventListeners.values()) {
+				_messageBusEventListeners.values()) {
 
 			messageBusEventListener.destinationRemoved(destination);
 		}

@@ -51,7 +51,7 @@ public class ManualMessagingTest extends TestUtil {
 			new DestinationConfiguration(
 				DestinationType.SYNCHRONOUS, destinationName);
 
-		Bundle bundle = FrameworkUtil.getBundle(this.getClass());
+		Bundle bundle = FrameworkUtil.getBundle(getClass());
 
 		BundleContext bundleContext = bundle.getBundleContext();
 
@@ -71,9 +71,11 @@ public class ManualMessagingTest extends TestUtil {
 			new CallableMessageListener();
 
 		Dictionary<String, Object> properties = new Hashtable<>();
+
 		properties.put("destination.name", destinationName);
 
 		String[] clazzes = new String[2];
+
 		clazzes[0] = "com.liferay.petra.messaging.api.MessageListener";
 		clazzes[1] = "java.util.concurrent.Callable";
 

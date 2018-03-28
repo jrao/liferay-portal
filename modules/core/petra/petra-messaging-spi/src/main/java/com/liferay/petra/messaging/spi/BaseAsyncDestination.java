@@ -115,9 +115,9 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 		NoticeableThreadPoolExecutor threadPoolExecutor =
 			new NoticeableThreadPoolExecutor(
 				_workersCoreSize, _workersMaxSize, 60L, TimeUnit.SECONDS,
-			new LinkedBlockingQueue<Runnable>(_maximumQueueSize),
-			Executors.defaultThreadFactory(), _rejectedExecutionHandler,
-			new ThreadPoolHandlerAdapter());
+				new LinkedBlockingQueue<Runnable>(_maximumQueueSize),
+				Executors.defaultThreadFactory(), _rejectedExecutionHandler,
+				new ThreadPoolHandlerAdapter());
 
 		NoticeableThreadPoolExecutor oldThreadPoolExecutor = null;
 

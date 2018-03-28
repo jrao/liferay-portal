@@ -78,7 +78,7 @@ public class DestinationWrapper implements Destination {
 	 */
 	@Override
 	public Collection<com.liferay.petra.messaging.api.DestinationEventListener>
-	getDestinationEventListeners() {
+		getDestinationEventListeners() {
 
 		// TODO Auto-generated method stub
 
@@ -95,7 +95,7 @@ public class DestinationWrapper implements Destination {
 	 */
 	@Override
 	public Collection<InboundMessageProcessorFactory>
-	getInboundMessageProcessorFactories() {
+		getInboundMessageProcessorFactories() {
 
 		// TODO Auto-generated method stub
 
@@ -133,7 +133,7 @@ public class DestinationWrapper implements Destination {
 	 */
 	@Override
 	public Collection<OutboundMessageProcessorFactory>
-	getOutboundMessageProcessorFactories() {
+		getOutboundMessageProcessorFactories() {
 
 		// TODO Auto-generated method stub
 

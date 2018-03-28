@@ -14,6 +14,8 @@
 
 package com.liferay.petra.messaging.spi;
 
+import com.liferay.petra.messaging.api.DestinationStatistics;
+
 /**
  * DestinationStatistics is meant for informational purposes only. The datum
  * contained may not add up. They are assembled as a best effort and may
@@ -24,8 +26,7 @@ package com.liferay.petra.messaging.spi;
  * @author Michael C. Han
  * @author Brian Wing Shun Chan
  */
-public class DestinationStatisticsImpl
-	implements com.liferay.petra.messaging.api.DestinationStatistics {
+public class DestinationStatisticsImpl implements DestinationStatistics {
 
 	public int getActiveThreadCount() {
 		return _activeThreadCount;
