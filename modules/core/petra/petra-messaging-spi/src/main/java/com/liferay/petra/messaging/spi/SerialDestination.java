@@ -91,8 +91,7 @@ public class SerialDestination extends BaseAsyncDestination {
 							objects[1] = mle;
 
 							_logger.log(
-								Level.SEVERE,
-								"Unable to process message {}",
+								Level.SEVERE, "Unable to process message {}",
 								objects);
 						}
 					}

@@ -124,10 +124,10 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 		}
 
 		if (oldThreadPoolExecutor != null) {
-				_logger.log(
-					Level.WARNING,
-					"Abort creating a new thread pool for destination " +
-						getName() + " and reuse previous one");
+			_logger.log(
+				Level.WARNING,
+				"Abort creating a new thread pool for destination " +
+					getName() + " and reuse previous one");
 
 			threadPoolExecutor.shutdownNow();
 
@@ -158,8 +158,8 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 		_logger.log(
 			Level.FINE,
-			"Sending message " + message + " from destination " +
-				getName() + " to message listeners " + messageListeners);
+			"Sending message " + message + " from destination " + getName() +
+				" to message listeners " + messageListeners);
 
 		Collection<InboundMessageProcessor> inboundMessageProcessors =
 			getInboundMessageProcessors();

@@ -21,6 +21,9 @@ import com.liferay.petra.messaging.api.MessageListenerException;
 import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 
+/**
+ * @author Jesse Rao
+ */
 public class CallableMessageListener
 	implements Callable<Message>, MessageListener {
 
