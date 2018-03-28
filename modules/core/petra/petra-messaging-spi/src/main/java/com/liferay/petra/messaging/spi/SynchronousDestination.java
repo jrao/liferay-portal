@@ -45,7 +45,9 @@ public class SynchronousDestination extends BaseDestination {
 	@Override
 	public void send(Message message) {
 		if (messageListeners.isEmpty()) {
-			_logger.log(Level.FINE, "No message listeners for destination " + getName());
+			_logger.log(
+				Level.FINE,
+				"No message listeners for destination " + getName());
 
 			return;
 		}

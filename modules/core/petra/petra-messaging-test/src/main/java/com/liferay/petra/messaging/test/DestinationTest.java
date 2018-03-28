@@ -159,7 +159,7 @@ public class DestinationTest extends TestUtil {
 						latch.await(200, TimeUnit.MILLISECONDS);
 					}
 					catch (InterruptedException ie) {
-						_logger.log(Level.SEVERE,"Interupted!", ie);
+						_logger.log(Level.SEVERE, "Interupted!", ie);
 					}
 				}
 

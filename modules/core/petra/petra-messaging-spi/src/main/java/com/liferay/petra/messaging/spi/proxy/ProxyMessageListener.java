@@ -62,7 +62,7 @@ public class ProxyMessageListener implements MessageListener {
 
 			Exception proxyResponseException = proxyResponse.getException();
 
-			if (responseDestinationName != null &&
+			if ((responseDestinationName != null) &&
 				!responseDestinationName.isEmpty()) {
 
 				Message responseMessage = new MessageImpl();
