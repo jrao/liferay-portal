@@ -239,10 +239,6 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 			public void rejectedExecution(
 				Runnable runnable, ThreadPoolExecutor threadPoolExecutor) {
 
-				if (_logger.getLevel().intValue() > Level.WARNING.intValue()) {
-					return;
-				}
-
 				MessageRunnable messageRunnable = (MessageRunnable)runnable;
 
 				_logger.log(
