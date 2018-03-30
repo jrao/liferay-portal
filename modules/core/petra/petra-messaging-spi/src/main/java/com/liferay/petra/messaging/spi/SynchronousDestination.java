@@ -44,10 +44,6 @@ public class SynchronousDestination extends BaseDestination {
 
 	@Override
 	public void send(Message message) {
-		// TODO: remove (this is only for testing)
-		_logger.log(
-			Level.SEVERE, "testing java.util.logging.Logger from send method");
-
 		if (messageListeners.isEmpty()) {
 			_logger.log(
 				Level.FINE,
