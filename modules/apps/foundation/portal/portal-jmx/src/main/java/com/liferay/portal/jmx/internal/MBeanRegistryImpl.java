@@ -156,11 +156,19 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 
 		String objectName = Optional.ofNullable(
 			properties.get("jmx.objectname")
-		).map(v -> String.valueOf(v)).orElse("");
+		).map(
+			v -> String.valueOf(v)
+		).orElse(
+			""
+		);
 
 		String objectNameCacheKey = Optional.ofNullable(
 			properties.get("jmx.objectname.cache.key")
-		).map(v -> String.valueOf(v)).orElse("");
+		).map(
+			v -> String.valueOf(v)
+		).orElse(
+			""
+		);
 
 		if ("".equals(objectNameCacheKey)) {
 			objectNameCacheKey = objectName;
@@ -205,11 +213,19 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 
 		String objectName = Optional.ofNullable(
 			properties.get("jmx.objectname")
-		).map(v -> String.valueOf(v)).orElse("");
+		).map(
+			v -> String.valueOf(v)
+		).orElse(
+			""
+		);
 
 		String objectNameCacheKey = Optional.ofNullable(
 			properties.get("jmx.objectname.cache.key")
-		).map(v -> String.valueOf(v)).orElse("");
+		).map(
+			v -> String.valueOf(v)
+		).orElse(
+			""
+		);
 
 		if ("".equals(objectNameCacheKey)) {
 			objectNameCacheKey = objectName;
@@ -241,11 +257,19 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 		public Object addingService(ServiceReference<Object> serviceReference) {
 			String objectName = Optional.ofNullable(
 				serviceReference.getProperty("jmx.objectname")
-			).map(v -> String.valueOf(v)).orElse("");
+			).map(
+				v -> String.valueOf(v)
+			).orElse(
+				""
+			);
 
 			String objectNameCacheKey = Optional.ofNullable(
 				serviceReference.getProperty("jmx.objectname.cache.key")
-			).map(v -> String.valueOf(v)).orElse("");
+			).map(
+				v -> String.valueOf(v)
+			).orElse(
+				""
+			);
 
 			if ("".equals(objectNameCacheKey)) {
 				objectNameCacheKey = objectName;
@@ -277,11 +301,19 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 
 			String objectName = Optional.ofNullable(
 				serviceReference.getProperty("jmx.objectname")
-			).map(v -> String.valueOf(v)).orElse("");
+			).map(
+				v -> String.valueOf(v)
+			).orElse(
+				""
+			);
 
 			String objectNameCacheKey = Optional.ofNullable(
 				serviceReference.getProperty("jmx.objectname.cache.key")
-			).map(v -> String.valueOf(v)).orElse("");
+			).map(
+				v -> String.valueOf(v)
+			).orElse(
+				""
+			);
 
 			if ("".equals(objectNameCacheKey)) {
 				objectNameCacheKey = objectName;
