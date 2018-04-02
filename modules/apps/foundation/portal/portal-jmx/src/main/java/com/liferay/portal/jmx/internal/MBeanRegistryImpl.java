@@ -14,6 +14,7 @@
 
 package com.liferay.portal.jmx.internal;
 
+import com.liferay.petra.string.StringPool;
 import com.liferay.portal.jmx.MBeanRegistry;
 
 import java.lang.management.ManagementFactory;
@@ -154,23 +155,25 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 	protected void addDynamicMBean(
 		DynamicMBean dynamicMBean, Map<String, Object> properties) {
 
-		String objectName = Optional.ofNullable(
-			properties.get("jmx.objectname")
-		).map(
+		Optional<Object> objectNameOptional = Optional.ofNullable(
+			properties.get("jmx.objectname"));
+
+		String objectName = objectNameOptional.map(
 			v -> String.valueOf(v)
 		).orElse(
-			""
+			StringPool.BLANK
 		);
 
-		String objectNameCacheKey = Optional.ofNullable(
-			properties.get("jmx.objectname.cache.key")
-		).map(
+		Optional<Object> objectNameCacheKeyOptional = Optional.ofNullable(
+			properties.get("jmx.objectname.cache.key"));
+
+		String objectNameCacheKey = objectNameCacheKeyOptional.map(
 			v -> String.valueOf(v)
 		).orElse(
-			""
+			StringPool.BLANK
 		);
 
-		if ("".equals(objectNameCacheKey)) {
+		if (StringPool.BLANK.equals(objectNameCacheKey)) {
 			objectNameCacheKey = objectName;
 		}
 
@@ -211,23 +214,25 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 	protected void removeDynamicMBean(
 		DynamicMBean dynamicMBean, Map<String, Object> properties) {
 
-		String objectName = Optional.ofNullable(
-			properties.get("jmx.objectname")
-		).map(
+		Optional<Object> objectNameOptional = Optional.ofNullable(
+			properties.get("jmx.objectname"));
+
+		String objectName = objectNameOptional.map(
 			v -> String.valueOf(v)
 		).orElse(
-			""
+			StringPool.BLANK
 		);
 
-		String objectNameCacheKey = Optional.ofNullable(
-			properties.get("jmx.objectname.cache.key")
-		).map(
+		Optional<Object> objectNameCacheKeyOptional = Optional.ofNullable(
+			properties.get("jmx.objectname.cache.key"));
+
+		String objectNameCacheKey = objectNameCacheKeyOptional.map(
 			v -> String.valueOf(v)
 		).orElse(
-			""
+			StringPool.BLANK
 		);
 
-		if ("".equals(objectNameCacheKey)) {
+		if (StringPool.BLANK.equals(objectNameCacheKey)) {
 			objectNameCacheKey = objectName;
 		}
 
@@ -255,23 +260,25 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 
 		@Override
 		public Object addingService(ServiceReference<Object> serviceReference) {
-			String objectName = Optional.ofNullable(
-				serviceReference.getProperty("jmx.objectname")
-			).map(
+			Optional<Object> objectNameOptional = Optional.ofNullable(
+				serviceReference.getProperty("jmx.objectname"));
+
+			String objectName = objectNameOptional.map(
 				v -> String.valueOf(v)
 			).orElse(
-				""
+				StringPool.BLANK
 			);
 
-			String objectNameCacheKey = Optional.ofNullable(
-				serviceReference.getProperty("jmx.objectname.cache.key")
-			).map(
+			Optional<Object> objectNameCacheKeyOptional = Optional.ofNullable(
+				serviceReference.getProperty("jmx.objectname"));
+
+			String objectNameCacheKey = objectNameCacheKeyOptional.map(
 				v -> String.valueOf(v)
 			).orElse(
-				""
+				StringPool.BLANK
 			);
 
-			if ("".equals(objectNameCacheKey)) {
+			if (StringPool.BLANK.equals(objectNameCacheKey)) {
 				objectNameCacheKey = objectName;
 			}
 
@@ -299,23 +306,25 @@ public class MBeanRegistryImpl implements MBeanRegistry {
 		public void removedService(
 			ServiceReference<Object> serviceReference, Object service) {
 
-			String objectName = Optional.ofNullable(
-				serviceReference.getProperty("jmx.objectname")
-			).map(
+			Optional<Object> objectNameOptional = Optional.ofNullable(
+				serviceReference.getProperty("jmx.objectname"));
+
+			String objectName = objectNameOptional.map(
 				v -> String.valueOf(v)
 			).orElse(
-				""
+				StringPool.BLANK
 			);
 
-			String objectNameCacheKey = Optional.ofNullable(
-				serviceReference.getProperty("jmx.objectname.cache.key")
-			).map(
+			Optional<Object> objectNameCacheKeyOptional = Optional.ofNullable(
+				serviceReference.getProperty("jmx.objectname.cache.key"));
+
+			String objectNameCacheKey = objectNameOptional.map(
 				v -> String.valueOf(v)
 			).orElse(
-				""
+				StringPool.BLANK
 			);
 
-			if ("".equals(objectNameCacheKey)) {
+			if (StringPool.BLANK.equals(objectNameCacheKey)) {
 				objectNameCacheKey = objectName;
 			}
 
