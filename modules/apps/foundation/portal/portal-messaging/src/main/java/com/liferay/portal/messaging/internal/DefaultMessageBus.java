@@ -43,6 +43,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -118,13 +119,18 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public Destination getDestination(String destinationName) {
-		return Optional.ofNullable(
-			_destinations.get(destinationName)
-		).map(
+		Optional<Entry<Destination,
+			ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+				optional = Optional.ofNullable(
+					_destinations.get(destinationName));
+
+		Destination destination = optional.map(
 			entry -> entry.getKey()
 		).orElse(
 			null
 		);
+
+		return destination;
 	}
 
 	@Override
@@ -139,11 +145,21 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public Collection<Destination> getDestinations() {
-		return _destinations.values().stream().map(
+		Collection<Entry<Destination,
+			ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+				entries = _destinations.values();
+
+		Stream<Entry<Destination,
+			ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+				entryStream = entries.stream();
+
+		List<Destination> destinations = entryStream.map(
 			entry -> entry.getKey()
 		).collect(
 			Collectors.toList()
 		);
+
+		return destinations;
 	}
 
 	@Override
@@ -198,7 +214,10 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 			return null;
 		}
 
-		entry.getValue().unregister();
+		ServiceRegistration<com.liferay.petra.messaging.api.Destination>
+			serviceRegistration = entry.getValue();
+
+		serviceRegistration.unregister();
 
 		Destination destination = entry.getKey();
 
@@ -260,8 +279,15 @@ public class DefaultMessageBus implements ManagedServiceFactory, MessageBus {
 
 	@Override
 	public synchronized void shutdown(boolean force) {
-		_destinations.values().stream().forEach(
-			entry -> entry.getKey().close(force));
+		Collection<Entry<Destination,
+			ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+				entries = _destinations.values();
+
+		Stream<Entry<Destination,
+			ServiceRegistration<com.liferay.petra.messaging.api.Destination>>>
+				entryStream = entries.stream();
+
+		entryStream.forEach(entry -> entry.getKey().close(force));
 	}
 
 	@Override
