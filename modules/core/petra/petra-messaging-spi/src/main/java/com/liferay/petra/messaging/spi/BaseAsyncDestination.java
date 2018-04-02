@@ -22,6 +22,7 @@ import com.liferay.petra.messaging.api.InboundMessageProcessor;
 import com.liferay.petra.messaging.api.Message;
 import com.liferay.petra.messaging.api.MessageListener;
 import com.liferay.petra.messaging.api.MessageProcessorException;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.Collection;
 import java.util.Set;
@@ -152,14 +153,22 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 		if (threadPoolExecutor.isShutdown()) {
 			throw new IllegalStateException(
-				"Destination " + getName() + " is shutdown and cannot " +
-					"receive more messages");
+				"Destination " + getName() +
+					" is shutdown and cannot receive more messages");
 		}
 
-		_logger.log(
-			Level.FINE,
-			"Sending message " + message + " from destination " + getName() +
-				" to message listeners " + messageListeners);
+		StringBundler sb = new StringBundler(6);
+
+		sb.append("Sending message ");
+		sb.append(message);
+		sb.append(" from destination ");
+		sb.append(getName());
+		sb.append(" to message listeners ");
+		sb.append(messageListeners);
+
+		String logMessage = sb.toString();
+
+		_logger.log(Level.FINE, logMessage);
 
 		Collection<InboundMessageProcessor> inboundMessageProcessors =
 			getInboundMessageProcessors();
@@ -241,11 +250,16 @@ public abstract class BaseAsyncDestination extends BaseDestination {
 
 				MessageRunnable messageRunnable = (MessageRunnable)runnable;
 
-				_logger.log(
-					Level.WARNING,
-					"Discarding message " + messageRunnable.getMessage() +
-						" because it exceeds the maximum queue size of " +
-							_maximumQueueSize);
+				StringBundler sb = new StringBundler(4);
+
+				sb.append("Discarding message ");
+				sb.append(messageRunnable.getMessage());
+				sb.append("because it exceeds the maximum queue size of ");
+				sb.append(_maximumQueueSize);
+
+				String logMessage = sb.toString();
+
+				_logger.log(Level.WARNING, logMessage);
 			}
 
 		};
