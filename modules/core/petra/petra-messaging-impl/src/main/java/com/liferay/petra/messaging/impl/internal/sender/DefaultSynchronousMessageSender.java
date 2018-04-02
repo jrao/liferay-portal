@@ -106,9 +106,10 @@ public class DefaultSynchronousMessageSender
 	}
 
 	protected String generateUUID() {
+		ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
+
 		UUID uuid = new UUID(
-			ThreadLocalRandom.current().nextLong(),
-			ThreadLocalRandom.current().nextLong());
+			threadLocalRandom.nextLong(), threadLocalRandom.nextLong());
 
 		return uuid.toString();
 	}

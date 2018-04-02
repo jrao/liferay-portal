@@ -572,7 +572,9 @@ public class MessageImpl implements Message {
 				sb.append(delimiter);
 			}
 
-			sb.append(String.valueOf(array[i]).trim());
+			String s = String.valueOf(array[i]);
+
+			sb.append(s.trim());
 		}
 
 		return sb.toString();
