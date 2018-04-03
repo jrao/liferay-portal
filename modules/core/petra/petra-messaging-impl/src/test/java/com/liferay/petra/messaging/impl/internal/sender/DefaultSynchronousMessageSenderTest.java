@@ -22,7 +22,6 @@ import com.liferay.petra.messaging.api.Message;
 import com.liferay.petra.messaging.api.MessageBusException;
 import com.liferay.petra.messaging.api.MessageListener;
 import com.liferay.petra.messaging.impl.internal.DefaultMessageBus;
-import com.liferay.petra.messaging.impl.internal.sender.DefaultSynchronousMessageSender;
 import com.liferay.petra.messaging.spi.BaseDestination;
 import com.liferay.petra.messaging.spi.DestinationFactory;
 import com.liferay.petra.messaging.spi.MessageImpl;
