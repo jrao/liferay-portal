@@ -18,6 +18,7 @@ import com.liferay.petra.messaging.api.Message;
 import com.liferay.petra.messaging.api.MessageBus;
 import com.liferay.petra.messaging.api.MessageListener;
 import com.liferay.petra.messaging.spi.MessageImpl;
+import com.liferay.petra.string.StringBundler;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,9 +42,15 @@ public class ProxyMessageListener implements MessageListener {
 				throw new Exception("Payload is null");
 			}
 			else if (!(payload instanceof ProxyRequest)) {
-				throw new Exception(
-					"Payload " + payload.getClass() + " is not of type " +
-						ProxyRequest.class.getName());
+				Class<?> payloadClass = payload.getClass();
+
+				String payloadClassName = payloadClass.getName();
+
+				String errorMessage = StringBundler.concat(
+					"Payload ", payloadClassName, " is not of type ",
+					ProxyRequest.class.getName());
+
+				throw new Exception(errorMessage);
 			}
 			else {
 				ProxyRequest proxyRequest = (ProxyRequest)payload;
