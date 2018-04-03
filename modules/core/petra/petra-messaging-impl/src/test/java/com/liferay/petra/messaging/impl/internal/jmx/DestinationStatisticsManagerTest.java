@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.messaging.impl.internal.jmx;
+package com.liferay.petra.messaging.impl.internal.jmx;
 
 import com.liferay.petra.messaging.api.Destination;
 import com.liferay.petra.messaging.impl.internal.jmx.DestinationStatisticsManager;

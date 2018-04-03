@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.portal.messaging.impl.internal.sender;
+package com.liferay.petra.messaging.impl.internal.sender;
 
 import com.liferay.petra.messaging.api.Destination;
 import com.liferay.petra.messaging.api.DestinationConfiguration;
