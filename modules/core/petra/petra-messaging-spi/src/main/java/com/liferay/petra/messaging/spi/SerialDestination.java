@@ -75,7 +75,7 @@ public class SerialDestination extends BaseAsyncDestination {
 
 							_logger.log(
 								Level.SEVERE,
-								"Unable to process message before thread {}",
+								"Unable to process message before thread {0}",
 								objects);
 						}
 					}
@@ -91,7 +91,7 @@ public class SerialDestination extends BaseAsyncDestination {
 							objects[1] = mle;
 
 							_logger.log(
-								Level.SEVERE, "Unable to process message {}",
+								Level.SEVERE, "Unable to process message {0}",
 								objects);
 						}
 					}
@@ -112,7 +112,7 @@ public class SerialDestination extends BaseAsyncDestination {
 
 							_logger.log(
 								Level.SEVERE,
-								"Unable to process message after thread {}",
+								"Unable to process message after thread {0}",
 								objects);
 						}
 					}

@@ -210,7 +210,7 @@ public class DestinationTest extends TestUtil {
 						messageBus.sendMessage(destinationName, message);
 					}
 					catch (Throwable e) {
-						_logger.log(Level.SEVERE, "{}", e.getMessage());
+						_logger.log(Level.SEVERE, "{0}", e.getMessage());
 					}
 				}
 			};

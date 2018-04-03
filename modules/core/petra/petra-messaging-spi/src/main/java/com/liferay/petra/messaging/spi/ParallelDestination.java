@@ -72,8 +72,8 @@ public class ParallelDestination extends BaseAsyncDestination {
 
 								_logger.log(
 									Level.SEVERE,
-									"Unable to process message {} before " +
-										"thread {}",
+									"Unable to process message {0} before " +
+										"thread {1}",
 									objects);
 							}
 						}
@@ -87,7 +87,7 @@ public class ParallelDestination extends BaseAsyncDestination {
 						objects[1] = mle;
 
 						_logger.log(
-							Level.SEVERE, "Unable to process message {}",
+							Level.SEVERE, "Unable to process message {0}",
 							objects);
 					}
 					finally {
@@ -107,8 +107,8 @@ public class ParallelDestination extends BaseAsyncDestination {
 
 								_logger.log(
 									Level.SEVERE,
-									"Unable to process message {} after" +
-										"thread {}",
+									"Unable to process message {0} after" +
+										"thread {1}",
 									objects);
 							}
 						}
