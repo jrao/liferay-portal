@@ -69,11 +69,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.httpclient.HostConfiguration;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpMethod;
-import org.apache.commons.httpclient.HttpState;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
@@ -441,14 +436,6 @@ public class HttpImpl implements Http {
 		return path;
 	}
 
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	public HttpClient getClient(HostConfiguration hostConfiguration) {
-		throw new UnsupportedOperationException();
-	}
-
 	@Override
 	public String getCompleteURL(HttpServletRequest request) {
 		StringBuffer sb = request.getRequestURL();
@@ -525,16 +512,6 @@ public class HttpImpl implements Http {
 		catch (URISyntaxException urise) {
 			return StringPool.BLANK;
 		}
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	public HostConfiguration getHostConfiguration(String location)
-		throws IOException {
-
-		throw new UnsupportedOperationException();
 	}
 
 	@Override
@@ -960,14 +937,6 @@ public class HttpImpl implements Http {
 	@Override
 	public String protocolize(String url, RenderRequest renderRequest) {
 		return protocolize(url, renderRequest.isSecure());
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	public void proxifyState(
-		HttpState httpState, HostConfiguration hostConfiguration) {
 	}
 
 	@Override
@@ -1402,14 +1371,6 @@ public class HttpImpl implements Http {
 		return requestConfigBuilder;
 	}
 
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected boolean hasRequestHeader(HttpMethod httpMethod, String name) {
-		throw new UnsupportedOperationException();
-	}
-
 	protected boolean hasRequestHeader(
 		RequestBuilder requestBuilder, String name) {
 
@@ -1420,17 +1381,6 @@ public class HttpImpl implements Http {
 		}
 
 		return true;
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected void processPostMethod(
-		PostMethod postMethod, List<Http.FilePart> fileParts,
-		Map<String, String> parts) {
-
-		throw new UnsupportedOperationException();
 	}
 
 	protected void processPostMethod(
@@ -1480,36 +1430,6 @@ public class HttpImpl implements Http {
 		}
 	}
 
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected org.apache.commons.httpclient.Cookie toCommonsCookie(
-		Cookie cookie) {
-
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected org.apache.commons.httpclient.Cookie[] toCommonsCookies(
-		Cookie[] cookie) {
-
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected org.apache.commons.httpclient.methods.multipart.FilePart
-		toCommonsFilePart(Http.FilePart filePart) {
-
-		throw new UnsupportedOperationException();
-	}
-
 	protected org.apache.http.cookie.Cookie toHttpCookie(Cookie cookie) {
 		BasicClientCookie basicClientCookie = new BasicClientCookie(
 			cookie.getName(), cookie.getValue());
@@ -1548,16 +1468,6 @@ public class HttpImpl implements Http {
 		}
 
 		return httpCookies;
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected Cookie toServletCookie(
-		org.apache.commons.httpclient.Cookie commonsCookie) {
-
-		throw new UnsupportedOperationException();
 	}
 
 	protected Cookie toServletCookie(org.apache.http.cookie.Cookie httpCookie) {
@@ -1610,16 +1520,6 @@ public class HttpImpl implements Http {
 		}
 
 		return cookies;
-	}
-
-	/**
-	 * @deprecated As of 7.0.0, with no direct replacement
-	 */
-	@Deprecated
-	protected Cookie[] toServletCookies(
-		org.apache.commons.httpclient.Cookie[] commonsCookies) {
-
-		throw new UnsupportedOperationException();
 	}
 
 	protected byte[] URLtoByteArray(
