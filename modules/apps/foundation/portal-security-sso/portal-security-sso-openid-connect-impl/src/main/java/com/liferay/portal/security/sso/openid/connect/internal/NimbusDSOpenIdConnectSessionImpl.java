@@ -26,9 +26,9 @@ import com.nimbusds.openid.connect.sdk.claims.UserInfo;
 /**
  * @author Edward C. Han
  */
-public class OpenIdConnectSessionImpl implements OpenIdConnectSession, Serializable {
+public class NimbusDSOpenIdConnectSessionImpl implements OpenIdConnectSession, Serializable {
 
-	public OpenIdConnectSessionImpl(
+	public NimbusDSOpenIdConnectSessionImpl(
 		String openIdProviderName, Nonce nonce, State state) {
 
 		_openIdProviderName = openIdProviderName;

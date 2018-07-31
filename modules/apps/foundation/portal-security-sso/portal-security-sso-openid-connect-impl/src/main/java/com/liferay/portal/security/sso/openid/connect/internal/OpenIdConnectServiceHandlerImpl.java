@@ -101,7 +101,7 @@ public class OpenIdConnectServiceHandlerImpl
 	public boolean hasValidOpenIdConnectSession(HttpSession httpSession)
 		throws OpenIdConnectServiceException.NoOpenIdConnectSessionException {
 
-		OpenIdConnectSessionImpl openIdConnectSession = getOpenIdConnectSession(
+		NimbusDSOpenIdConnectSessionImpl openIdConnectSession = getOpenIdConnectSession(
 			httpSession);
 
 		if (!hasValidAccessToken(openIdConnectSession)) {
@@ -129,7 +129,7 @@ public class OpenIdConnectServiceHandlerImpl
 
 		HttpSession httpSession = httpServletRequest.getSession();
 
-		OpenIdConnectSessionImpl openIdConnectSession = getOpenIdConnectSession(
+		NimbusDSOpenIdConnectSessionImpl openIdConnectSession = getOpenIdConnectSession(
 			httpSession);
 
 		if (!OpenIdConnectFlowState.AUTH_REQUESTED.equals(
@@ -189,7 +189,7 @@ public class OpenIdConnectServiceHandlerImpl
 		State state = new State();
 		Nonce nonce = new Nonce();
 
-		OpenIdConnectSessionImpl openIdConnectSession = new OpenIdConnectSessionImpl(
+		NimbusDSOpenIdConnectSessionImpl openIdConnectSession = new NimbusDSOpenIdConnectSessionImpl(
 			openIdConnectProviderName, nonce, state);
 
 		Scope scope = Scope.parse(openIdConnectProvider.getScopes());
@@ -302,12 +302,12 @@ public class OpenIdConnectServiceHandlerImpl
 			secret);
 	}
 
-	protected OpenIdConnectSessionImpl getOpenIdConnectSession(
+	protected NimbusDSOpenIdConnectSessionImpl getOpenIdConnectSession(
 			HttpSession httpSession)
 		throws OpenIdConnectServiceException.NoOpenIdConnectSessionException {
 
-		OpenIdConnectSessionImpl openIdConnectSession =
-			(OpenIdConnectSessionImpl)httpSession.getAttribute(
+		NimbusDSOpenIdConnectSessionImpl openIdConnectSession =
+			(NimbusDSOpenIdConnectSessionImpl)httpSession.getAttribute(
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION);
 
 		if (openIdConnectSession == null) {
@@ -320,7 +320,7 @@ public class OpenIdConnectServiceHandlerImpl
 	}
 
 	protected boolean hasValidAccessToken(
-		OpenIdConnectSessionImpl openIdConnectSession) {
+		NimbusDSOpenIdConnectSessionImpl openIdConnectSession) {
 
 		AccessToken accessToken = openIdConnectSession.getAccessToken();
 
@@ -340,7 +340,7 @@ public class OpenIdConnectServiceHandlerImpl
 	}
 
 	protected void processUserInfo(
-			long companyId, OpenIdConnectSessionImpl openIdConnectSession,
+			long companyId, NimbusDSOpenIdConnectSessionImpl openIdConnectSession,
 			OIDCProviderMetadata oidcProviderMetadata)
 		throws PortalException {
 
@@ -356,7 +356,7 @@ public class OpenIdConnectServiceHandlerImpl
 	}
 
 	protected boolean refreshAuthToken(
-			OpenIdConnectSessionImpl openIdConnectSession)
+			NimbusDSOpenIdConnectSessionImpl openIdConnectSession)
 		throws OpenIdConnectServiceException {
 
 		synchronized (openIdConnectSession) {
@@ -532,7 +532,7 @@ public class OpenIdConnectServiceHandlerImpl
 	}
 
 	protected void updateSessionTokens(
-		OpenIdConnectSessionImpl session, Tokens tokens, long loginTime) {
+		NimbusDSOpenIdConnectSessionImpl session, Tokens tokens, long loginTime) {
 
 		session.setAccessToken(tokens.getAccessToken());
 		session.setRefreshToken(tokens.getRefreshToken());
