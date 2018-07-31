@@ -16,6 +16,7 @@ package com.liferay.portal.security.sso.openid.connect.internal;
 
 import java.io.Serializable;
 
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectFlowState;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnectSession;
 import com.nimbusds.oauth2.sdk.id.State;
 import com.nimbusds.oauth2.sdk.token.AccessToken;

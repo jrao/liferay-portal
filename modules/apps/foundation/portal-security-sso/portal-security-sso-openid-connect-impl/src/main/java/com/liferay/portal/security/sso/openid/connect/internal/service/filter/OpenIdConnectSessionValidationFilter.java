@@ -20,9 +20,10 @@ import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.servlet.BaseFilter;
 import com.liferay.portal.kernel.util.Portal;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnect;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectFlowState;
 import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceHandler;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectSession;
 import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
-import com.liferay.portal.security.sso.openid.connect.internal.OpenIdConnectFlowState;
 import com.liferay.portal.security.sso.openid.connect.internal.NimbusDSOpenIdConnectSessionImpl;
 
 import javax.servlet.Filter;
@@ -62,8 +63,8 @@ public class OpenIdConnectSessionValidationFilter extends BaseFilter {
 
 		boolean endSession = false;
 
-		NimbusDSOpenIdConnectSessionImpl openIdConnectSession =
-			(NimbusDSOpenIdConnectSessionImpl)httpSession.getAttribute(
+		OpenIdConnectSession openIdConnectSession =
+			(OpenIdConnectSession)httpSession.getAttribute(
 				OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION);
 
 		if (openIdConnectSession == null) {

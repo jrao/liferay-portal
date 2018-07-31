@@ -14,18 +14,6 @@
 
 package com.liferay.portal.security.sso.openid.connect.internal.service.filter;
 
-import com.liferay.portal.kernel.log.Log;
-import com.liferay.portal.kernel.log.LogFactoryUtil;
-import com.liferay.portal.kernel.servlet.BaseFilter;
-import com.liferay.portal.kernel.util.Portal;
-import com.liferay.portal.security.sso.openid.connect.OpenIdConnect;
-import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceException;
-import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceHandler;
-import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectConstants;
-import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
-import com.liferay.portal.security.sso.openid.connect.internal.OpenIdConnectFlowState;
-import com.liferay.portal.security.sso.openid.connect.internal.NimbusDSOpenIdConnectSessionImpl;
-
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.http.HttpServletRequest;
@@ -34,6 +22,18 @@ import javax.servlet.http.HttpSession;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.servlet.BaseFilter;
+import com.liferay.portal.kernel.util.Portal;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnect;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectFlowState;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceException;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceHandler;
+import com.liferay.portal.security.sso.openid.connect.OpenIdConnectSession;
+import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectConstants;
+import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
 
 /**
  * @author Edward C. Han
@@ -76,8 +76,8 @@ public class OpenIdConnectFilter extends BaseFilter {
 				return;
 			}
 
-			NimbusDSOpenIdConnectSessionImpl openIdConnectSession =
-				(NimbusDSOpenIdConnectSessionImpl)httpSession.getAttribute(
+			OpenIdConnectSession openIdConnectSession =
+				(OpenIdConnectSession)httpSession.getAttribute(
 					OpenIdConnectWebKeys.OPEN_ID_CONNECT_SESSION);
 
 			if (openIdConnectSession == null) {
