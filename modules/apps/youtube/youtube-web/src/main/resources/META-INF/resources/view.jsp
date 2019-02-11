@@ -54,43 +54,22 @@
 		}
 	};
 
-	function <portlet:namespace />addDragAndDropListener() {
-		const TIMEOUT_LENGTH = 10;
-
-		if (!Liferay.Layout) {
-			setTimeout(
-				function() {
-					<portlet:namespace />addDragAndDropListener();
-				},
-				TIMEOUT_LENGTH
-			);
-		}
-		else {
-			Liferay.Layout.on(
-				[ 'drag:end', 'drag:start' ],
-				function(event) {
-					setTimeout(
-						function() {
-							$(window).trigger('resize');
-						},
-						TIMEOUT_LENGTH
-					);
-				}
-			);
-		}
-	}
-
 	Liferay.on(
-		'portletReady', function(event) {
+		'allPortletsReady', function(event) {
 			<portlet:namespace />resizeIFrame();
-		}
-	);
 
-	<portlet:namespace />addDragAndDropListener();
-
-	$(window).on(
-		'resize', function() {
-			<portlet:namespace />resizeIFrame();
+			Liferay.on('initLayout', function(event) {
+				Liferay.once(function() {
+					Liferay.Layout.on([ 'drag:end' ], function(event) {
+						setTimeout(
+							function() {
+								<portlet:namespace />resizeIFrame();
+							},
+							100
+						);
+					});
+				}, Liferay.Layout, 'bindDragDropListeners');
+			});
 		}
 	);
 </aui:script>
