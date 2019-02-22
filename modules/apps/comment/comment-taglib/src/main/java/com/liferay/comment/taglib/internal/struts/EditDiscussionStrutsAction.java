@@ -14,6 +14,8 @@
 
 package com.liferay.comment.taglib.internal.struts;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalServiceUtil;
 import com.liferay.message.boards.exception.DiscussionMaxCommentsException;
 import com.liferay.message.boards.exception.MessageBodyException;
 import com.liferay.message.boards.exception.NoSuchMessageException;
@@ -221,10 +223,21 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 			PrincipalThreadLocal.setName(user.getUserId());
 
+			long assetEntryCompanyId = themeDisplay.getCompanyId();
+			long assetEntryGroupId = themeDisplay.getScopeGroupId();
+
+			AssetEntry assetEntry =
+				AssetEntryLocalServiceUtil.fetchEntry(className, classPK);
+
+			if (assetEntry != null) {
+				assetEntryCompanyId = assetEntry.getCompanyId();
+				assetEntryGroupId = assetEntry.getGroupId();
+			}
+
 			try {
 				discussionPermission.checkAddPermission(
-					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
-					className, classPK);
+					assetEntryCompanyId, assetEntryGroupId, className,
+					classPK);
 
 				commentId = _commentManager.addComment(
 					user.getUserId(), className, classPK, user.getFullName(),
