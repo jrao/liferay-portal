@@ -14,6 +14,8 @@
 
 package com.liferay.comment.taglib.internal.struts;
 
+import com.liferay.asset.kernel.model.AssetEntry;
+import com.liferay.asset.kernel.service.AssetEntryLocalService;
 import com.liferay.message.boards.exception.DiscussionMaxCommentsException;
 import com.liferay.message.boards.exception.MessageBodyException;
 import com.liferay.message.boards.exception.NoSuchMessageException;
@@ -140,7 +142,19 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 		discussionPermission.checkDeletePermission(commentId);
 
+		boolean hasDeletePermission =
+			discussionPermission.hasDeletePermission(commentId);
+
+		System.out.println("hasDeletePermission: " + hasDeletePermission);
+
 		_commentManager.deleteComment(commentId);
+	}
+
+	@Reference(unbind = "-")
+	protected void setAssetEntryLocalService(
+			AssetEntryLocalService assetEntryLocalService) {
+
+		_assetEntryLocalService = assetEntryLocalService;
 	}
 
 	@Reference(unbind = "-")
@@ -161,9 +175,26 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		DiscussionPermission discussionPermission = _getDiscussionPermission(
 			themeDisplay);
 
+		AssetEntry assetEntry =
+			_assetEntryLocalService.fetchEntry(className, classPK);
+
+		System.out.println("themeDisplay.getScopeGroupId(): " + themeDisplay.getScopeGroupId());
+		System.out.println("assetEntry.getGroupId(): " + assetEntry.getGroupId());
+
 		discussionPermission.checkSubscribePermission(
 			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 			className, classPK);
+
+		boolean hasSubscribePermission = discussionPermission.hasSubscribePermission(
+			themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+			className, classPK);
+
+		boolean hasSubscribePermissionAsset = discussionPermission.hasSubscribePermission(
+			assetEntry.getCompanyId(), assetEntry.getGroupId(), className,
+			classPK);
+
+		System.out.println("hasSubscribePermission: " + hasSubscribePermission);
+		System.out.println("hasSubscribePermissionAsset: " + hasSubscribePermissionAsset);
 
 		if (subscribe) {
 			_commentManager.subscribeDiscussion(
@@ -187,6 +218,9 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 		long parentCommentId = ParamUtil.getLong(request, "parentCommentId");
 		String subject = ParamUtil.getString(request, "subject");
 		String body = ParamUtil.getString(request, "body");
+
+		AssetEntry assetEntry =
+			_assetEntryLocalService.fetchEntry(className, classPK);
 
 		Function<String, ServiceContext> serviceContextFunction =
 			new ServiceContextFunction(request);
@@ -222,9 +256,23 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 			PrincipalThreadLocal.setName(user.getUserId());
 
 			try {
+				System.out.println("themeDisplay.getScopeGroupId(): " + themeDisplay.getScopeGroupId());
+				System.out.println("assetEntry.getGroupId(): " + assetEntry.getGroupId());
+
 				discussionPermission.checkAddPermission(
 					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
 					className, classPK);
+
+				boolean hasAddPermission = discussionPermission.hasAddPermission(
+					themeDisplay.getCompanyId(), themeDisplay.getScopeGroupId(),
+					className, classPK);
+
+				boolean hasAddPermissionAsset = discussionPermission.hasAddPermission(
+					assetEntry.getCompanyId(), assetEntry.getGroupId(),
+					className, classPK);
+
+				System.out.println("hasAddPermission: " + hasAddPermission);
+				System.out.println("hasAddPermissionAsset: " + hasAddPermissionAsset);
 
 				commentId = _commentManager.addComment(
 					user.getUserId(), className, classPK, user.getFullName(),
@@ -297,6 +345,8 @@ public class EditDiscussionStrutsAction implements StrutsAction {
 
 	@Reference
 	private Portal _portal;
+
+	private AssetEntryLocalService _assetEntryLocalService;
 
 	private UserLocalService _userLocalService;
 
