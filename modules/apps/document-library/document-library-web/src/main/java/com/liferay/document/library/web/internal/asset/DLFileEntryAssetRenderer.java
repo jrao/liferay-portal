@@ -24,6 +24,7 @@ import com.liferay.document.library.kernel.model.DLFileEntryConstants;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalService;
 import com.liferay.document.library.kernel.service.DLFileEntryLocalServiceUtil;
 import com.liferay.document.library.util.DLURLHelper;
+import com.liferay.document.library.web.internal.portlet.DLPortletLayoutFinder;
 import com.liferay.document.library.web.internal.security.permission.resource.DLFileEntryPermission;
 import com.liferay.petra.string.CharPool;
 import com.liferay.petra.string.StringBundler;
@@ -32,6 +33,7 @@ import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.portlet.LiferayPortletRequest;
 import com.liferay.portal.kernel.portlet.LiferayPortletResponse;
+import com.liferay.portal.kernel.portlet.PortletLayoutFinder;
 import com.liferay.portal.kernel.repository.model.FileEntry;
 import com.liferay.portal.kernel.repository.model.FileVersion;
 import com.liferay.portal.kernel.security.permission.ActionKeys;
@@ -48,7 +50,9 @@ import com.liferay.portal.util.PropsValues;
 import com.liferay.portlet.documentlibrary.asset.DLFileEntryDDMFormValuesReader;
 import com.liferay.trash.TrashHelper;
 
+import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Locale;
 
 import javax.portlet.ActionRequest;
@@ -59,6 +63,11 @@ import javax.portlet.WindowState;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+import org.osgi.framework.ServiceReference;
 
 /**
  * @author Julio Camarero
@@ -350,10 +359,17 @@ public class DLFileEntryAssetRenderer
 		LiferayPortletResponse liferayPortletResponse,
 		String noSuchEntryRedirect) {
 
-		return getURLViewInContext(
-			liferayPortletRequest, noSuchEntryRedirect,
-			"/document_library/find_file_entry", "fileEntryId",
-			_fileEntry.getFileEntryId());
+		boolean isValidURLViewInContext = _isValidURLViewInContext(
+			liferayPortletRequest);
+
+		if (isValidURLViewInContext) {
+			return getURLViewInContext(
+				liferayPortletRequest, noSuchEntryRedirect,
+				"/document_library/find_file_entry", "fileEntryId",
+				_fileEntry.getFileEntryId());
+		}
+
+		return null;
 	}
 
 	@Override
@@ -447,6 +463,54 @@ public class DLFileEntryAssetRenderer
 	@Override
 	public boolean isPrintable() {
 		return false;
+	}
+
+	private boolean _isValidURLViewInContext(
+		LiferayPortletRequest liferayPortletRequest) {
+
+		try {
+			Bundle bundle = FrameworkUtil.getBundle(
+				DLPortletLayoutFinder.class);
+
+			BundleContext bundleContext = bundle.getBundleContext();
+
+			String filter =
+				"(model.class.name=" +
+					"com.liferay.portal.kernel.repository.model.FileEntry)";
+
+			Collection<ServiceReference<PortletLayoutFinder>>
+				serviceReferences = bundleContext.getServiceReferences(
+					PortletLayoutFinder.class, filter);
+
+			ServiceReference<PortletLayoutFinder> serviceReference = null;
+
+			if (!serviceReferences.isEmpty()) {
+				Iterator<ServiceReference<PortletLayoutFinder>> iterator =
+					serviceReferences.iterator();
+
+				serviceReference = iterator.next();
+			}
+
+			DLPortletLayoutFinder dlPortletLayoutFinder =
+				(DLPortletLayoutFinder)bundleContext.getService(
+					serviceReference);
+
+			ThemeDisplay themeDisplay =
+				(ThemeDisplay)liferayPortletRequest.getAttribute(
+					WebKeys.THEME_DISPLAY);
+
+			PortletLayoutFinder.Result result = dlPortletLayoutFinder.find(
+				themeDisplay, getGroupId());
+
+			if (result == null) {
+				return false;
+			}
+		}
+		catch (Exception e) {
+			return false;
+		}
+
+		return true;
 	}
 
 	private final DLFileEntryLocalService _dlFileEntryLocalService;
