@@ -36,6 +36,7 @@ import com.liferay.portal.kernel.security.permission.resource.ModelResourcePermi
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.ArrayUtil;
 import com.liferay.portal.kernel.util.GetterUtil;
+import com.liferay.portal.kernel.util.JavaConstants;
 import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.PortalUtil;
 import com.liferay.portal.kernel.util.PrefsParamUtil;
@@ -56,6 +57,8 @@ import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 import javax.portlet.ResourceRequest;
 import javax.portlet.ResourceResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -180,6 +183,19 @@ public class JournalContentPortlet extends MVCPortlet {
 	public void render(
 			RenderRequest renderRequest, RenderResponse renderResponse)
 		throws IOException, PortletException {
+
+		HttpServletRequest httpServletRequest =
+			PortalUtil.getHttpServletRequest(renderRequest);
+
+		if (httpServletRequest.getAttribute(JavaConstants.JAVAX_PORTLET_REQUEST) == null) {
+			httpServletRequest.setAttribute(
+				JavaConstants.JAVAX_PORTLET_REQUEST, renderRequest);
+		}
+
+		if (httpServletRequest.getAttribute(JavaConstants.JAVAX_PORTLET_RESPONSE) == null) {
+			httpServletRequest.setAttribute(
+				JavaConstants.JAVAX_PORTLET_RESPONSE, renderResponse);
+		}
 
 		ThemeDisplay themeDisplay = (ThemeDisplay)renderRequest.getAttribute(
 			WebKeys.THEME_DISPLAY);

@@ -233,7 +233,13 @@ public class JournalTransformer {
 				templateId, tokens, languageId, document, script, langType);
 
 			if ((themeDisplay != null) && (themeDisplay.getRequest() != null)) {
-				template.prepare(themeDisplay.getRequest());
+				HttpServletRequest request = themeDisplay.getRequest();
+
+				if (portletRequestModel != null) {
+					request.setAttribute("mySpecialPortletRequestModel", portletRequestModel);
+				}
+
+				template.prepare(request);
 			}
 
 			if (contextObjects != null) {

@@ -282,6 +282,19 @@ public class TemplateContextHelper {
 
 				});
 		}
+		else {
+			PortletRequestModel mySpecialPortletRequestModel =
+				(PortletRequestModel)request.getAttribute("mySpecialPortletRequestModel");
+
+			contextObjects.put("mySpecialPortletRequestModel", mySpecialPortletRequestModel);
+
+			/*
+			PortletRequestModelFactory portletRequestModelFactory =
+				new PortletRequestModelFactory(null, null);
+
+			contextObjects.put("portletRequestModelFactory", portletRequestModelFactory);
+			*/
+		}
 
 		// Theme display
 
