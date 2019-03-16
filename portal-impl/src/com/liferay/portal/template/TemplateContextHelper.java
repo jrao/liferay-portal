@@ -288,6 +288,10 @@ public class TemplateContextHelper {
 
 			contextObjects.put("mySpecialPortletRequestModel", mySpecialPortletRequestModel);
 
+			PortletRequestModelFactory portletRequestModelFactory =
+				(PortletRequestModelFactory)request.getAttribute("portletRequestModelFactory");
+
+			contextObjects.put("portletRequestModelFactory", portletRequestModelFactory);
 			/*
 			PortletRequestModelFactory portletRequestModelFactory =
 				new PortletRequestModelFactory(null, null);

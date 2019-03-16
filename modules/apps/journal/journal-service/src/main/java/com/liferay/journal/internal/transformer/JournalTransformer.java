@@ -33,6 +33,7 @@ import com.liferay.portal.kernel.mobile.device.UnknownDevice;
 import com.liferay.portal.kernel.model.Company;
 import com.liferay.portal.kernel.module.configuration.ConfigurationProviderUtil;
 import com.liferay.portal.kernel.portlet.PortletRequestModel;
+import com.liferay.portal.kernel.portlet.PortletRequestModelFactory;
 import com.liferay.portal.kernel.security.auth.CompanyThreadLocal;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.CompanyLocalServiceUtil;
@@ -237,6 +238,11 @@ public class JournalTransformer {
 
 				if (portletRequestModel != null) {
 					request.setAttribute("mySpecialPortletRequestModel", portletRequestModel);
+
+					PortletRequestModelFactory portletRequestModelFactory =
+						new PortletRequestModelFactory(portletRequestModel);
+
+					request.setAttribute("portletRequestModelFactory", portletRequestModelFactory);
 				}
 
 				template.prepare(request);
