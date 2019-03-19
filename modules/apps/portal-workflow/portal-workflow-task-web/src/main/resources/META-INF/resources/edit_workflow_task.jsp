@@ -39,7 +39,13 @@ AssetRenderer<?> assetRenderer = workflowHandler.getAssetRenderer(classPK);
 
 AssetRendererFactory<?> assetRendererFactory = assetRenderer.getAssetRendererFactory();
 
-AssetEntry assetEntry = assetRendererFactory.getAssetEntry(workflowHandler.getClassName(), assetRenderer.getClassPK());
+long assetClassPK = assetRenderer.getClassPK();
+
+AssetEntry assetEntry = assetRendererFactory.getAssetEntry(workflowHandler.getClassName(), assetClassPK);
+
+if (assetClassPK != assetEntry.getEntryId()) {
+	assetClassPK = assetEntry.getClassPK();
+}
 
 String languageId = ParamUtil.getString(request, "languageId", assetRenderer.getDefaultLanguageId());
 
@@ -237,8 +243,8 @@ renderResponse.setTitle(headerTitle);
 						<liferay-comment:discussion
 							assetEntryVisible="<%= false %>"
 							className="<%= assetRenderer.getClassName() %>"
-							classPK="<%= assetRenderer.getClassPK() %>"
-							formName='<%= "fm" + assetRenderer.getClassPK() %>'
+							classPK="<%= assetClassPK %>"
+							formName='<%= "fm" + assetClassPK %>'
 							ratingsEnabled="<%= false %>"
 							redirect="<%= currentURL %>"
 							userId="<%= user.getUserId() %>"
