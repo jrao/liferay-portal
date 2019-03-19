@@ -16,7 +16,6 @@ package com.liferay.knowledge.base.web.internal.asset;
 
 import com.liferay.asset.kernel.model.BaseJSPAssetRenderer;
 import com.liferay.knowledge.base.constants.KBActionKeys;
-import com.liferay.knowledge.base.constants.KBArticleConstants;
 import com.liferay.knowledge.base.constants.KBPortletKeys;
 import com.liferay.knowledge.base.model.KBArticle;
 import com.liferay.knowledge.base.util.KnowledgeBaseUtil;
@@ -196,13 +195,7 @@ public class KBArticleAssetRenderer extends BaseJSPAssetRenderer<KBArticle> {
 	}
 
 	protected long getClassPK(KBArticle kbArticle) {
-		if ((kbArticle.isDraft() || kbArticle.isPending()) &&
-			(kbArticle.getVersion() != KBArticleConstants.DEFAULT_VERSION)) {
-
-			return kbArticle.getPrimaryKey();
-		}
-
-		return kbArticle.getResourcePrimKey();
+		return kbArticle.getPrimaryKey();
 	}
 
 	private final KBArticle _kbArticle;
