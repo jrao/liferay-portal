@@ -257,10 +257,17 @@ if (layout != null) {
 
 		<%
 		String currentURL = PortalUtil.getCurrentURL(request);
+
+		String escapedURL = HtmlUtil.escapeJS(currentURL);
+
+		escapedURL = escapedURL.replace("\\x27", "\\x2527");
+
+		String escapedEncodedURL =
+			HtmlUtil.escapeJS(URLCodec.encodeURL(currentURL));
 		%>
 
-		Liferay.currentURL = '<%= HtmlUtil.escapeJS(currentURL) %>';
-		Liferay.currentURLEncoded = '<%= HtmlUtil.escapeJS(URLCodec.encodeURL(currentURL)) %>';
+		Liferay.currentURL = '<%= escapedURL %>';
+		Liferay.currentURLEncoded = '<%= escapedEncodedURL %>';
 
 	// ]]>
 </script>
