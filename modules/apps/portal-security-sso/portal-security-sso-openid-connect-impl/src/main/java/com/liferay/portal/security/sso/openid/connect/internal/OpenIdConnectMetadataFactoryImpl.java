@@ -23,6 +23,7 @@ import com.liferay.portal.security.sso.openid.connect.OpenIdConnectServiceExcept
 import com.nimbusds.jose.JWEAlgorithm;
 import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.oauth2.sdk.ParseException;
+import com.nimbusds.oauth2.sdk.as.AuthorizationServerMetadata;
 import com.nimbusds.oauth2.sdk.http.HTTPRequest;
 import com.nimbusds.oauth2.sdk.http.HTTPResponse;
 import com.nimbusds.oauth2.sdk.id.Issuer;
@@ -52,7 +53,8 @@ public class OpenIdConnectMetadataFactoryImpl
 	public OpenIdConnectMetadataFactoryImpl(
 			String providerName, String issuerURL, String[] subjectTypes,
 			String jwksURL, String authorizationEndPointURL,
-			String tokenEndPointURL, String userInfoEndPointURL)
+			String tokenEndPointURL, String userInfoEndPointURL,
+			String[] idTokenSigningAlgValues)
 		throws OpenIdConnectServiceException.ProviderException {
 
 		_providerName = providerName;
@@ -76,6 +78,23 @@ public class OpenIdConnectMetadataFactoryImpl
 				new URI(tokenEndPointURL));
 			_oidcProviderMetadata.setUserInfoEndpointURI(
 				new URI(userInfoEndPointURL));
+
+			/*
+			 * TODO: Find a way to use the supplied idTokenSigningAlgValues to
+			 * set the tokenEndpointJWSAlgs
+			 */
+			List<JWSAlgorithm> tokenEndpointJWSAlgs = null;
+
+			tokenEndpointJWSAlgs =
+				_oidcProviderMetadata.getTokenEndpointJWSAlgs();
+
+			if (tokenEndpointJWSAlgs == null) {
+				tokenEndpointJWSAlgs = new ArrayList<>();
+			}
+
+			if (tokenEndpointJWSAlgs.isEmpty()) {
+				tokenEndpointJWSAlgs.add(JWSAlgorithm.ES256);
+			}
 
 			refreshClientMetadata(_oidcProviderMetadata);
 		}

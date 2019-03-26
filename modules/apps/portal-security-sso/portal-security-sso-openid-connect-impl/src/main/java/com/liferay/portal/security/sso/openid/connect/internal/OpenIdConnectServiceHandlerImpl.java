@@ -32,6 +32,7 @@ import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectCon
 import com.liferay.portal.security.sso.openid.connect.constants.OpenIdConnectWebKeys;
 
 import com.nimbusds.jose.JOSEException;
+import com.nimbusds.jose.JWSAlgorithm;
 import com.nimbusds.jose.proc.BadJOSEException;
 import com.nimbusds.oauth2.sdk.AuthorizationCode;
 import com.nimbusds.oauth2.sdk.AuthorizationCodeGrant;
@@ -81,7 +82,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -155,8 +158,15 @@ public class OpenIdConnectServiceHandlerImpl
 		OIDCProviderMetadata oidcProviderMetadata =
 			openIdConnectProvider.getOIDCProviderMetadata();
 
+		List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
+		jwsAlgorithms.add(JWSAlgorithm.ES256);
+
+		oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
+
 		OIDCClientInformation oidcClientInformation = getOIDCClientInformation(
 			openIdConnectProvider);
+
+		oidcClientInformation.getOIDCMetadata().setIDTokenJWSAlg(JWSAlgorithm.ES256);
 
 		URI redirectURI = getLoginRedirectURI(httpServletRequest);
 
