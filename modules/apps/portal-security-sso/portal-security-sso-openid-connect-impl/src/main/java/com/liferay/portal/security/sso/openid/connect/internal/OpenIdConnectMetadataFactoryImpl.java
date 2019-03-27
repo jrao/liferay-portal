@@ -78,16 +78,20 @@ public class OpenIdConnectMetadataFactoryImpl
 			_oidcProviderMetadata.setUserInfoEndpointURI(
 				new URI(userInfoEndPointURL));
 
-			List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
+			if (idTokenSigningAlgValues != null &&
+					idTokenSigningAlgValues.length > 0) {
 
-			for (String idTokenSigningAlgValue : idTokenSigningAlgValues) {
-				JWSAlgorithm idTokenSigningAlgorithm = JWSAlgorithm.parse(
-					idTokenSigningAlgValue);
+				List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
 
-				jwsAlgorithms.add(idTokenSigningAlgorithm);
+				for (String idTokenSigningAlgValue : idTokenSigningAlgValues) {
+					JWSAlgorithm idTokenSigningAlgorithm = JWSAlgorithm.parse(
+						idTokenSigningAlgValue);
+
+					jwsAlgorithms.add(idTokenSigningAlgorithm);
+				}
+
+				_oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
 			}
-
-			_oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
 
 			refreshClientMetadata(_oidcProviderMetadata);
 		}
