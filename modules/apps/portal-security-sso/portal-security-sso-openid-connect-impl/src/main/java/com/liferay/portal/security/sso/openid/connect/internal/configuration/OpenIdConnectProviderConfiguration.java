@@ -34,8 +34,8 @@ import com.liferay.portal.configuration.metatype.annotations.ExtendedObjectClass
 public interface OpenIdConnectProviderConfiguration {
 
 	@Meta.AD(
-		deflt = "", description = "supported-signing-algorithms-help",
-		name = "supported-signing-algorithms", required = false
+		deflt = "", description = "id-token-supported-signing-algorithms-help",
+		name = "id-token-supported-signing-algorithms", required = false
 	)
 	public String[] idTokenSigningAlgValues();
 
