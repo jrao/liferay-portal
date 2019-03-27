@@ -56,7 +56,7 @@ public class OpenIdConnectMetadataFactoryImpl
 			String userInfoEndPointURL)
 		throws OpenIdConnectServiceException.ProviderException {
 
-	_providerName = providerName;
+		_providerName = providerName;
 
 		_cacheInMilliseconds = 0;
 		_discoveryEndPointURL = null;
@@ -81,7 +81,8 @@ public class OpenIdConnectMetadataFactoryImpl
 			List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
 
 			for (String idTokenSigningAlgValue : idTokenSigningAlgValues) {
-				JWSAlgorithm idTokenSigningAlgorithm = JWSAlgorithm.parse(idTokenSigningAlgValue);
+				JWSAlgorithm idTokenSigningAlgorithm = JWSAlgorithm.parse(
+					idTokenSigningAlgValue);
 
 				jwsAlgorithms.add(idTokenSigningAlgorithm);
 			}
