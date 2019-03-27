@@ -56,7 +56,7 @@ public class OpenIdConnectMetadataFactoryImpl
 			String userInfoEndPointURL)
 		throws OpenIdConnectServiceException.ProviderException {
 
-		_providerName = providerName;
+	_providerName = providerName;
 
 		_cacheInMilliseconds = 0;
 		_discoveryEndPointURL = null;
@@ -78,10 +78,13 @@ public class OpenIdConnectMetadataFactoryImpl
 			_oidcProviderMetadata.setUserInfoEndpointURI(
 				new URI(userInfoEndPointURL));
 
-			// TODO: use idTokenSigningAlgValues instead of hardcoding RS256
 			List<JWSAlgorithm> jwsAlgorithms = new ArrayList<>();
 
-			jwsAlgorithms.add(JWSAlgorithm.RS256);
+			for (String idTokenSigningAlgValue : idTokenSigningAlgValues) {
+				JWSAlgorithm idTokenSigningAlgorithm = JWSAlgorithm.parse(idTokenSigningAlgValue);
+
+				jwsAlgorithms.add(idTokenSigningAlgorithm);
+			}
 
 			_oidcProviderMetadata.setIDTokenJWSAlgs(jwsAlgorithms);
 
