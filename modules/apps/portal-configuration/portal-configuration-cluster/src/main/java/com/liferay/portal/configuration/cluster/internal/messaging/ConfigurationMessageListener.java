@@ -54,6 +54,8 @@ public class ConfigurationMessageListener extends BaseMessageListener {
 	@Override
 	protected void doReceive(Message message) throws Exception {
 		if (message.contains(ConfigurationAdmin.SERVICE_FACTORYPID)) {
+			_log.trace("reloading configuration for service factory");
+
 			reloadConfiguration(
 				message.getString(ConfigurationAdmin.SERVICE_FACTORYPID),
 				ConfigurationAdmin.SERVICE_FACTORYPID,
@@ -61,6 +63,8 @@ public class ConfigurationMessageListener extends BaseMessageListener {
 		}
 
 		if (message.contains(Constants.SERVICE_PID)) {
+			_log.trace("reloading configuration for service");
+
 			reloadConfiguration(
 				message.getString(Constants.SERVICE_PID), Constants.SERVICE_PID,
 				message.getInteger("configuration.event.type"));
