@@ -18,6 +18,8 @@ import com.liferay.petra.string.StringBundler;
 import com.liferay.portal.configuration.cluster.internal.ConfigurationThreadLocal;
 import com.liferay.portal.configuration.cluster.internal.constants.ConfigurationClusterDestinationNames;
 import com.liferay.portal.configuration.persistence.ReloadablePersistenceManager;
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
 import com.liferay.portal.kernel.messaging.BaseMessageListener;
 import com.liferay.portal.kernel.messaging.Destination;
 import com.liferay.portal.kernel.messaging.Message;
@@ -123,6 +125,9 @@ public class ConfigurationMessageListener extends BaseMessageListener {
 	)
 	protected void setDestination(Destination destination) {
 	}
+
+	private static final Log _log = LogFactoryUtil.getLog(
+		ConfigurationMessageListener.class);
 
 	private ConfigurationAdmin _configurationAdmin;
 	private ReloadablePersistenceManager _reloadablePersistenceManager;
