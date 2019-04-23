@@ -197,6 +197,65 @@ public class PortalPreferencesImpl
 		return _signedIn;
 	}
 
+	public void remove(final String key) throws ReadOnlyException {
+		if (isReadOnly(key)) {
+			throw new ReadOnlyException(key);
+		}
+
+		String[] values = super.getValues(key, null);
+
+		if (values == null) {
+			return;
+		}
+
+		Callable<Void> callable = new Callable<Void>() {
+
+			@Override
+			public Void call() {
+				Map<String, Preference> modifiedPreferences =
+					getModifiedPreferences();
+
+				modifiedPreferences.remove(key);
+
+				return null;
+			}
+
+		};
+
+		try {
+			retryableStore(callable, key);
+		}
+		catch (ConcurrentModificationException cme) {
+			throw cme;
+		}
+		catch (Throwable t) {
+			_log.error(t, t);
+		}
+	}
+
+	@Override
+	public void removeValues(String namespace) {
+		Map<String, Preference> preferences = getPreferences();
+
+		try {
+			for (Map.Entry<String, Preference> entry : preferences.entrySet()) {
+				String key = entry.getKey();
+
+				if (key.startsWith(namespace) && !isReadOnly(key)) {
+					System.out.println("key: " + key);
+
+					remove(key);
+				}
+			}
+		}
+		catch (ConcurrentModificationException cme) {
+			throw cme;
+		}
+		catch (Throwable t) {
+			_log.error(t, t);
+		}
+	}
+
 	@Override
 	public void reset(final String key) throws ReadOnlyException {
 		if (isReadOnly(key)) {

@@ -34,6 +34,8 @@ public interface PortalPreferences extends Serializable {
 
 	public boolean isSignedIn();
 
+	public void removeValues(String namespace);
+
 	public void resetValues(String namespace);
 
 	public void setSignedIn(boolean signedIn);

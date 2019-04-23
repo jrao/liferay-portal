@@ -840,6 +840,15 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layout = delete(layout);
 
+		// User preferences for customizable pages
+
+		if (layout.isTypePortlet()) {
+			LayoutTypePortlet layoutTypePortlet =
+				(LayoutTypePortlet)layout.getLayoutType();
+
+			layoutTypePortlet.removeUserPreferences();
+		}
+
 		// Layout set
 
 		if (updateLayoutSet) {
