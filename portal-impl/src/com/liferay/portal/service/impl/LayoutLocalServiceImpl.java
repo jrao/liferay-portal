@@ -32,6 +32,7 @@ import com.liferay.portal.kernel.exception.SitemapPagePriorityException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
 import com.liferay.portal.kernel.log.LogFactoryUtil;
+import com.liferay.portal.kernel.model.CustomizedPages;
 import com.liferay.portal.kernel.model.Group;
 import com.liferay.portal.kernel.model.GroupConstants;
 import com.liferay.portal.kernel.model.Layout;
@@ -61,6 +62,7 @@ import com.liferay.portal.kernel.search.IndexerRegistryUtil;
 import com.liferay.portal.kernel.search.QueryConfig;
 import com.liferay.portal.kernel.search.SearchContext;
 import com.liferay.portal.kernel.search.Sort;
+import com.liferay.portal.kernel.service.PortalPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.version.VersionServiceListener;
 import com.liferay.portal.kernel.systemevent.SystemEvent;
@@ -83,6 +85,7 @@ import com.liferay.portal.kernel.util.comparator.LayoutPriorityComparator;
 import com.liferay.portal.kernel.workflow.WorkflowThreadLocal;
 import com.liferay.portal.service.base.LayoutLocalServiceBaseImpl;
 import com.liferay.portal.util.PropsValues;
+import com.liferay.portlet.PortalPreferencesImpl;
 import com.liferay.sites.kernel.util.Sites;
 import com.liferay.sites.kernel.util.SitesUtil;
 
@@ -840,13 +843,10 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 
 		layout = delete(layout);
 
-		// User preferences for customizable pages
+		// Delete user preferences for customizable pages
 
-		if (layout.isTypePortlet()) {
-			LayoutTypePortlet layoutTypePortlet =
-				(LayoutTypePortlet)layout.getLayoutType();
-
-			layoutTypePortlet.removeUserPreferences();
+		if (layout.isTypePortlet() && layout.isCustomizable()) {
+			removeUserPreferences(layout);
 		}
 
 		// Layout set
@@ -3587,6 +3587,38 @@ public class LayoutLocalServiceImpl extends LayoutLocalServiceBaseImpl {
 		}
 
 		return true;
+	}
+
+	private void removeUserPreferences(Layout layout) {
+		List<com.liferay.portal.kernel.model.PortalPreferences>
+			portalPreferenceses =
+				PortalPreferencesLocalServiceUtil.getPortalPreferenceses(
+					QueryUtil.ALL_POS, QueryUtil.ALL_POS);
+
+		long plid = layout.getPlid();
+
+		for (com.liferay.portal.kernel.model.PortalPreferences
+				portalPreferences : portalPreferenceses) {
+
+			System.out.println(
+				"portalPreferences contains CustomizedPages.namespacePlid: " +
+					portalPreferences.getPreferences(
+					).contains(
+						CustomizedPages.namespacePlid(plid)
+					));
+
+			if (portalPreferences.getPreferences().contains(
+					CustomizedPages.namespacePlid(plid))) {
+
+				System.out.println("need to perform deletion!");
+
+				PortalPreferencesImpl portalPreferencesImpl =
+					new PortalPreferencesImpl(portalPreferences, true);
+
+				portalPreferencesImpl.removeValues(
+					CustomizedPages.namespacePlid(plid));
+			}
+		}
 	}
 
 	private static final Log _log = LogFactoryUtil.getLog(

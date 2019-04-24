@@ -17,7 +17,6 @@ package com.liferay.portal.model.impl;
 import com.liferay.counter.kernel.service.CounterLocalServiceUtil;
 import com.liferay.petra.string.StringPool;
 import com.liferay.portal.kernel.configuration.Filter;
-import com.liferay.portal.kernel.dao.orm.QueryUtil;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
 import com.liferay.portal.kernel.log.Log;
@@ -46,7 +45,6 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
 import com.liferay.portal.kernel.security.permission.PermissionThreadLocal;
 import com.liferay.portal.kernel.service.LayoutTemplateLocalServiceUtil;
 import com.liferay.portal.kernel.service.PluginSettingLocalServiceUtil;
-import com.liferay.portal.kernel.service.PortalPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletLocalServiceUtil;
 import com.liferay.portal.kernel.service.PortletPreferencesLocalServiceUtil;
 import com.liferay.portal.kernel.service.ResourcePermissionLocalServiceUtil;
@@ -67,7 +65,6 @@ import com.liferay.portal.kernel.util.UnicodeProperties;
 import com.liferay.portal.kernel.util.Validator;
 import com.liferay.portal.util.PropsUtil;
 import com.liferay.portal.util.PropsValues;
-import com.liferay.portlet.PortalPreferencesImpl;
 import com.liferay.sites.kernel.util.SitesUtil;
 import com.liferay.util.JS;
 
@@ -1132,34 +1129,6 @@ public class LayoutTypePortletImpl
 	public void resetStates() {
 		setStateMax(StringPool.BLANK);
 		setStateMin(StringPool.BLANK);
-	}
-
-	@Override
-	public void removeUserPreferences() {
-		List<com.liferay.portal.kernel.model.PortalPreferences>
-			portalPreferenceses =
-			PortalPreferencesLocalServiceUtil.getPortalPreferenceses(
-				QueryUtil.ALL_POS, QueryUtil.ALL_POS);
-
-		long plid = getPlid();
-
-		for (com.liferay.portal.kernel.model.PortalPreferences portalPreferences : portalPreferenceses) {
-			System.out.println(
-				"portalPreferences contains CustomizedPages.namespacePlid: " +
-				portalPreferences.getPreferences().contains(
-					CustomizedPages.namespacePlid(plid)));
-
-			if (portalPreferences.getPreferences().contains(
-				CustomizedPages.namespacePlid(plid))) {
-				System.out.println("need to perform deletion!");
-
-				PortalPreferencesImpl portalPreferencesImpl =
-					new PortalPreferencesImpl(portalPreferences, true);
-
-				portalPreferencesImpl.removeValues(
-					CustomizedPages.namespacePlid(plid));
-			}
-		}
 	}
 
 	@Override

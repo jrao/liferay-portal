@@ -220,8 +220,6 @@ public interface LayoutTypePortlet extends LayoutType {
 
 	public void resetStates();
 
-	public void removeUserPreferences();
-
 	public void resetUserPreferences();
 
 	public void setCustomizedView(boolean customizedView);
