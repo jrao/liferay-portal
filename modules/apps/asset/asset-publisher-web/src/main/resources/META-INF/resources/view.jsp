@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.liferay.asset.kernel.exception.NoSuchCategoryException" %><%--
 /**
  * Copyright (c) 2000-present Liferay, Inc. All rights reserved.
  *
@@ -17,11 +17,12 @@
 <%@ include file="/init.jsp" %>
 
 <%
-assetPublisherDisplayContext.setPageKeywords();
+try {
+	assetPublisherDisplayContext.setPageKeywords();
 
-if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && !assetPublisherDisplayContext.isSelectionStyleAssetList() && assetPublisherDisplayContext.isSelectionStyleManual() && ((assetPublisherDisplayContext.getAllAssetCategoryIds().length > 0) || (assetPublisherDisplayContext.getAllAssetTagNames().length > 0))) {
-	assetPublisherDisplayContext.setSelectionStyle("dynamic");
-}
+	if (assetPublisherDisplayContext.isEnableTagBasedNavigation() && !assetPublisherDisplayContext.isSelectionStyleAssetList() && assetPublisherDisplayContext.isSelectionStyleManual() && ((assetPublisherDisplayContext.getAllAssetCategoryIds().length > 0) || (assetPublisherDisplayContext.getAllAssetTagNames().length > 0))) {
+		assetPublisherDisplayContext.setSelectionStyle("dynamic");
+	}
 %>
 
 <c:if test="<%= assetPublisherDisplayContext.isEnableSubscriptions() %>">
@@ -150,3 +151,21 @@ SearchContainer searchContainer = assetPublisherDisplayContext.getSearchContaine
 		window.location.hash = assetEntryId;
 	}
 </aui:script>
+
+<%
+	}
+	catch (PortalException pe) {
+		if (pe instanceof NoSuchCategoryException) {
+			SessionErrors.add(request, "no-such-category-exception");
+%>
+
+<div><%= pe.getMessage() %></div>
+<liferay-ui:error key="no-such-category-exception" message="no-such-category-exception" />
+
+<%
+		}
+		else {
+			throw pe;
+		}
+	}
+%>

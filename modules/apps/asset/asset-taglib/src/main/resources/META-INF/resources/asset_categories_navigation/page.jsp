@@ -89,8 +89,8 @@ if (hidePortletWhenEmpty) {
 }
 
 if (categoryId > 0) {
-	AssetCategoryUtil.addPortletBreadcrumbEntries(categoryId, request, portletURL, false);
-}
+	try {
+		AssetCategoryUtil.addPortletBreadcrumbEntries(categoryId, request, portletURL, false);
 %>
 
 <aui:script use="aui-tree-view">
@@ -126,6 +126,23 @@ if (categoryId > 0) {
 		}
 	);
 </aui:script>
+
+<%
+	}
+	catch (Exception e) {
+		if (e instanceof NoSuchCategoryException) {
+%>
+
+<div><%= e.getMessage() %></div>
+
+<%
+		}
+		else {
+			throw e;
+		}
+	}
+}
+%>
 
 <%!
 private void _buildCategoriesNavigation(List<AssetCategory> categories, long categoryId, PortletURL portletURL, ThemeDisplay themeDisplay, StringBundler sb) throws Exception {
