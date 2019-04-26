@@ -15,6 +15,9 @@
 package com.liferay.asset.publisher.web.internal.portlet;
 
 import com.liferay.asset.constants.AssetWebKeys;
+import com.liferay.asset.kernel.exception.NoSuchCategoryException;
+import com.liferay.asset.kernel.model.AssetCategory;
+import com.liferay.asset.kernel.service.AssetCategoryLocalService;
 import com.liferay.asset.publisher.constants.AssetPublisherPortletKeys;
 import com.liferay.asset.publisher.constants.AssetPublisherWebKeys;
 import com.liferay.asset.publisher.util.AssetPublisherHelper;
@@ -346,6 +349,19 @@ public class AssetPublisherPortlet extends MVCPortlet {
 				AssetPublisherWebKeys.ASSET_PUBLISHER_DISPLAY_CONTEXT,
 				assetPublisherDisplayContext);
 
+			long assetCategoryId =
+				assetPublisherDisplayContext.getAssetCategoryId();
+
+			if (assetCategoryId > 0) {
+				try {
+					AssetCategory assetCategory =
+						assetCategoryLocalService.getCategory(assetCategoryId);
+				}
+				catch (NoSuchCategoryException nsce) {
+					SessionErrors.add(renderRequest, "no-such-category-exception");
+				}
+			}
+
 			renderRequest.setAttribute(
 				AssetPublisherWebKeys.ASSET_PUBLISHER_HELPER,
 				assetPublisherHelper);
@@ -379,6 +395,9 @@ public class AssetPublisherPortlet extends MVCPortlet {
 
 		return false;
 	}
+
+	@Reference
+	protected AssetCategoryLocalService assetCategoryLocalService;
 
 	@Reference
 	protected AssetEntryActionRegistry assetEntryActionRegistry;
