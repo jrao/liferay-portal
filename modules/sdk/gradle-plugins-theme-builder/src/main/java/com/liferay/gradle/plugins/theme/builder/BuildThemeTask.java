@@ -51,6 +51,12 @@ public class BuildThemeTask extends JavaExec {
 		return GradleUtil.toFile(getProject(), _diffsDir);
 	}
 
+	@Input
+	@Optional
+	public String getIncludeSCSS() {
+		return GradleUtil.toString(_includeSCSS);
+	}
+
 	@OutputDirectory
 	public File getOutputDir() {
 		return GradleUtil.toFile(getProject(), _outputDir);
@@ -98,6 +104,10 @@ public class BuildThemeTask extends JavaExec {
 
 	public void setDiffsDir(Object diffsDir) {
 		_diffsDir = diffsDir;
+	}
+
+	public void setIncludeSCSS(Object includeSCSS) {
+		_includeSCSS = includeSCSS;
 	}
 
 	public void setOutputDir(Object outputDir) {
@@ -180,6 +190,7 @@ public class BuildThemeTask extends JavaExec {
 	}
 
 	private Object _diffsDir;
+	private Object _includeSCSS;
 	private Object _outputDir;
 	private Object _parentDir;
 	private Object _parentFile;

@@ -162,6 +162,19 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 
 		buildThemeTask.setGroup(BasePlugin.BUILD_GROUP);
 
+		buildThemeTask.setIncludeSCSS(
+			new Callable<String>() {
+
+				@Override
+				public String call() throws Exception {
+					Project project = buildThemeTask.getProject();
+
+					return (String)project.getProperties().get("includeSCSS");
+				}
+
+			}
+		);
+
 		buildThemeTask.setOutputDir(
 			new Callable<File>() {
 
@@ -289,7 +302,11 @@ public class ThemeBuilderPlugin implements Plugin<Project> {
 
 			});
 
-		war.exclude("**/*.scss");
+		String includeSCSS = buildThemeTask.getIncludeSCSS();
+
+		if (!includeSCSS.equals("true")) {
+			war.exclude("**/*.scss");
+		}
 
 		war.from(
 			new Callable<File>() {

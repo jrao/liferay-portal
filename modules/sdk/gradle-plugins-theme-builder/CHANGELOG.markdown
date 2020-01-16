@@ -1,5 +1,11 @@
 # Liferay Gradle Plugins Theme Builder Change Log
 
+## 2.1.0 - 2019-01-16
+
+### Changed
+
+- <https://stackoverflow.com/questions/59773229/gradle-override-exclude-config-made-in-a-plugin>
+
 ## 2.0.0 - 2016-10-11
 
 ### Changed
